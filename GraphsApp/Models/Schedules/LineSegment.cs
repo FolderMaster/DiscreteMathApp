@@ -2,6 +2,8 @@
 {
     public class LineSegment : IShape
     {
+        public string Name { get; set; } = "";
+
         public Point Begin { get; set; } = new Point();
 
         public Point End { get; set; } = new Point();
@@ -12,6 +14,13 @@
 
         public LineSegment(Point begin, Point end)
         {
+            Begin = begin;
+            End = end;
+        }
+
+        public LineSegment(string name, Point begin, Point end)
+        {
+            Name = name;
             Begin = begin;
             End = end;
         }
@@ -41,7 +50,7 @@
                     end.Coordinates.Add(schedule.DefaultValue);
                 }
             }
-            return new LineSegment(begin, end);
+            return new LineSegment(Name, begin, end);
         }
 
         public double GetMax(ISchedule schedule, int axisIndex)

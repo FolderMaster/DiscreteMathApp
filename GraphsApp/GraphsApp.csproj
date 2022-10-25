@@ -66,6 +66,8 @@
     <Compile Include="Services\App\Session.cs" />
     <Compile Include="Services\App\Settings.cs" />
     <Compile Include="Services\Factories\GraphFactory.cs" />
+    <Compile Include="Services\Factories\MatrixFactory.cs" />
+    <Compile Include="Services\Factories\ScheduleFactory.cs" />
     <Compile Include="Services\IO\JsonManager.cs" />
     <Compile Include="Services\Validatories\ValueValidator.cs" />
     <Compile Include="Views\ColorManager.cs" />
@@ -98,6 +100,12 @@
     <Compile Include="Views\MessageBoxManager.cs" />
     <EmbeddedResource Include="Views\Controls\AdjacencyMatrixControl.resx">
       <DependentUpon>AdjacencyMatrixControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\IncidenceMatrixControl.resx">
+      <DependentUpon>IncidenceMatrixControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\Schedule2DControl.resx">
+      <DependentUpon>Schedule2DControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

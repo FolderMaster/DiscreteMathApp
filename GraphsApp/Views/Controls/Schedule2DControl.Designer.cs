@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Schedule2DControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "Schedule2DControl";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Schedule2DControl_Paint);
+            this.Resize += new System.EventHandler(this.Schedule2DControl_Resize);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

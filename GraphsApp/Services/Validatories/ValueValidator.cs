@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace GraphsApp.Services.Validatories
 {
@@ -40,17 +41,32 @@ namespace GraphsApp.Services.Validatories
         {
             AssertIsNotNull(matrix, name);
             AssertMatrixOnLengthesAreEqual(matrix, name);
-            int matrixSize = matrix.GetLength(0);
-            for(int y = 0; y < matrixSize; ++y)
+            int verticesCount = matrix.GetLength(0);
+            for(int y = 0; y < verticesCount; ++y)
             {
-                for(int x = 0; x < matrixSize; ++x)
+                for(int x = 0; x < verticesCount; ++x)
                 {
-                    int value = matrix[y, x];
-                    AssertValueIsPositive(value, $"{name}[{y}, {x}]");
-                    if(y == x)
-                    {
-                        AssertValueIsEven(value, $"{name}[{y}, {x}]");
-                    }
+                    AssertValueIsPositive(matrix[y, x], $"{name}[{y}, {x}]");
+                }
+            }
+        }
+
+        public static void AssertMatrixIsIncidence(int[,] matrix, string name)
+        {
+            AssertIsNotNull(matrix, name);
+            AssertMatrixOnLengthesAreEqual(matrix, name);
+            int edgesCount = matrix.GetLength(0);
+            int verticesCount = matrix.GetLength(1);
+            for (int y = 0; y < edgesCount; ++y)
+            {
+                int sum = 0;
+                for (int x = 0; x < verticesCount; ++x)
+                {
+                    sum += matrix[y, x];
+                }
+                if (sum != 2)
+                {
+                    throw new ArgumentException($"Sum of {name}'s row {y} must be equal 2");
                 }
             }
         }

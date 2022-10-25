@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using GraphsApp.Services.App;
 using GraphsApp.Services.IO;
+using GraphsApp.Models.Graphs;
 using GraphsApp.Services.Factories;
 
 namespace GraphsApp.Views.Forms
@@ -39,7 +40,7 @@ namespace GraphsApp.Views.Forms
             finally
             {
                 _session = save == null ? _session : save.Session;
-                AdjacencyMatrixControl.AdjacencyMatrix = new int[2, 2] { { 0, 1 }, { 0, 2 } };
+                schedule2DControl1.Settings = _settings;
             }
         }
 
@@ -54,6 +55,11 @@ namespace GraphsApp.Views.Forms
             {
                 MessageBoxManager.ShowError(ex.Message);
             }
+        }
+
+        private void DisplayButton_Click(object sender, EventArgs e)
+        {
+            schedule2DControl1.Graph = AdjacencyMatrixControl.Graph;
         }
     }
 }

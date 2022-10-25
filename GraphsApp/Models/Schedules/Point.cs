@@ -6,10 +6,23 @@ namespace GraphsApp.Models.Schedules
 {
     public class Point : IShape, IComparable
     {
+        public string Name { get; set; } = "";
+
         public List<double> Coordinates { get; set; } = new List<double>();
 
         public Point()
         {
+        }
+
+        public Point(IEnumerable<double> coordinates)
+        {
+            Coordinates = coordinates.ToList();
+        }
+
+        public Point(string name, IEnumerable<double> coordinates)
+        {
+            Name = name;
+            Coordinates = coordinates.ToList();
         }
 
         public double GetDistance(Point point, ISchedule schedule)
@@ -27,11 +40,6 @@ namespace GraphsApp.Models.Schedules
             return Math.Sqrt(result);
         }
 
-        public Point(IEnumerable<double> coordinates)
-        {
-            Coordinates = coordinates.ToList();
-        }
-
         public IShape Display(ISchedule schedule)
         {
             List<double> coordinates = new List<double>();
@@ -46,7 +54,7 @@ namespace GraphsApp.Models.Schedules
                     coordinates.Add(schedule.DefaultValue);
                 }
             }
-            return new Point(coordinates);
+            return new Point(Name, coordinates);
         }
 
         public double GetMax(ISchedule schedule, int axisIndex)

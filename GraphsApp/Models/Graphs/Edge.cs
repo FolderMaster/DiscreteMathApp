@@ -4,9 +4,18 @@
     {
         public string Name { get; set; } = "";
 
-        public Vertex Begin { get; set; }
+        public Vertex Begin { get; set; } = null;
 
-        public Vertex End { get; set; }
+        public Vertex End { get; set; } = null;
+
+        public Edge()
+        {
+        }
+
+        public Edge(string name)
+        {
+            Name = name;
+        }
 
         public Edge(Vertex begin, Vertex end)
         {

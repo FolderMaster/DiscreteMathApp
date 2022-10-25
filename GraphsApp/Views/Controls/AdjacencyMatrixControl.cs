@@ -39,7 +39,7 @@ namespace GraphsApp.Views.Controls
         {
             get
             {
-                return GraphFactory.CreateGraphByAdjacencyMatrix(_adjacencyMatrix);
+                return GraphFactory.CreateGraphByAdjacencyMatrix(AdjacencyMatrix);
             }
         }
 
@@ -77,19 +77,10 @@ namespace GraphsApp.Views.Controls
             {
                 for(int x = 0; x < _matrixSize; x++)
                 {
-                    _dataTable.Rows[y][x + 1] = _adjacencyMatrix[y, x];
+                    _dataTable.Rows[y][x + 1] = AdjacencyMatrix[y, x];
                 }
             }
             DataGridView.DataSource = _dataTable;
-        }
-
-        private void DataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            int rowIndex = e.RowIndex;
-            int columnIndex = e.ColumnIndex;
-            object value = DataGridView[columnIndex, rowIndex].Value;
-            string stringValue = value == null ? "" : value.ToString();
-            _adjacencyMatrix[rowIndex, columnIndex - 1] = int.Parse(stringValue);
         }
 
         private void DataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs
@@ -102,11 +93,6 @@ namespace GraphsApp.Views.Controls
                 int value = int.Parse((string)e.FormattedValue);
                 ValueValidator.AssertValueIsPositive(value, $"matrix[{rowIndex}, " +
                     $"{columnIndex - 1}]");
-                if(rowIndex == columnIndex - 1)
-                {
-                    ValueValidator.AssertValueIsEven(value, $"matrix[{rowIndex}, " +
-                        $"{columnIndex - 1}]");
-                }
                 DataGridView[columnIndex, rowIndex].ErrorText = "";
                 DataGridView[columnIndex, rowIndex].Style.BackColor = ColorManager.CorrectColor;
             }
@@ -116,6 +102,29 @@ namespace GraphsApp.Views.Controls
                 DataGridView[columnIndex, rowIndex].ErrorText = ex.Message;
                 DataGridView[columnIndex, rowIndex].Style.BackColor = ColorManager.ErrorColor;
             }
+        }
+
+        private void GenerationButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = int.Parse(VerticesCountTextBox.Text);
+                AdjacencyMatrix = MatrixFactory.CreateAdjacencyMatrix(count, count - 1);
+                VerticesCountTextBox.BackColor = ColorManager.CorrectColor;
+            }
+            catch
+            {
+                VerticesCountTextBox.BackColor = ColorManager.ErrorColor;
+            }
+        }
+
+        private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            int columnIndex = e.ColumnIndex;
+            object value = DataGridView[columnIndex, rowIndex].Value;
+            string stringValue = value == null ? "" : value.ToString();
+            AdjacencyMatrix[rowIndex, columnIndex - 1] = int.Parse(stringValue);
         }
     }
 }
