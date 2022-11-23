@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 using GraphsApp.Services.App;
 using GraphsApp.Services.IO;
-using GraphsApp.Models.Graphs;
-using GraphsApp.Services.Factories;
 
 namespace GraphsApp.Views.Forms
 {
@@ -40,12 +38,13 @@ namespace GraphsApp.Views.Forms
             finally
             {
                 _session = save == null ? _session : save.Session;
-                schedule2DControl1.Settings = _settings;
+                AdjacencyMatrixTab.Graph = _session.Graph;
             }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+
             try
             {
                 SaveFormat save = new SaveFormat(_session);
@@ -57,9 +56,10 @@ namespace GraphsApp.Views.Forms
             }
         }
 
-        private void DisplayButton_Click(object sender, EventArgs e)
+        private void AdjacencyMatrixTab_MatrixChanged(object sender, EventArgs e)
         {
-            schedule2DControl1.Graph = AdjacencyMatrixControl.Graph;
+            _session.Graph = AdjacencyMatrixTab.Graph;
+            PathMatrixTab.AdjacencyMatrix = AdjacencyMatrixTab.AdjacencyMatrix;
         }
     }
 }

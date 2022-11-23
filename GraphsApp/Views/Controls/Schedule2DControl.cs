@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using GraphsApp.Models.Graphs;
@@ -19,21 +15,20 @@ namespace GraphsApp.Views.Controls
 {
     public partial class Schedule2DControl : UserControl
     {
-        private Graph _graph;
-
         private Schedule2D _schedule;
 
         private Settings _settings;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
             set
             {
-                _graph = value;
                 Schedule = ScheduleFactory.CreateScheduleByGraph(value);
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Schedule2D Schedule
         {
             get
@@ -45,8 +40,8 @@ namespace GraphsApp.Views.Controls
                 if (value != null)
                 {
                     _schedule = value;
-                    _schedule.Axises[0].Length = Width;
-                    _schedule.Axises[1].Length = Height;
+                    _schedule.Axises2D[0].Length = Width;
+                    _schedule.Axises2D[1].Length = Height;
                     _schedule.DefaultDisplay();
 
                     Invalidate();
@@ -79,8 +74,8 @@ namespace GraphsApp.Views.Controls
 
         private void Schedule2DControl_Resize(object sender, EventArgs e)
         {
-            Schedule.Axises[0].Length = Width;
-            Schedule.Axises[1].Length = Height;
+            Schedule.Axises2D[0].Length = Width;
+            Schedule.Axises2D[1].Length = Height;
 
             Invalidate();
         }

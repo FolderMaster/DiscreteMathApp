@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+
 using GraphsApp.Models.Graphs;
 using GraphsApp.Services.Validatories;
 
@@ -26,7 +26,8 @@ namespace GraphsApp.Services.Factories
                 {
                     for(int k = 0; k < matrix[x, y]; ++k)
                     {
-                        result.ConnectVertexToVertex(result.Vertices[y], result.Vertices[x], Convert.ToChar((int)'a' + edgesCount).ToString());
+                        result.ConnectVertexToVertex(result.Vertices[y], result.Vertices[x],
+                            Convert.ToChar((int)'a' + edgesCount).ToString());
                         ++edgesCount;
                     }
                 }

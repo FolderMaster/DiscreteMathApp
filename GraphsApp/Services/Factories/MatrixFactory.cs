@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphsApp.Services.Factories
 {
     public static class MatrixFactory
     {
-        public static int[,] CreateAdjacencyMatrix(int verticesCount, int loopsCount, int edgeMultiplicity = 1)
+        public static int[,] CreateAdjacencyMatrix(int verticesCount, int loopsCount = 0, int
+            edgeMultiplicity = 0)
         {
             Random random = new Random();
             int[,] result = new int[verticesCount, verticesCount];
@@ -27,12 +24,16 @@ namespace GraphsApp.Services.Factories
                     }
                     else
                     {
-                        result[y, x] = random.Next(edgeMultiplicity + 1);
-                        result[x, y] = result[y, x];
+                        result[x, y] = result[y, x] = random.Next(edgeMultiplicity + 1);
                     }
                 }
             }
             return result;
+        }
+
+        public static int[,] CreateNullMatrix(int x, int y)
+        {
+            return new int[x, y];
         }
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Services\Factories\MatrixFactory.cs" />
     <Compile Include="Services\Factories\ScheduleFactory.cs" />
     <Compile Include="Services\IO\JsonManager.cs" />
+    <Compile Include="Services\Managers\MatrixManager.cs" />
     <Compile Include="Services\Validatories\ValueValidator.cs" />
     <Compile Include="Views\ColorManager.cs" />
     <Compile Include="Views\Controls\AdjacencyMatrixControl.cs">
@@ -77,11 +78,23 @@
     <Compile Include="Views\Controls\AdjacencyMatrixControl.Designer.cs">
       <DependentUpon>AdjacencyMatrixControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\AdjacencyMatrixGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\AdjacencyMatrixGridControl.Designer.cs">
+      <DependentUpon>AdjacencyMatrixGridControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\IncidenceMatrixControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Controls\IncidenceMatrixControl.Designer.cs">
       <DependentUpon>IncidenceMatrixControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PathMatrixControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\PathMatrixControl.Designer.cs">
+      <DependentUpon>PathMatrixControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\Schedule2DControl.cs">
       <SubType>UserControl</SubType>
@@ -98,17 +111,36 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MessageBoxManager.cs" />
+    <Compile Include="Views\Tabs\AdjacencyMatrixTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Tabs\AdjacencyMatrixTab.Designer.cs">
+      <DependentUpon>AdjacencyMatrixTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\PathMatrixTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Tabs\PathMatrixTab.Designer.cs">
+      <DependentUpon>PathMatrixTab.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\Controls\AdjacencyMatrixControl.resx">
       <DependentUpon>AdjacencyMatrixControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\AdjacencyMatrixGridControl.resx">
+      <DependentUpon>AdjacencyMatrixGridControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\IncidenceMatrixControl.resx">
       <DependentUpon>IncidenceMatrixControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\PathMatrixControl.resx">
+      <DependentUpon>PathMatrixControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\Schedule2DControl.resx">
       <DependentUpon>Schedule2DControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -119,6 +151,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Tabs\AdjacencyMatrixTab.resx">
+      <DependentUpon>AdjacencyMatrixTab.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Tabs\PathMatrixTab.resx">
+      <DependentUpon>PathMatrixTab.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

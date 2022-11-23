@@ -28,62 +28,89 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DisplayButton = new System.Windows.Forms.Button();
-            this.schedule2DControl1 = new GraphsApp.Views.Controls.Schedule2DControl();
-            this.AdjacencyMatrixControl = new GraphsApp.Views.Controls.AdjacencyMatrixControl();
+            this.TabControl = new System.Windows.Forms.TabControl();
+            this.AdjacencyMatrixTabPage = new System.Windows.Forms.TabPage();
+            this.PathMatrixPage = new System.Windows.Forms.TabPage();
+            this.AdjacencyMatrixTab = new GraphsApp.Views.Tabs.AdjacencyMatrixTab();
+            this.PathMatrixTab = new GraphsApp.Views.Tabs.PathMatrixTab();
+            this.TabControl.SuspendLayout();
+            this.AdjacencyMatrixTabPage.SuspendLayout();
+            this.PathMatrixPage.SuspendLayout();
             this.SuspendLayout();
             // 
-            // DisplayButton
+            // TabControl
             // 
-            this.DisplayButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DisplayButton.Location = new System.Drawing.Point(12, 415);
-            this.DisplayButton.Name = "DisplayButton";
-            this.DisplayButton.Size = new System.Drawing.Size(75, 23);
-            this.DisplayButton.TabIndex = 2;
-            this.DisplayButton.Text = "Display";
-            this.DisplayButton.UseVisualStyleBackColor = true;
-            this.DisplayButton.Click += new System.EventHandler(this.DisplayButton_Click);
+            this.TabControl.Controls.Add(this.AdjacencyMatrixTabPage);
+            this.TabControl.Controls.Add(this.PathMatrixPage);
+            this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabControl.Location = new System.Drawing.Point(0, 0);
+            this.TabControl.Name = "TabControl";
+            this.TabControl.SelectedIndex = 0;
+            this.TabControl.Size = new System.Drawing.Size(800, 450);
+            this.TabControl.TabIndex = 0;
             // 
-            // schedule2DControl1
+            // AdjacencyMatrixTabPage
             // 
-            this.schedule2DControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.schedule2DControl1.Location = new System.Drawing.Point(395, 12);
-            this.schedule2DControl1.Name = "schedule2DControl1";
-            this.schedule2DControl1.Size = new System.Drawing.Size(393, 426);
-            this.schedule2DControl1.TabIndex = 1;
+            this.AdjacencyMatrixTabPage.Controls.Add(this.AdjacencyMatrixTab);
+            this.AdjacencyMatrixTabPage.Location = new System.Drawing.Point(4, 22);
+            this.AdjacencyMatrixTabPage.Name = "AdjacencyMatrixTabPage";
+            this.AdjacencyMatrixTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AdjacencyMatrixTabPage.Size = new System.Drawing.Size(792, 424);
+            this.AdjacencyMatrixTabPage.TabIndex = 0;
+            this.AdjacencyMatrixTabPage.Text = "AdjacencyMatrix";
+            this.AdjacencyMatrixTabPage.UseVisualStyleBackColor = true;
             // 
-            // AdjacencyMatrixControl
+            // PathMatrixPage
             // 
-            this.AdjacencyMatrixControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.AdjacencyMatrixControl.Location = new System.Drawing.Point(12, 12);
-            this.AdjacencyMatrixControl.Name = "AdjacencyMatrixControl";
-            this.AdjacencyMatrixControl.Size = new System.Drawing.Size(377, 397);
-            this.AdjacencyMatrixControl.TabIndex = 0;
+            this.PathMatrixPage.Controls.Add(this.PathMatrixTab);
+            this.PathMatrixPage.Location = new System.Drawing.Point(4, 22);
+            this.PathMatrixPage.Name = "PathMatrixPage";
+            this.PathMatrixPage.Padding = new System.Windows.Forms.Padding(3);
+            this.PathMatrixPage.Size = new System.Drawing.Size(792, 424);
+            this.PathMatrixPage.TabIndex = 1;
+            this.PathMatrixPage.Text = "PathMatrix";
+            this.PathMatrixPage.UseVisualStyleBackColor = true;
+            // 
+            // AdjacencyMatrixTab
+            // 
+            this.AdjacencyMatrixTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdjacencyMatrixTab.Location = new System.Drawing.Point(3, 3);
+            this.AdjacencyMatrixTab.Name = "AdjacencyMatrixTab";
+            this.AdjacencyMatrixTab.Size = new System.Drawing.Size(786, 418);
+            this.AdjacencyMatrixTab.TabIndex = 0;
+            this.AdjacencyMatrixTab.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixTab_MatrixChanged);
+            // 
+            // PathMatrixTab
+            // 
+            this.PathMatrixTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PathMatrixTab.Location = new System.Drawing.Point(3, 3);
+            this.PathMatrixTab.Name = "PathMatrixTab";
+            this.PathMatrixTab.Size = new System.Drawing.Size(786, 418);
+            this.PathMatrixTab.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.DisplayButton);
-            this.Controls.Add(this.schedule2DControl1);
-            this.Controls.Add(this.AdjacencyMatrixControl);
+            this.Controls.Add(this.TabControl);
             this.Name = "MainForm";
             this.Text = "GraphsApp";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.TabControl.ResumeLayout(false);
+            this.AdjacencyMatrixTabPage.ResumeLayout(false);
+            this.PathMatrixPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Controls.AdjacencyMatrixControl AdjacencyMatrixControl;
-        private Controls.Schedule2DControl schedule2DControl1;
-        private System.Windows.Forms.Button DisplayButton;
+        private System.Windows.Forms.TabControl TabControl;
+        private System.Windows.Forms.TabPage AdjacencyMatrixTabPage;
+        private System.Windows.Forms.TabPage PathMatrixPage;
+        private Tabs.AdjacencyMatrixTab AdjacencyMatrixTab;
+        private Tabs.PathMatrixTab PathMatrixTab;
     }
 }
-
