@@ -54,6 +54,7 @@
     <Compile Include="Models\Graphs\Vertex.cs" />
     <Compile Include="Models\Schedules\Axis.cs" />
     <Compile Include="Models\Schedules\Camera2D.cs" />
+    <Compile Include="Models\Schedules\Curve.cs" />
     <Compile Include="Models\Schedules\ICamera.cs" />
     <Compile Include="Models\Schedules\IScale.cs" />
     <Compile Include="Models\Schedules\ISchedule.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Services\Factories\GraphFactory.cs" />
     <Compile Include="Services\Factories\MatrixFactory.cs" />
     <Compile Include="Services\Factories\ScheduleFactory.cs" />
+    <Compile Include="Services\Factories\ShapeFactory.cs" />
     <Compile Include="Services\IO\JsonManager.cs" />
     <Compile Include="Services\Managers\MatrixManager.cs" />
     <Compile Include="Services\Validatories\ValueValidator.cs" />

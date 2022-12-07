@@ -20,7 +20,7 @@ namespace GraphsApp.Services.Managers
                     {
                         for(int n = 0; n < length; ++n)
                         {
-                            temp[y, x] += result[n, x] * matrix[y, n];
+                            temp[y, x] += result[y, n] * matrix[n, x];
                         }
                     }
                 }

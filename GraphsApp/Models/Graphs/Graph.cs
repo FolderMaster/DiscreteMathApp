@@ -17,8 +17,11 @@ namespace GraphsApp.Models.Graphs
                 int[,] result = new int[count, count];
                 for(int y = 0; y < count; ++y)
                 {
-                    for(int x = 0; x < count; ++x)
+                    for(int x = y; x < count; ++x)
                     {
+                        result[y, x] = Vertices[y].Edges.Where((e) => e.End == Vertices[x]).
+                            Count();
+                        result[x, y] = result[y, x];
                     }
                 }
                 return result;

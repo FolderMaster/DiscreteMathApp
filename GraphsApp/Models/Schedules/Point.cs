@@ -10,6 +10,11 @@ namespace GraphsApp.Models.Schedules
 
         public List<double> Coordinates { get; set; } = new List<double>();
 
+        public int AxisCount
+        {
+            get => Coordinates.Count;
+        }
+
         public Point()
         {
         }
@@ -23,6 +28,12 @@ namespace GraphsApp.Models.Schedules
         {
             Name = name;
             Coordinates = coordinates.ToList();
+        }
+
+        public double this[int index]
+        {
+            get => Coordinates[index];
+            set => Coordinates[index] = value;
         }
 
         public double GetDistance(Point point, ISchedule schedule)

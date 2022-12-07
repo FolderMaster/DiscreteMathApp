@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using GraphsApp.Services.App;
+using GraphsApp.Services.Factories;
 using GraphsApp.Services.IO;
 
 namespace GraphsApp.Views.Forms
@@ -37,7 +38,7 @@ namespace GraphsApp.Views.Forms
             }
             finally
             {
-                _session = save == null ? _session : save.Session;
+                _session = save == null ? _session : new Session(GraphFactory.CreateGraphByAdjacencyMatrix(save.Graph));
                 AdjacencyMatrixTab.Graph = _session.Graph;
             }
         }
@@ -47,7 +48,7 @@ namespace GraphsApp.Views.Forms
 
             try
             {
-                SaveFormat save = new SaveFormat(_session);
+                SaveFormat save = new SaveFormat(_session.Graph.AdjacencyMatrix);
                 JsonManager.Save(save, _settings.SavePath);
             }
             catch (Exception ex)

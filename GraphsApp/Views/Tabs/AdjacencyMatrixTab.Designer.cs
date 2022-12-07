@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GraphsApp.Services.App.Settings settings3 = new GraphsApp.Services.App.Settings();
+            GraphsApp.Services.App.Settings settings1 = new GraphsApp.Services.App.Settings();
             this.AdjacencyMatrixGroupBox = new System.Windows.Forms.GroupBox();
-            this.AgainButton = new System.Windows.Forms.Button();
             this.AdjacencyMatrixControl = new GraphsApp.Views.Controls.AdjacencyMatrixControl();
+            this.AgainButton = new System.Windows.Forms.Button();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
             this.Schedule2DControl = new GraphsApp.Views.Controls.Schedule2DControl();
             this.AdjacencyMatrixGroupBox.SuspendLayout();
@@ -48,7 +48,16 @@
             this.AdjacencyMatrixGroupBox.Size = new System.Drawing.Size(372, 451);
             this.AdjacencyMatrixGroupBox.TabIndex = 0;
             this.AdjacencyMatrixGroupBox.TabStop = false;
-            this.AdjacencyMatrixGroupBox.Text = "AdjacencyMatrix";
+            this.AdjacencyMatrixGroupBox.Text = "Adjacency matrix";
+            // 
+            // AdjacencyMatrixControl
+            // 
+            this.AdjacencyMatrixControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdjacencyMatrixControl.Location = new System.Drawing.Point(3, 16);
+            this.AdjacencyMatrixControl.Name = "AdjacencyMatrixControl";
+            this.AdjacencyMatrixControl.Size = new System.Drawing.Size(366, 432);
+            this.AdjacencyMatrixControl.TabIndex = 0;
+            this.AdjacencyMatrixControl.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixControl_MatrixChanged);
             // 
             // AgainButton
             // 
@@ -60,15 +69,6 @@
             this.AgainButton.Text = "Again";
             this.AgainButton.UseVisualStyleBackColor = true;
             this.AgainButton.Click += new System.EventHandler(this.AgainButton_Click);
-            // 
-            // AdjacencyMatrixControl
-            // 
-            this.AdjacencyMatrixControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AdjacencyMatrixControl.Location = new System.Drawing.Point(3, 16);
-            this.AdjacencyMatrixControl.Name = "AdjacencyMatrixControl";
-            this.AdjacencyMatrixControl.Size = new System.Drawing.Size(366, 432);
-            this.AdjacencyMatrixControl.TabIndex = 0;
-            this.AdjacencyMatrixControl.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixControl_MatrixChanged);
             // 
             // DisplayGroupBox
             // 
@@ -88,14 +88,14 @@
             this.Schedule2DControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Schedule2DControl.Location = new System.Drawing.Point(3, 16);
             this.Schedule2DControl.Name = "Schedule2DControl";
-            settings3.CorrectColor = System.Drawing.Color.White;
-            settings3.ErrorColor = System.Drawing.Color.LightPink;
-            settings3.LineXSize = 20;
-            settings3.LineYSize = 20;
-            settings3.PointSize = 10;
-            settings3.SavePath = "Save.txt";
-            settings3.ValueFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Schedule2DControl.Settings = settings3;
+            settings1.CorrectColor = System.Drawing.Color.White;
+            settings1.ErrorColor = System.Drawing.Color.LightPink;
+            settings1.LineXSize = 20;
+            settings1.LineYSize = 20;
+            settings1.PointSize = 10;
+            settings1.SavePath = "Save.txt";
+            settings1.ValueFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Schedule2DControl.Settings = settings1;
             this.Schedule2DControl.Size = new System.Drawing.Size(428, 403);
             this.Schedule2DControl.TabIndex = 0;
             // 

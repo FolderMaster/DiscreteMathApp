@@ -89,37 +89,33 @@ namespace GraphsApp.Views.Controls
             {
                 if (display[n] is Point point)
                 {
-                    int x = (int)point.Coordinates[0];
-                    int y = (int)point.Coordinates[1];
+                    int x = (int)point[0];
+                    int y = (int)point[1];
 
                     graphics.DrawEllipse(Settings.OuterPointPen, x - Settings.PointSize / 2, Height
                         - y - Settings.PointSize / 2, Settings.PointSize, Settings.PointSize);
                     graphics.FillEllipse(Settings.InnerPointSolidBrush, x - Settings.PointSize / 2,
                         Height - y - Settings.PointSize / 2, Settings.PointSize, Settings.PointSize);
-                    graphics.DrawString(point.Name, Settings.ValueFont, Settings.FontSolidBrush, x, Height - y);
+                    graphics.DrawString(point.Name, Settings.ValueFont, Settings.FontSolidBrush, 
+                        x, Height - y);
                 }
-                else if (display[n] is LineSegment lineSegment)
+                else if (display[n] is Curve curve)
                 {
-                    if(lineSegment.Begin.Coordinates[0] == lineSegment.End.Coordinates[0] && lineSegment.End.Coordinates[1] == lineSegment.End.Coordinates[1])
-                    {
-                        int x = (int)lineSegment.Begin.Coordinates[0] - Settings.PointSize / 2;
-                        int y = (int)lineSegment.Begin.Coordinates[1] - Settings.PointSize / 2;
+                    int xBegin = (int)curve.Begin[0];
+                    int yBegin = (int)curve.Begin[1];
+                    int xMiddle = (int)curve.Middle[0];
+                    int yMiddle = (int)curve.Middle[1];
+                    int xEnd = (int)curve.End[0];
+                    int yEnd = (int)curve.End[1];
 
-                        graphics.DrawEllipse(Settings.OuterPointPen, x - Settings.PointSize / 2, Height
-                        - y - Settings.PointSize / 2, Settings.PointSize, Settings.PointSize);
-                        graphics.DrawString(lineSegment.Name, Settings.ValueFont, Settings.FontSolidBrush, x, Height - y);
-                    }
-                    else
+                    graphics.DrawCurve(Settings.LinePen, new PointF[3]
                     {
-                        int x1 = (int)lineSegment.Begin.Coordinates[0];
-                        int y1 = (int)lineSegment.Begin.Coordinates[1];
-                        int x2 = (int)lineSegment.End.Coordinates[0];
-                        int y2 = (int)lineSegment.End.Coordinates[1];
-
-                        graphics.DrawLine(Settings.LinePen, x1, Height - y1, x2, Height - y2);
-                        graphics.DrawString(lineSegment.Name, Settings.ValueFont,
-                        Settings.FontSolidBrush, (x1 + x2) / 2, Height - (y1 + y2) / 2);
-                    }
+                            new PointF(xBegin, Height - yBegin),
+                            new PointF(xMiddle, Height - yMiddle),
+                            new PointF(xEnd, Height - yEnd)
+                    });
+                    graphics.DrawString(curve.Name, Settings.ValueFont, Settings.FontSolidBrush,
+                        xMiddle, Height - yMiddle);
                 }
             }
         }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.AdjacencyMatrixGroupBox = new System.Windows.Forms.GroupBox();
-            this.PathMatrixGroupBox = new System.Windows.Forms.GroupBox();
             this.AdjacencyMatrixGridControl = new GraphsApp.Views.Controls.AdjacencyMatrixGridControl();
+            this.PathMatrixGroupBox = new System.Windows.Forms.GroupBox();
             this.PathMatrixControl = new GraphsApp.Views.Controls.PathMatrixControl();
             this.AdjacencyMatrixGroupBox.SuspendLayout();
             this.PathMatrixGroupBox.SuspendLayout();
@@ -46,7 +46,15 @@
             this.AdjacencyMatrixGroupBox.Size = new System.Drawing.Size(372, 418);
             this.AdjacencyMatrixGroupBox.TabIndex = 0;
             this.AdjacencyMatrixGroupBox.TabStop = false;
-            this.AdjacencyMatrixGroupBox.Text = "AdjacencyMatrix";
+            this.AdjacencyMatrixGroupBox.Text = "Adjacency matrix";
+            // 
+            // AdjacencyMatrixGridControl
+            // 
+            this.AdjacencyMatrixGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AdjacencyMatrixGridControl.Location = new System.Drawing.Point(3, 16);
+            this.AdjacencyMatrixGridControl.Name = "AdjacencyMatrixGridControl";
+            this.AdjacencyMatrixGridControl.Size = new System.Drawing.Size(366, 399);
+            this.AdjacencyMatrixGridControl.TabIndex = 0;
             // 
             // PathMatrixGroupBox
             // 
@@ -59,15 +67,7 @@
             this.PathMatrixGroupBox.Size = new System.Drawing.Size(436, 418);
             this.PathMatrixGroupBox.TabIndex = 1;
             this.PathMatrixGroupBox.TabStop = false;
-            this.PathMatrixGroupBox.Text = "PathMatrix";
-            // 
-            // AdjacencyMatrixGridControl
-            // 
-            this.AdjacencyMatrixGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AdjacencyMatrixGridControl.Location = new System.Drawing.Point(3, 16);
-            this.AdjacencyMatrixGridControl.Name = "AdjacencyMatrixGridControl";
-            this.AdjacencyMatrixGridControl.Size = new System.Drawing.Size(366, 399);
-            this.AdjacencyMatrixGridControl.TabIndex = 0;
+            this.PathMatrixGroupBox.Text = "Path matrix";
             // 
             // PathMatrixControl
             // 

@@ -2,15 +2,15 @@
 {
     public class SaveFormat
     {
-        public Session Session { get; set; } = new Session();
+        public int[,] Graph { get; set; } = new int[0, 0];
 
         public SaveFormat()
         {
         }
 
-        public SaveFormat(Session session)
+        public SaveFormat(int[,] graph)
         {
-            Session = session;
+            Graph = graph;
         }
     }
 }

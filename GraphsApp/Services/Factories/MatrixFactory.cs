@@ -17,7 +17,8 @@ namespace GraphsApp.Services.Factories
                     {
                         if(loopsCount > 0)
                         {
-                            int generatedValue = random.Next(edgeMultiplicity + 1);
+                            int generatedValue = random.Next((edgeMultiplicity > loopsCount ? 
+                                loopsCount : edgeMultiplicity) + 1);
                             result[y, x] = generatedValue;
                             loopsCount -= generatedValue;
                         }
