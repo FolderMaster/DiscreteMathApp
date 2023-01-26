@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using GraphsApp.Models.Graphs;
 using GraphsApp.Models.Schedules;
@@ -22,7 +19,7 @@ namespace GraphsApp.Services.Factories
             List<Point> points = new List<Point>();
             foreach (Vertex vertex in graph.Vertices)
             {
-                points.Add(new Point(vertex.Name, new List<double> { random.Next(100), 
+                points.Add(new Point(vertex.Name, vertex.Color, new List<double> { random.Next(100), 
                     random.Next(100) }));
             }
             List<Curve> curves = new List<Curve>();
@@ -32,28 +29,56 @@ namespace GraphsApp.Services.Factories
             {
                 Vertex vertex1 = edge.Begin;
                 Vertex vertex2 = edge.End;
-                Point begin = points[graph.Vertices.IndexOf(vertex1)];
-                Point end = points[graph.Vertices.IndexOf(vertex2)];
+                
+                if (vertex1 != vertex2)
+                {
+                    int count = 0;
+                    Point begin = points[graph.Vertices.IndexOf(vertex1)];
+                    Point end = points[graph.Vertices.IndexOf(vertex2)];
 
-                int count = 0;
-                if(vertexEdgePairs.ContainsKey((vertex1, vertex2)))
-                {
-                    count += vertexEdgePairs[(vertex1, vertex2)];
-                    vertexEdgePairs[(vertex1, vertex2)] += 3;
-                }
-                else if(vertexEdgePairs.ContainsKey((vertex2, vertex1)))
-                {
-                    count += vertexEdgePairs[(vertex2, vertex1)];
-                    vertexEdgePairs[(vertex2, vertex1)] += 3;
+                    if (vertexEdgePairs.ContainsKey((vertex1, vertex2)))
+                    {
+                        count += 3 * vertexEdgePairs[(vertex1, vertex2)];
+                        vertexEdgePairs[(vertex1, vertex2)] += 1;
+                    }
+                    else if (vertexEdgePairs.ContainsKey((vertex2, vertex1)))
+                    {
+                        count -= 3 * vertexEdgePairs[(vertex2, vertex1)];
+                        vertexEdgePairs[(vertex2, vertex1)] += 1;
+                    }
+                    else
+                    {
+                        vertexEdgePairs.Add((vertex1, vertex2), 1);
+                    }
+
+                    Point middle = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, count);
+                    curves.Add(new Curve(edge.Name, begin, middle, end));
                 }
                 else
                 {
-                    vertexEdgePairs.Add((vertex1, vertex2), 1);
-                }
-                vertexEdgePairs.TryGetValue((vertex1, vertex2), out count);
+                    int count = 1;
+                    Point begin = points[graph.Vertices.IndexOf(vertex1)];
+                    if (vertexEdgePairs.ContainsKey((vertex1, vertex2)))
+                    {
+                        count += 2 * vertexEdgePairs[(vertex1, vertex2)];
+                        vertexEdgePairs[(vertex1, vertex2)] += 1;
+                    }
+                    else if (vertexEdgePairs.ContainsKey((vertex2, vertex1)))
+                    {
+                        count -= 2 * vertexEdgePairs[(vertex2, vertex1)];
+                        vertexEdgePairs[(vertex2, vertex1)] += 1;
+                    }
+                    else
+                    {
+                        vertexEdgePairs.Add((vertex1, vertex2), 1);
+                    }
+                    Point end = ShapeFactory.CreateCurveMiddlePoint2D(begin, begin, count);
+                    Point right = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, count);
+                    Point left = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, -count);
 
-                Point middle = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, count);
-                curves.Add(new Curve(edge.Name, begin, middle, end));
+                    curves.Add(new Curve(edge.Name, begin, right, end));
+                    curves.Add(new Curve(begin, left, end));
+                }
             }
             foreach(Point point in points)
             {

@@ -1,6 +1,6 @@
 ﻿namespace GraphsApp.Views.Tabs
 {
-    partial class AdjacencyMatrixTab
+    partial class ColorGraphTab
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -29,46 +29,21 @@
         private void InitializeComponent()
         {
             GraphsApp.Services.App.Settings settings1 = new GraphsApp.Services.App.Settings();
-            this.AdjacencyMatrixGroupBox = new System.Windows.Forms.GroupBox();
-            this.AdjacencyMatrixControl = new GraphsApp.Views.Controls.AdjacencyMatrixControl();
-            this.AgainButton = new System.Windows.Forms.Button();
+            this.ColorGraphControl = new GraphsApp.Views.Controls.ColorGraphControl();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
             this.Schedule2DControl = new GraphsApp.Views.Controls.Schedule2DControl();
-            this.AdjacencyMatrixGroupBox.SuspendLayout();
             this.DisplayGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // AdjacencyMatrixGroupBox
+            // ColorGraphControl
             // 
-            this.AdjacencyMatrixGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.AdjacencyMatrixGroupBox.Controls.Add(this.AdjacencyMatrixControl);
-            this.AdjacencyMatrixGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.AdjacencyMatrixGroupBox.Name = "AdjacencyMatrixGroupBox";
-            this.AdjacencyMatrixGroupBox.Size = new System.Drawing.Size(372, 451);
-            this.AdjacencyMatrixGroupBox.TabIndex = 0;
-            this.AdjacencyMatrixGroupBox.TabStop = false;
-            this.AdjacencyMatrixGroupBox.Text = "Adjacency matrix";
-            // 
-            // AdjacencyMatrixControl
-            // 
-            this.AdjacencyMatrixControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AdjacencyMatrixControl.Location = new System.Drawing.Point(3, 16);
-            this.AdjacencyMatrixControl.Name = "AdjacencyMatrixControl";
-            this.AdjacencyMatrixControl.Size = new System.Drawing.Size(366, 432);
-            this.AdjacencyMatrixControl.TabIndex = 0;
-            this.AdjacencyMatrixControl.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixControl_MatrixChanged);
-            // 
-            // AgainButton
-            // 
-            this.AgainButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AgainButton.Location = new System.Drawing.Point(737, 428);
-            this.AgainButton.Name = "AgainButton";
-            this.AgainButton.Size = new System.Drawing.Size(75, 23);
-            this.AgainButton.TabIndex = 3;
-            this.AgainButton.Text = "Again";
-            this.AgainButton.UseVisualStyleBackColor = true;
-            this.AgainButton.Click += new System.EventHandler(this.AgainButton_Click);
+            this.ColorGraphControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ColorGraphControl.Location = new System.Drawing.Point(0, 0);
+            this.ColorGraphControl.Name = "ColorGraphControl";
+            this.ColorGraphControl.Size = new System.Drawing.Size(561, 23);
+            this.ColorGraphControl.TabIndex = 0;
+            this.ColorGraphControl.ButtonClicked += new System.EventHandler(this.ColorGraphControl_ButtonClicked);
             // 
             // DisplayGroupBox
             // 
@@ -76,9 +51,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DisplayGroupBox.Controls.Add(this.Schedule2DControl);
-            this.DisplayGroupBox.Location = new System.Drawing.Point(378, 0);
+            this.DisplayGroupBox.Location = new System.Drawing.Point(0, 29);
             this.DisplayGroupBox.Name = "DisplayGroupBox";
-            this.DisplayGroupBox.Size = new System.Drawing.Size(434, 422);
+            this.DisplayGroupBox.Size = new System.Drawing.Size(561, 300);
             this.DisplayGroupBox.TabIndex = 1;
             this.DisplayGroupBox.TabStop = false;
             this.DisplayGroupBox.Text = "Display";
@@ -96,19 +71,17 @@
             settings1.SavePath = "Save.txt";
             settings1.ValueFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Schedule2DControl.Settings = settings1;
-            this.Schedule2DControl.Size = new System.Drawing.Size(428, 403);
+            this.Schedule2DControl.Size = new System.Drawing.Size(555, 281);
             this.Schedule2DControl.TabIndex = 0;
             // 
-            // AdjacencyMatrixTab
+            // ColorGraphTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.AgainButton);
             this.Controls.Add(this.DisplayGroupBox);
-            this.Controls.Add(this.AdjacencyMatrixGroupBox);
-            this.Name = "AdjacencyMatrixTab";
-            this.Size = new System.Drawing.Size(812, 451);
-            this.AdjacencyMatrixGroupBox.ResumeLayout(false);
+            this.Controls.Add(this.ColorGraphControl);
+            this.Name = "ColorGraphTab";
+            this.Size = new System.Drawing.Size(561, 329);
             this.DisplayGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -116,10 +89,8 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox AdjacencyMatrixGroupBox;
+        private Controls.ColorGraphControl ColorGraphControl;
         private System.Windows.Forms.GroupBox DisplayGroupBox;
-        private Controls.AdjacencyMatrixControl AdjacencyMatrixControl;
-        private System.Windows.Forms.Button AgainButton;
         private Controls.Schedule2DControl Schedule2DControl;
     }
 }

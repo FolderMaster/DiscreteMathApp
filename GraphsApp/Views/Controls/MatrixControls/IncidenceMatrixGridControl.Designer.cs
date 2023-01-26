@@ -1,6 +1,6 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.MatrixControls
 {
-    partial class IncidenceMatrixControl
+    partial class IncidenceMatrixGridControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // IncidenceMatrixControl
+            // IncidenceMatrixGridControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "IncidenceMatrixControl";
-            this.Size = new System.Drawing.Size(548, 412);
+            this.Name = "IncidenceMatrixGridControl";
+            this.Size = new System.Drawing.Size(429, 378);
             this.ResumeLayout(false);
 
         }

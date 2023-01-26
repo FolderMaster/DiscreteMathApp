@@ -1,6 +1,6 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.MatrixControls
 {
-    partial class PathMatrixControl
+    partial class PathCountMatrixControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -31,7 +31,7 @@
             this.PathLengthLabel = new System.Windows.Forms.Label();
             this.PathLengthNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.Button = new System.Windows.Forms.Button();
-            this.AdjacencyMatrixGridControl = new GraphsApp.Views.Controls.AdjacencyMatrixGridControl();
+            this.AdjacencyMatrixGridControl = new GraphsApp.Views.Controls.MatrixControls.AdjacencyMatrixGridControl();
             ((System.ComponentModel.ISupportInitialize)(this.PathLengthNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,8 +80,8 @@
             // 
             // AdjacencyMatrixGridControl
             // 
-            this.AdjacencyMatrixGridControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.AdjacencyMatrixGridControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AdjacencyMatrixGridControl.Location = new System.Drawing.Point(0, 29);
             this.AdjacencyMatrixGridControl.Name = "AdjacencyMatrixGridControl";
@@ -109,6 +109,6 @@
         private System.Windows.Forms.Label PathLengthLabel;
         private System.Windows.Forms.NumericUpDown PathLengthNumericUpDown;
         private System.Windows.Forms.Button Button;
-        private AdjacencyMatrixGridControl AdjacencyMatrixGridControl;
+        private MatrixControls.AdjacencyMatrixGridControl AdjacencyMatrixGridControl;
     }
 }

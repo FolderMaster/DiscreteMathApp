@@ -94,7 +94,7 @@ namespace GraphsApp.Views.Controls
 
                     graphics.DrawEllipse(Settings.OuterPointPen, x - Settings.PointSize / 2, Height
                         - y - Settings.PointSize / 2, Settings.PointSize, Settings.PointSize);
-                    graphics.FillEllipse(Settings.InnerPointSolidBrush, x - Settings.PointSize / 2,
+                    graphics.FillEllipse(new SolidBrush(point.Color), x - Settings.PointSize / 2,
                         Height - y - Settings.PointSize / 2, Settings.PointSize, Settings.PointSize);
                     graphics.DrawString(point.Name, Settings.ValueFont, Settings.FontSolidBrush, 
                         x, Height - y);
@@ -110,9 +110,9 @@ namespace GraphsApp.Views.Controls
 
                     graphics.DrawCurve(Settings.LinePen, new PointF[3]
                     {
-                            new PointF(xBegin, Height - yBegin),
-                            new PointF(xMiddle, Height - yMiddle),
-                            new PointF(xEnd, Height - yEnd)
+                        new PointF(xBegin, Height - yBegin),
+                        new PointF(xMiddle, Height - yMiddle),
+                        new PointF(xEnd, Height - yEnd)
                     });
                     graphics.DrawString(curve.Name, Settings.ValueFont, Settings.FontSolidBrush,
                         xMiddle, Height - yMiddle);

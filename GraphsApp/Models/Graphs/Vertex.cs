@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace GraphsApp.Models.Graphs
 {
     public class Vertex
     {
         public string Name { get; set; } = "";
+
+        public Color Color { get; set; } = Color.White;
 
         public List<Edge> Edges { get; set; } = new List<Edge>();
 
@@ -21,6 +24,11 @@ namespace GraphsApp.Models.Graphs
         {
             Name = name;
             Edges = edges;
+        }
+
+        public override string ToString()
+        {
+            return $"Vertex '{Name}'";
         }
     }
 }

@@ -71,38 +71,95 @@
     <Compile Include="Services\Factories\ScheduleFactory.cs" />
     <Compile Include="Services\Factories\ShapeFactory.cs" />
     <Compile Include="Services\IO\JsonManager.cs" />
+    <Compile Include="Services\Managers\GraphManager.cs" />
     <Compile Include="Services\Managers\MatrixManager.cs" />
     <Compile Include="Services\Validatories\ValueValidator.cs" />
     <Compile Include="Views\ColorManager.cs" />
-    <Compile Include="Views\Controls\AdjacencyMatrixControl.cs">
+    <Compile Include="Views\Controls\Classes\MatrixControlSession.cs" />
+    <Compile Include="Views\Controls\Classes\PathCountControlSession.cs" />
+    <Compile Include="Views\Controls\ColorGraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\AdjacencyMatrixControl.Designer.cs">
+    <Compile Include="Views\Controls\ColorGraphControl.Designer.cs">
+      <DependentUpon>ColorGraphControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\EdgeEditorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\EdgeEditorControl.Designer.cs">
+      <DependentUpon>EdgeEditorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\EdgeSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\EdgeSelectorControl.Designer.cs">
+      <DependentUpon>EdgeSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\AdjacencyMatrixControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\AdjacencyMatrixControl.Designer.cs">
       <DependentUpon>AdjacencyMatrixControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\AdjacencyMatrixGridControl.cs">
+    <Compile Include="Views\Controls\MatrixControls\AdjacencyMatrixGridControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\AdjacencyMatrixGridControl.Designer.cs">
+    <Compile Include="Views\Controls\MatrixControls\AdjacencyMatrixGridControl.Designer.cs">
       <DependentUpon>AdjacencyMatrixGridControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\IncidenceMatrixControl.cs">
+    <Compile Include="Views\Controls\ColorPickerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\IncidenceMatrixControl.Designer.cs">
+    <Compile Include="Views\Controls\ColorPickerControl.Designer.cs">
+      <DependentUpon>ColorPickerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\IncidenceMatrixControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\IncidenceMatrixControl.Designer.cs">
       <DependentUpon>IncidenceMatrixControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\PathMatrixControl.cs">
+    <Compile Include="Views\Controls\MatrixControls\IncidenceMatrixGridControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\PathMatrixControl.Designer.cs">
-      <DependentUpon>PathMatrixControl.cs</DependentUpon>
+    <Compile Include="Views\Controls\MatrixControls\IncidenceMatrixGridControl.Designer.cs">
+      <DependentUpon>IncidenceMatrixGridControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\MatrixControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\MatrixControl.Designer.cs">
+      <DependentUpon>MatrixControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\MatrixGridControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\MatrixGridControl.Designer.cs">
+      <DependentUpon>MatrixGridControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\PathCountMatrixControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\MatrixControls\PathCountMatrixControl.Designer.cs">
+      <DependentUpon>PathCountMatrixControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PathPickerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\PathPickerControl.Designer.cs">
+      <DependentUpon>PathPickerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\Schedule2DControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Controls\Schedule2DControl.Designer.cs">
       <DependentUpon>Schedule2DControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\VertexSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\VertexSelectorControl.Designer.cs">
+      <DependentUpon>VertexSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -113,32 +170,71 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MessageBoxManager.cs" />
-    <Compile Include="Views\Tabs\AdjacencyMatrixTab.cs">
+    <Compile Include="Views\Tabs\ColorGraphTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Tabs\AdjacencyMatrixTab.Designer.cs">
-      <DependentUpon>AdjacencyMatrixTab.cs</DependentUpon>
+    <Compile Include="Views\Tabs\ColorGraphTab.Designer.cs">
+      <DependentUpon>ColorGraphTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tabs\PathMatrixTab.cs">
+    <Compile Include="Views\Tabs\CreatorMatrixTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Tabs\PathMatrixTab.Designer.cs">
-      <DependentUpon>PathMatrixTab.cs</DependentUpon>
+    <Compile Include="Views\Tabs\CreatorMatrixTab.Designer.cs">
+      <DependentUpon>CreatorMatrixTab.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\Controls\AdjacencyMatrixControl.resx">
+    <Compile Include="Views\Tabs\PathCountTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Tabs\PathCountTab.Designer.cs">
+      <DependentUpon>PathCountTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\ShortestPathTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Tabs\ShortestPathTab.Designer.cs">
+      <DependentUpon>ShortestPathTab.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\Controls\ColorGraphControl.resx">
+      <DependentUpon>ColorGraphControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\ColorPickerControl.resx">
+      <DependentUpon>ColorPickerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\EdgeEditorControl.resx">
+      <DependentUpon>EdgeEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\EdgeSelectorControl.resx">
+      <DependentUpon>EdgeSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\MatrixControls\AdjacencyMatrixControl.resx">
       <DependentUpon>AdjacencyMatrixControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\AdjacencyMatrixGridControl.resx">
+    <EmbeddedResource Include="Views\Controls\MatrixControls\AdjacencyMatrixGridControl.resx">
       <DependentUpon>AdjacencyMatrixGridControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\IncidenceMatrixControl.resx">
+    <EmbeddedResource Include="Views\Controls\MatrixControls\IncidenceMatrixControl.resx">
       <DependentUpon>IncidenceMatrixControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\PathMatrixControl.resx">
-      <DependentUpon>PathMatrixControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Controls\MatrixControls\IncidenceMatrixGridControl.resx">
+      <DependentUpon>IncidenceMatrixGridControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\MatrixControls\MatrixControl.resx">
+      <DependentUpon>MatrixControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\MatrixControls\MatrixGridControl.resx">
+      <DependentUpon>MatrixGridControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\MatrixControls\PathCountMatrixControl.resx">
+      <DependentUpon>PathCountMatrixControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\PathPickerControl.resx">
+      <DependentUpon>PathPickerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\Schedule2DControl.resx">
       <DependentUpon>Schedule2DControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\VertexSelectorControl.resx">
+      <DependentUpon>VertexSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -153,12 +249,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\Tabs\AdjacencyMatrixTab.resx">
-      <DependentUpon>AdjacencyMatrixTab.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Tabs\ColorGraphTab.resx">
+      <DependentUpon>ColorGraphTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Tabs\CreatorMatrixTab.resx">
+      <DependentUpon>CreatorMatrixTab.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Tabs\PathMatrixTab.resx">
-      <DependentUpon>PathMatrixTab.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Tabs\PathCountTab.resx">
+      <DependentUpon>PathCountTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Tabs\ShortestPathTab.resx">
+      <DependentUpon>ShortestPathTab.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

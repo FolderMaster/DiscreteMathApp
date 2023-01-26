@@ -4,8 +4,8 @@ namespace GraphsApp.Services.Factories
 {
     public static class MatrixFactory
     {
-        public static int[,] CreateAdjacencyMatrix(int verticesCount, int loopsCount = 0, int
-            edgeMultiplicity = 0)
+        public static int[,] CreateAdjacencyMatrix(int verticesCount, int edgesCount, 
+            int loopsCount = 0, int edgeMultiplicity = 0)
         {
             Random random = new Random();
             int[,] result = new int[verticesCount, verticesCount];
@@ -13,28 +13,31 @@ namespace GraphsApp.Services.Factories
             {
                 for(int x = y; x < verticesCount; ++x)
                 {
-                    if(y == x)
+                    int generatedValue;
+                    if (y == x)
                     {
-                        if(loopsCount > 0)
-                        {
-                            int generatedValue = random.Next((edgeMultiplicity > loopsCount ? 
-                                loopsCount : edgeMultiplicity) + 1);
-                            result[y, x] = generatedValue;
-                            loopsCount -= generatedValue;
-                        }
+                        generatedValue = random.Next(Math.Min(edgesCount, Math.Min(loopsCount,
+                            edgeMultiplicity)) + 1);
+                        result[y, x] = generatedValue;
+                        loopsCount -= generatedValue;
                     }
                     else
                     {
-                        result[x, y] = result[y, x] = random.Next(edgeMultiplicity + 1);
+                        generatedValue = random.Next(Math.Min(edgesCount, edgeMultiplicity) + 1);
+                        result[x, y] = result[y, x] = generatedValue;
                     }
+                    edgesCount -= generatedValue;
                 }
             }
             return result;
         }
 
-        public static int[,] CreateNullMatrix(int x, int y)
+        public static int[,] CreateIncidentMatrix(int verticesCount, int edgesCount,
+            int loopsCount = 0, int edgeMultiplicity = 0)
         {
-            return new int[x, y];
+            Random random = new Random();
+            int[,] result = new int[verticesCount, edgesCount];
+            return result;
         }
     }
 }

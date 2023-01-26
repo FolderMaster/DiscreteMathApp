@@ -1,6 +1,6 @@
 ﻿namespace GraphsApp.Views.Tabs
 {
-    partial class PathMatrixTab
+    partial class PathCountTab
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.AdjacencyMatrixGroupBox = new System.Windows.Forms.GroupBox();
-            this.AdjacencyMatrixGridControl = new GraphsApp.Views.Controls.AdjacencyMatrixGridControl();
-            this.PathMatrixGroupBox = new System.Windows.Forms.GroupBox();
-            this.PathMatrixControl = new GraphsApp.Views.Controls.PathMatrixControl();
+            this.AdjacencyMatrixGridControl = new GraphsApp.Views.Controls.MatrixControls.AdjacencyMatrixGridControl();
+            this.PathCountMatrixGroupBox = new System.Windows.Forms.GroupBox();
+            this.PathCountMatrixControl = new GraphsApp.Views.Controls.MatrixControls.PathCountMatrixControl();
             this.AdjacencyMatrixGroupBox.SuspendLayout();
-            this.PathMatrixGroupBox.SuspendLayout();
+            this.PathCountMatrixGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // AdjacencyMatrixGroupBox
@@ -56,37 +56,37 @@
             this.AdjacencyMatrixGridControl.Size = new System.Drawing.Size(366, 399);
             this.AdjacencyMatrixGridControl.TabIndex = 0;
             // 
-            // PathMatrixGroupBox
+            // PathCountMatrixGroupBox
             // 
-            this.PathMatrixGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.PathCountMatrixGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PathMatrixGroupBox.Controls.Add(this.PathMatrixControl);
-            this.PathMatrixGroupBox.Location = new System.Drawing.Point(378, 0);
-            this.PathMatrixGroupBox.Name = "PathMatrixGroupBox";
-            this.PathMatrixGroupBox.Size = new System.Drawing.Size(436, 418);
-            this.PathMatrixGroupBox.TabIndex = 1;
-            this.PathMatrixGroupBox.TabStop = false;
-            this.PathMatrixGroupBox.Text = "Path matrix";
+            this.PathCountMatrixGroupBox.Controls.Add(this.PathCountMatrixControl);
+            this.PathCountMatrixGroupBox.Location = new System.Drawing.Point(378, 0);
+            this.PathCountMatrixGroupBox.Name = "PathCountMatrixGroupBox";
+            this.PathCountMatrixGroupBox.Size = new System.Drawing.Size(436, 418);
+            this.PathCountMatrixGroupBox.TabIndex = 1;
+            this.PathCountMatrixGroupBox.TabStop = false;
+            this.PathCountMatrixGroupBox.Text = "Path count matrix";
             // 
-            // PathMatrixControl
+            // PathCountMatrixControl
             // 
-            this.PathMatrixControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PathMatrixControl.Location = new System.Drawing.Point(3, 16);
-            this.PathMatrixControl.Name = "PathMatrixControl";
-            this.PathMatrixControl.Size = new System.Drawing.Size(430, 399);
-            this.PathMatrixControl.TabIndex = 0;
+            this.PathCountMatrixControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PathCountMatrixControl.Location = new System.Drawing.Point(3, 16);
+            this.PathCountMatrixControl.Name = "PathCountMatrixControl";
+            this.PathCountMatrixControl.Size = new System.Drawing.Size(430, 399);
+            this.PathCountMatrixControl.TabIndex = 0;
             // 
-            // PathMatrixTab
+            // PathCountMatrixTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.PathMatrixGroupBox);
+            this.Controls.Add(this.PathCountMatrixGroupBox);
             this.Controls.Add(this.AdjacencyMatrixGroupBox);
-            this.Name = "PathMatrixTab";
+            this.Name = "PathCountMatrixTab";
             this.Size = new System.Drawing.Size(814, 418);
             this.AdjacencyMatrixGroupBox.ResumeLayout(false);
-            this.PathMatrixGroupBox.ResumeLayout(false);
+            this.PathCountMatrixGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -94,8 +94,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox AdjacencyMatrixGroupBox;
-        private System.Windows.Forms.GroupBox PathMatrixGroupBox;
-        private Controls.AdjacencyMatrixGridControl AdjacencyMatrixGridControl;
-        private Controls.PathMatrixControl PathMatrixControl;
+        private System.Windows.Forms.GroupBox PathCountMatrixGroupBox;
+        private Controls.MatrixControls.AdjacencyMatrixGridControl AdjacencyMatrixGridControl;
+        private Controls.MatrixControls.PathCountMatrixControl PathCountMatrixControl;
     }
 }

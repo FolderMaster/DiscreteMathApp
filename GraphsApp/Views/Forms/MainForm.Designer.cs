@@ -30,18 +30,26 @@
         {
             this.TabControl = new System.Windows.Forms.TabControl();
             this.CreatorMatrixTabPage = new System.Windows.Forms.TabPage();
-            this.AdjacencyMatrixTab = new GraphsApp.Views.Tabs.AdjacencyMatrixTab();
-            this.PathMatrixPage = new System.Windows.Forms.TabPage();
-            this.PathMatrixTab = new GraphsApp.Views.Tabs.PathMatrixTab();
+            this.CreatorMatrixTab = new GraphsApp.Views.Tabs.CreatorMatrixTab();
+            this.PathCountTabPage = new System.Windows.Forms.TabPage();
+            this.PathCountTab = new GraphsApp.Views.Tabs.PathCountTab();
+            this.ShortestPathTabPage = new System.Windows.Forms.TabPage();
+            this.ShortestPathTab = new GraphsApp.Views.Tabs.ShortestPathTab();
+            this.ColorGraphTabPage = new System.Windows.Forms.TabPage();
+            this.ColorGraphTab = new GraphsApp.Views.Tabs.ColorGraphTab();
             this.TabControl.SuspendLayout();
             this.CreatorMatrixTabPage.SuspendLayout();
-            this.PathMatrixPage.SuspendLayout();
+            this.PathCountTabPage.SuspendLayout();
+            this.ShortestPathTabPage.SuspendLayout();
+            this.ColorGraphTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
             // 
             this.TabControl.Controls.Add(this.CreatorMatrixTabPage);
-            this.TabControl.Controls.Add(this.PathMatrixPage);
+            this.TabControl.Controls.Add(this.PathCountTabPage);
+            this.TabControl.Controls.Add(this.ShortestPathTabPage);
+            this.TabControl.Controls.Add(this.ColorGraphTabPage);
             this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
@@ -51,7 +59,7 @@
             // 
             // CreatorMatrixTabPage
             // 
-            this.CreatorMatrixTabPage.Controls.Add(this.AdjacencyMatrixTab);
+            this.CreatorMatrixTabPage.Controls.Add(this.CreatorMatrixTab);
             this.CreatorMatrixTabPage.Location = new System.Drawing.Point(4, 22);
             this.CreatorMatrixTabPage.Name = "CreatorMatrixTabPage";
             this.CreatorMatrixTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -60,33 +68,71 @@
             this.CreatorMatrixTabPage.Text = "Creator matrix";
             this.CreatorMatrixTabPage.UseVisualStyleBackColor = true;
             // 
-            // AdjacencyMatrixTab
+            // CreatorMatrixTab
             // 
-            this.AdjacencyMatrixTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AdjacencyMatrixTab.Location = new System.Drawing.Point(3, 3);
-            this.AdjacencyMatrixTab.Name = "AdjacencyMatrixTab";
-            this.AdjacencyMatrixTab.Size = new System.Drawing.Size(786, 418);
-            this.AdjacencyMatrixTab.TabIndex = 0;
-            this.AdjacencyMatrixTab.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixTab_MatrixChanged);
+            this.CreatorMatrixTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CreatorMatrixTab.Location = new System.Drawing.Point(3, 3);
+            this.CreatorMatrixTab.Name = "CreatorMatrixTab";
+            this.CreatorMatrixTab.Size = new System.Drawing.Size(786, 418);
+            this.CreatorMatrixTab.TabIndex = 0;
+            this.CreatorMatrixTab.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixTab_MatrixChanged);
             // 
-            // PathMatrixPage
+            // PathCountTabPage
             // 
-            this.PathMatrixPage.Controls.Add(this.PathMatrixTab);
-            this.PathMatrixPage.Location = new System.Drawing.Point(4, 22);
-            this.PathMatrixPage.Name = "PathMatrixPage";
-            this.PathMatrixPage.Padding = new System.Windows.Forms.Padding(3);
-            this.PathMatrixPage.Size = new System.Drawing.Size(792, 424);
-            this.PathMatrixPage.TabIndex = 1;
-            this.PathMatrixPage.Text = "Path matrix";
-            this.PathMatrixPage.UseVisualStyleBackColor = true;
+            this.PathCountTabPage.Controls.Add(this.PathCountTab);
+            this.PathCountTabPage.Location = new System.Drawing.Point(4, 22);
+            this.PathCountTabPage.Name = "PathCountTabPage";
+            this.PathCountTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.PathCountTabPage.Size = new System.Drawing.Size(792, 424);
+            this.PathCountTabPage.TabIndex = 1;
+            this.PathCountTabPage.Text = "Path count";
+            this.PathCountTabPage.UseVisualStyleBackColor = true;
             // 
-            // PathMatrixTab
+            // PathCountTab
             // 
-            this.PathMatrixTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PathMatrixTab.Location = new System.Drawing.Point(3, 3);
-            this.PathMatrixTab.Name = "PathMatrixTab";
-            this.PathMatrixTab.Size = new System.Drawing.Size(786, 418);
-            this.PathMatrixTab.TabIndex = 0;
+            this.PathCountTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PathCountTab.Location = new System.Drawing.Point(3, 3);
+            this.PathCountTab.Name = "PathCountTab";
+            this.PathCountTab.Size = new System.Drawing.Size(786, 418);
+            this.PathCountTab.TabIndex = 0;
+            // 
+            // ShortestPathTabPage
+            // 
+            this.ShortestPathTabPage.Controls.Add(this.ShortestPathTab);
+            this.ShortestPathTabPage.Location = new System.Drawing.Point(4, 22);
+            this.ShortestPathTabPage.Name = "ShortestPathTabPage";
+            this.ShortestPathTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ShortestPathTabPage.Size = new System.Drawing.Size(792, 424);
+            this.ShortestPathTabPage.TabIndex = 2;
+            this.ShortestPathTabPage.Text = "Shortest path";
+            this.ShortestPathTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ShortestPathTab
+            // 
+            this.ShortestPathTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ShortestPathTab.Location = new System.Drawing.Point(3, 3);
+            this.ShortestPathTab.Name = "ShortestPathTab";
+            this.ShortestPathTab.Size = new System.Drawing.Size(786, 418);
+            this.ShortestPathTab.TabIndex = 0;
+            // 
+            // ColorGraphTabPage
+            // 
+            this.ColorGraphTabPage.Controls.Add(this.ColorGraphTab);
+            this.ColorGraphTabPage.Location = new System.Drawing.Point(4, 22);
+            this.ColorGraphTabPage.Name = "ColorGraphTabPage";
+            this.ColorGraphTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ColorGraphTabPage.Size = new System.Drawing.Size(792, 424);
+            this.ColorGraphTabPage.TabIndex = 3;
+            this.ColorGraphTabPage.Text = "Color graph";
+            this.ColorGraphTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ColorGraphTab
+            // 
+            this.ColorGraphTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ColorGraphTab.Location = new System.Drawing.Point(3, 3);
+            this.ColorGraphTab.Name = "ColorGraphTab";
+            this.ColorGraphTab.Size = new System.Drawing.Size(786, 418);
+            this.ColorGraphTab.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -100,7 +146,9 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.TabControl.ResumeLayout(false);
             this.CreatorMatrixTabPage.ResumeLayout(false);
-            this.PathMatrixPage.ResumeLayout(false);
+            this.PathCountTabPage.ResumeLayout(false);
+            this.ShortestPathTabPage.ResumeLayout(false);
+            this.ColorGraphTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -109,8 +157,12 @@
 
         private System.Windows.Forms.TabControl TabControl;
         private System.Windows.Forms.TabPage CreatorMatrixTabPage;
-        private System.Windows.Forms.TabPage PathMatrixPage;
-        private Tabs.AdjacencyMatrixTab AdjacencyMatrixTab;
-        private Tabs.PathMatrixTab PathMatrixTab;
+        private System.Windows.Forms.TabPage PathCountTabPage;
+        private Tabs.CreatorMatrixTab CreatorMatrixTab;
+        private Tabs.PathCountTab PathCountTab;
+        private System.Windows.Forms.TabPage ShortestPathTabPage;
+        private Tabs.ShortestPathTab ShortestPathTab;
+        private System.Windows.Forms.TabPage ColorGraphTabPage;
+        private Tabs.ColorGraphTab ColorGraphTab;
     }
 }

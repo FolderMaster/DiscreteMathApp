@@ -1,10 +1,13 @@
 ﻿using System.Linq;
+using System.Drawing;
 
 namespace GraphsApp.Models.Schedules
 {
     public class Curve : IShape
     {
         public string Name { get; set; } = "";
+
+        public Color Color { get; set; } = Color.Black;
 
         public Point Begin { get; set; } = new Point();
 
@@ -26,6 +29,15 @@ namespace GraphsApp.Models.Schedules
         public Curve(string name, Point begin, Point middle, Point end)
         {
             Name = name;
+            Begin = begin;
+            Middle = middle;
+            End = end;
+        }
+
+        public Curve(string name, Color color, Point begin, Point middle, Point end)
+        {
+            Name = name;
+            Color = color;
             Begin = begin;
             Middle = middle;
             End = end;
@@ -66,7 +78,7 @@ namespace GraphsApp.Models.Schedules
                     end.Coordinates.Add(schedule.DefaultValue);
                 }
             }
-            return new Curve(Name, begin, middle, end);
+            return new Curve(Name, Color, begin, middle, end);
         }
 
         public double GetMax(ISchedule schedule, int axisIndex)

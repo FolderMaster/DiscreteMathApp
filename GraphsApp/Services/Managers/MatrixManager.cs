@@ -13,7 +13,7 @@ namespace GraphsApp.Services.Managers
             int[,] result = matrix;
             for(int d = 1; d < degree; ++d)
             {
-                int[,] temp = MatrixFactory.CreateNullMatrix(length, length);
+                int[,] temp = new int [length, length];
                 for (int y = 0; y < length; ++y)
                 {
                     for (int x = 0; x < length; ++x)

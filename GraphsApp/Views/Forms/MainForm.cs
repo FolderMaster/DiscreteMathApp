@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using GraphsApp.Services.App;
-using GraphsApp.Services.Factories;
 using GraphsApp.Services.IO;
 
 namespace GraphsApp.Views.Forms
@@ -38,17 +37,21 @@ namespace GraphsApp.Views.Forms
             }
             finally
             {
-                _session = save == null ? _session : new Session(GraphFactory.CreateGraphByAdjacencyMatrix(save.Graph));
-                AdjacencyMatrixTab.Graph = _session.Graph;
+                _session = save == null ? _session : new Session(save);
+                CreatorMatrixTab.Graph = PathCountTab.Graph = ShortestPathTab.Graph =
+                    ColorGraphTab.Graph = _session.Graph;
+                CreatorMatrixTab.AdjacencyMatrixControlSession =
+                    _session.AdjacencyMatrixControlSession;
+                CreatorMatrixTab.IncidenceMatrixControlSession =
+                    _session.IncidenceMatrixControlSession;
             }
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-
             try
             {
-                SaveFormat save = new SaveFormat(_session.Graph.AdjacencyMatrix);
+                SaveFormat save = new SaveFormat(_session);
                 JsonManager.Save(save, _settings.SavePath);
             }
             catch (Exception ex)
@@ -59,8 +62,9 @@ namespace GraphsApp.Views.Forms
 
         private void AdjacencyMatrixTab_MatrixChanged(object sender, EventArgs e)
         {
-            _session.Graph = AdjacencyMatrixTab.Graph;
-            PathMatrixTab.AdjacencyMatrix = AdjacencyMatrixTab.AdjacencyMatrix;
+            PathCountTab.RefreshData();
+            ShortestPathTab.RefreshData();
+            ColorGraphTab.RefreshData();
         }
     }
 }

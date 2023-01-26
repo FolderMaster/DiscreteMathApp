@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace GraphsApp.Models.Schedules
@@ -7,6 +8,8 @@ namespace GraphsApp.Models.Schedules
     public class Point : IShape, IComparable
     {
         public string Name { get; set; } = "";
+
+        public Color Color { get; set; } = Color.Black;
 
         public List<double> Coordinates { get; set; } = new List<double>();
 
@@ -24,9 +27,10 @@ namespace GraphsApp.Models.Schedules
             Coordinates = coordinates.ToList();
         }
 
-        public Point(string name, IEnumerable<double> coordinates)
+        public Point(string name, Color color, IEnumerable<double> coordinates)
         {
             Name = name;
+            Color = color;
             Coordinates = coordinates.ToList();
         }
 
@@ -65,7 +69,7 @@ namespace GraphsApp.Models.Schedules
                     coordinates.Add(schedule.DefaultValue);
                 }
             }
-            return new Point(Name, coordinates);
+            return new Point(Name, Color, coordinates);
         }
 
         public double GetMax(ISchedule schedule, int axisIndex)

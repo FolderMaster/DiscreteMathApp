@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using GraphsApp.Models.Schedules;
 
@@ -30,16 +31,18 @@ namespace GraphsApp.Services.Factories
         public static Point CreateCurveMiddlePoint2D(Point begin, Point end, int factor)
         {
             List<double> coordinates = new List<double>();
+            List<double> differences = new List<double>();
             for (int n = 0; n < 2; ++n)
             {
                 coordinates.Add(begin[n] + end[n]);
+                differences.Add(Math.Abs(begin[n] - end[n]));
             }
             for (int n = 0; n < 2; ++n)
             {
                 coordinates[n] /= 2;
             }
 
-            if (coordinates[0] > coordinates[1])
+            if (differences[0] < differences[1])
             {
                 coordinates[1] += factor;
             }

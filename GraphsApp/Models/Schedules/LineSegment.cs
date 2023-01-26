@@ -1,8 +1,12 @@
-﻿namespace GraphsApp.Models.Schedules
+﻿using System.Drawing;
+
+namespace GraphsApp.Models.Schedules
 {
     public class LineSegment : IShape
     {
         public string Name { get; set; } = "";
+
+        public Color Color { get; set; } = Color.Black;
 
         public Point Begin { get; set; } = new Point();
 
@@ -18,7 +22,7 @@
             End = end;
         }
 
-        public LineSegment(string name, Point begin, Point end)
+        public LineSegment(string name, Color color, Point begin, Point end)
         {
             Name = name;
             Begin = begin;
@@ -50,7 +54,7 @@
                     end.Coordinates.Add(schedule.DefaultValue);
                 }
             }
-            return new LineSegment(Name, begin, end);
+            return new LineSegment(Name, Color, begin, end);
         }
 
         public double GetMax(ISchedule schedule, int axisIndex)
