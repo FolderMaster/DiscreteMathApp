@@ -12,6 +12,9 @@ namespace GraphsApp.Services.App
         public MatrixControlSession IncidenceMatrixControlSession { get; set; } = new
             MatrixControlSession();
 
+        public ColorGraphControlSession ColorGraphControlSession { get; set; } = new
+            ColorGraphControlSession();
+
         public SaveFormat()
         {
         }
@@ -21,6 +24,7 @@ namespace GraphsApp.Services.App
             AdjacencyMatrix = session.Graph.AdjacencyMatrix;
             AdjacencyMatrixControlSession = session.AdjacencyMatrixControlSession;
             IncidenceMatrixControlSession = session.IncidenceMatrixControlSession;
+            ColorGraphControlSession = session.ColorGraphControlSession;
         }
     }
 }

@@ -86,10 +86,13 @@ namespace GraphsApp.Services.Managers
                     {
                         if (weightMatrix[i, k] == weightMatrix[k, j] && i != j)
                         {
-                            if (weightMatrix[i, k] + weightMatrix[k, j] < weightMatrix[i, j] ||
-                                weightMatrix[i, j] == 0)
+                            if (weightMatrix[i, k] + weightMatrix[k, j] < weightMatrix[i, j])
                             {
                                 weightMatrix[i, j] = weightMatrix[i, k] + weightMatrix[k, j];
+                            }
+                            else if(weightMatrix[i, j] == double.PositiveInfinity)
+                            {
+                                weightMatrix[i, j] = weightMatrix[i, k];
                             }
                         }
                     }

@@ -38,7 +38,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IncidenceMatrixGridControl.Location = new System.Drawing.Point(0, 0);
             this.IncidenceMatrixGridControl.Name = "IncidenceMatrixGridControl";
-            this.IncidenceMatrixGridControl.Size = new System.Drawing.Size(500, 396);
+            this.IncidenceMatrixGridControl.Size = new System.Drawing.Size(500, 367);
             this.IncidenceMatrixGridControl.TabIndex = 0;
             this.IncidenceMatrixGridControl.MatrixChanged += new System.EventHandler(this.IncidenceMatrixGridControl_MatrixChanged);
             // 

@@ -43,6 +43,7 @@
             this.ColorPickerControl1.SelectedColor = System.Drawing.Color.Red;
             this.ColorPickerControl1.Size = new System.Drawing.Size(75, 23);
             this.ColorPickerControl1.TabIndex = 0;
+            this.ColorPickerControl1.SelectedColorChanged += new System.EventHandler(this.ColorPickerControl1_SelectedColorChanged);
             // 
             // ColorLabel
             // 
@@ -71,6 +72,7 @@
             this.ColorPickerControl2.SelectedColor = System.Drawing.Color.Blue;
             this.ColorPickerControl2.Size = new System.Drawing.Size(75, 23);
             this.ColorPickerControl2.TabIndex = 3;
+            this.ColorPickerControl2.SelectedColorChanged += new System.EventHandler(this.ColorPickerControl2_SelectedColorChanged);
             // 
             // ColorPickerControl3
             // 
@@ -79,6 +81,7 @@
             this.ColorPickerControl3.SelectedColor = System.Drawing.Color.Lime;
             this.ColorPickerControl3.Size = new System.Drawing.Size(75, 23);
             this.ColorPickerControl3.TabIndex = 4;
+            this.ColorPickerControl3.SelectedColorChanged += new System.EventHandler(this.ColorPickerControl3_SelectedColorChanged);
             // 
             // ColorPickerControl4
             // 
@@ -87,6 +90,7 @@
             this.ColorPickerControl4.SelectedColor = System.Drawing.Color.Yellow;
             this.ColorPickerControl4.Size = new System.Drawing.Size(75, 23);
             this.ColorPickerControl4.TabIndex = 5;
+            this.ColorPickerControl4.SelectedColorChanged += new System.EventHandler(this.ColorPickerControl4_SelectedColorChanged);
             // 
             // ColorGraphControl
             // 

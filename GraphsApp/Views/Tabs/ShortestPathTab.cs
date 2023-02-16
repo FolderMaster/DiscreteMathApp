@@ -30,5 +30,10 @@ namespace GraphsApp.Views.Tabs
             PathPickerControl.RefreshData();
             EdgeEditorControl.RefreshData();
         }
+
+        private void PathPickerControl_ButtonClicked(object sender, EventArgs e)
+        {
+            Schedule2DControl.Graph = PathPickerControl.Graph;
+        }
     }
 }

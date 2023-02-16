@@ -10,6 +10,12 @@ namespace GraphsApp.Views.Controls.MatrixControls
     {
         private Graph _graph = new Graph();
 
+        private int[,] AdjacencyMatrix
+        {
+            get => AdjacencyMatrixGridControl.AdjacencyMatrix;
+            set => AdjacencyMatrixGridControl.AdjacencyMatrix = value;
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -17,7 +23,10 @@ namespace GraphsApp.Views.Controls.MatrixControls
             set
             {
                 _graph = value;
-                AdjacencyMatrixGridControl.Graph = value;
+                AdjacencyMatrix = _graph.AdjacencyMatrix;
+                IsResetButtonEnable = false;
+                IsSetButtonEnable = false;
+                MatrixChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -30,26 +39,42 @@ namespace GraphsApp.Views.Controls.MatrixControls
 
         protected override void FillButtonClick()
         {
-            AdjacencyMatrixGridControl.AdjacencyMatrix = MatrixFactory.CreateAdjacencyMatrix
-                (Session.VerticesCount, Session.EdgesCount);
+            AdjacencyMatrix = MatrixFactory.CreateAdjacencyMatrix(Session.VerticesCount,
+                Session.EdgesCount);
         }
 
         protected override void GenerationButtonClick()
         {
-            AdjacencyMatrixGridControl.AdjacencyMatrix = MatrixFactory.CreateAdjacencyMatrix
-                (Session.VerticesCount, Session.EdgesCount, Session.LoopsCount,
-                Session.EdgeMultiplicity);
+            AdjacencyMatrix = MatrixFactory.CreateAdjacencyMatrix(Session.VerticesCount, 
+                Session.EdgesCount, Session.LoopsCount, Session.EdgeMultiplicity);
+        }
+
+        protected override void SetButtonClick()
+        {
+            Graph.AdjacencyMatrix = AdjacencyMatrix;
+            IsResetButtonEnable = false;
+            IsSetButtonEnable = false;
+            MatrixChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected override void ResetButtonClick()
+        {
+            AdjacencyMatrix = Graph.AdjacencyMatrix;
+            IsResetButtonEnable = false;
+            IsSetButtonEnable = false;
         }
 
         public void RefreshData()
         {
-            AdjacencyMatrixGridControl.AdjacencyMatrix = Graph.AdjacencyMatrix;
+            AdjacencyMatrix = Graph.AdjacencyMatrix;
+            IsResetButtonEnable = false;
+            IsSetButtonEnable = false;
         }
 
         private void AdjacencyMatrixGridControl_MatrixChanged(object sender, EventArgs e)
         {
-            Graph.AdjacencyMatrix = AdjacencyMatrixGridControl.AdjacencyMatrix;
-            MatrixChanged?.Invoke(this, EventArgs.Empty);
+            IsResetButtonEnable = true;
+            IsSetButtonEnable = true;
         }
     }
 }

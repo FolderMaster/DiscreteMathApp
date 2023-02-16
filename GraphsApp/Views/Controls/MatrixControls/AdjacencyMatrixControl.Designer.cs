@@ -38,7 +38,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AdjacencyMatrixGridControl.Location = new System.Drawing.Point(0, 0);
             this.AdjacencyMatrixGridControl.Name = "AdjacencyMatrixGridControl";
-            this.AdjacencyMatrixGridControl.Size = new System.Drawing.Size(500, 396);
+            this.AdjacencyMatrixGridControl.Size = new System.Drawing.Size(500, 367);
             this.AdjacencyMatrixGridControl.TabIndex = 22;
             this.AdjacencyMatrixGridControl.MatrixChanged += new System.EventHandler(this.AdjacencyMatrixGridControl_MatrixChanged);
             // 

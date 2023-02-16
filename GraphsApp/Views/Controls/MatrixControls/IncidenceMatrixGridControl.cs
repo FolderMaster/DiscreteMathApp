@@ -18,18 +18,6 @@ namespace GraphsApp.Views.Controls.MatrixControls
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Graph Graph
-        {
-            get
-            {
-                Graph result = new Graph();
-                result.IncidenceMatrix = IncidenceMatrix;
-                return result;
-            }
-            set => IncidenceMatrix = value.IncidenceMatrix;
-        }
-
         public IncidenceMatrixGridControl()
         {
             InitializeComponent();
@@ -37,7 +25,6 @@ namespace GraphsApp.Views.Controls.MatrixControls
 
         protected override void Validate(int value)
         {
-            ValueValidator.AssertValueIsPositive(value, "Matrix");
         }
 
         protected override string[] CreateColumnStrings(int count)

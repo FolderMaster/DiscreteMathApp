@@ -10,6 +10,18 @@ namespace GraphsApp.Views.Controls.MatrixControls
     {
         private MatrixControlSession _session = new MatrixControlSession();
 
+        protected bool IsSetButtonEnable
+        {
+            get => SetButton.Enabled;
+            set => SetButton.Enabled = value;
+        }
+
+        protected bool IsResetButtonEnable
+        {
+            get => ResetButton.Enabled;
+            set => ResetButton.Enabled = value;
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public MatrixControlSession Session
         {
@@ -21,6 +33,7 @@ namespace GraphsApp.Views.Controls.MatrixControls
                 EdgesCountNumericUpDown.Value = Session.EdgesCount;
                 EdgeMultiplicityNumericUpDown.Value = Session.EdgeMultiplicity;
                 LoopsCountNumericUpDown.Value = Session.LoopsCount;
+                AreOrientedConnectionsCheckBox.Checked = Session.AreOrientedConnections;
             }
         }
 
@@ -32,6 +45,10 @@ namespace GraphsApp.Views.Controls.MatrixControls
         protected virtual void FillButtonClick() {}
 
         protected virtual void GenerationButtonClick() { }
+
+        protected virtual void SetButtonClick() { }
+
+        protected virtual void ResetButtonClick() { }
 
         private void VerticesCountNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
@@ -53,6 +70,11 @@ namespace GraphsApp.Views.Controls.MatrixControls
             Session.EdgesCount = (int)EdgesCountNumericUpDown.Value;
         }
 
+        private void AreOrientedConnectionsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Session.AreOrientedConnections = AreOrientedConnectionsCheckBox.Checked;
+        }
+
         private void FillButton_Click(object sender, EventArgs e)
         {
             FillButtonClick();
@@ -61,6 +83,16 @@ namespace GraphsApp.Views.Controls.MatrixControls
         private void GenerationButton_Click(object sender, EventArgs e)
         {
             GenerationButtonClick();
+        }
+
+        private void SetButton_Click(object sender, EventArgs e)
+        {
+            SetButtonClick();
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            ResetButtonClick();
         }
     }
 }

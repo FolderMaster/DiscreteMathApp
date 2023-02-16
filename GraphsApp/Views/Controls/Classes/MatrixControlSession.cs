@@ -9,5 +9,7 @@
         public int EdgeMultiplicity { get; set; } = 0;
 
         public int LoopsCount { get ; set; } = 0;
+
+        public bool AreOrientedConnections { get; set; } = false;
     }
 }

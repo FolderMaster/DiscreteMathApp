@@ -13,7 +13,7 @@ namespace GraphsApp.Views.Tabs
             get => PathCountMatrixControl.Graph;
             set
             {
-                AdjacencyMatrixGridControl.Graph = value;
+                AdjacencyMatrixGridControl.AdjacencyMatrix = value.AdjacencyMatrix;
                 PathCountMatrixControl.Graph = value;
             }
         }
@@ -25,7 +25,8 @@ namespace GraphsApp.Views.Tabs
 
         public void RefreshData()
         {
-            AdjacencyMatrixGridControl.Graph = Graph;
+            AdjacencyMatrixGridControl.AdjacencyMatrix =
+                PathCountMatrixControl.Graph.AdjacencyMatrix;
             PathCountMatrixControl.RefreshData();
         }
     }

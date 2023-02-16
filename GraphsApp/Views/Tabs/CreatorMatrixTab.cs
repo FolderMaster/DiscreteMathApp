@@ -40,15 +40,15 @@ namespace GraphsApp.Views.Tabs
 
         private void AdjacencyMatrixControl_MatrixChanged(object sender, EventArgs e)
         {
-            IncidenceMatrixControl.RefreshData();
             Schedule2DControl.Graph = AdjacencyMatrixControl.Graph;
+            IncidenceMatrixControl.RefreshData();
             MatrixChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void IncidenceMatrixControl_MatrixChanged(object sender, EventArgs e)
         {
-            //AdjacencyMatrixControl.RefreshData();
             Schedule2DControl.Graph = IncidenceMatrixControl.Graph;
+            AdjacencyMatrixControl.RefreshData();
             MatrixChanged?.Invoke(this, EventArgs.Empty);
         }
 

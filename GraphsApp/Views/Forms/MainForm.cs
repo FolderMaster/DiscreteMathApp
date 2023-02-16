@@ -44,6 +44,7 @@ namespace GraphsApp.Views.Forms
                     _session.AdjacencyMatrixControlSession;
                 CreatorMatrixTab.IncidenceMatrixControlSession =
                     _session.IncidenceMatrixControlSession;
+                ColorGraphTab.ColorGraphControlSession = _session.ColorGraphControlSession;
             }
         }
 

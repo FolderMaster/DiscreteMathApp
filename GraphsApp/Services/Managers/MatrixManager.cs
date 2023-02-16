@@ -1,5 +1,6 @@
 ﻿using GraphsApp.Services.Factories;
 using GraphsApp.Services.Validatories;
+using System;
 
 namespace GraphsApp.Services.Managers
 {
@@ -27,6 +28,20 @@ namespace GraphsApp.Services.Managers
                 result = temp;
             }
             return result;
+        }
+
+        public static int GetRowIndexByCondition<T>(T[,] matrix, int rowIndex, Func<T, bool>
+            condition)
+        {
+            int columnCount = matrix.GetLength(1);
+            for (int x = 0; x < columnCount; ++x)
+            {
+                if (condition(matrix[rowIndex, x]))
+                {
+                    return x;
+                }
+            }
+            return -1;
         }
     }
 }

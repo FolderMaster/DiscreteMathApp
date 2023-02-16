@@ -37,6 +37,13 @@ namespace GraphsApp.Services.Factories
         {
             Random random = new Random();
             int[,] result = new int[verticesCount, edgesCount];
+            for (int y = 0; y < verticesCount; ++y)
+            {
+                for (int x = 0; x < edgesCount; ++x)
+                {
+                    int generatedValue = random.Next(verticesCount > 0 ? loopsCount > 0 ? 3 : 2 : 1);
+                }
+            }
             return result;
         }
     }

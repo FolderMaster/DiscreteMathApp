@@ -10,6 +10,12 @@ namespace GraphsApp.Views.Controls.MatrixControls
     {
         private Graph _graph = new Graph();
 
+        private int[,] IncidenceMatrix
+        {
+            get => IncidenceMatrixGridControl.IncidenceMatrix;
+            set => IncidenceMatrixGridControl.IncidenceMatrix = value;
+        }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -17,7 +23,10 @@ namespace GraphsApp.Views.Controls.MatrixControls
             set
             {
                 _graph = value;
-                IncidenceMatrixGridControl.Graph = value;
+                IncidenceMatrix = _graph.IncidenceMatrix;
+                IsResetButtonEnable = false;
+                IsSetButtonEnable = false;
+                MatrixChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -30,26 +39,42 @@ namespace GraphsApp.Views.Controls.MatrixControls
 
         protected override void FillButtonClick()
         {
-            IncidenceMatrixGridControl.IncidenceMatrix = MatrixFactory.CreateIncidentMatrix
-                (Session.VerticesCount, Session.EdgesCount);
+            IncidenceMatrix = MatrixFactory.CreateIncidentMatrix(Session.VerticesCount, 
+                Session.EdgesCount);
         }
 
         protected override void GenerationButtonClick()
         {
-            IncidenceMatrixGridControl.IncidenceMatrix = MatrixFactory.CreateIncidentMatrix
-                (Session.VerticesCount, Session.EdgesCount, Session.LoopsCount,
-                Session.EdgeMultiplicity);
+            IncidenceMatrix = MatrixFactory.CreateIncidentMatrix(Session.VerticesCount,
+                Session.EdgesCount, Session.LoopsCount, Session.EdgeMultiplicity);
+        }
+
+        protected override void SetButtonClick()
+        {
+            Graph.IncidenceMatrix = IncidenceMatrix;
+            IsResetButtonEnable = false;
+            IsSetButtonEnable = false;
+            MatrixChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected override void ResetButtonClick()
+        {
+            IncidenceMatrix = Graph.IncidenceMatrix;
+            IsResetButtonEnable = false;
+            IsSetButtonEnable = false;
         }
 
         public void RefreshData()
         {
-            IncidenceMatrixGridControl.IncidenceMatrix = Graph.IncidenceMatrix;
+            IncidenceMatrix = Graph.IncidenceMatrix;
+            IsResetButtonEnable = false;
+            IsSetButtonEnable = false;
         }
 
         private void IncidenceMatrixGridControl_MatrixChanged(object sender, EventArgs e)
         {
-            Graph.IncidenceMatrix = IncidenceMatrixGridControl.IncidenceMatrix;
-            MatrixChanged?.Invoke(this, EventArgs.Empty);
+            IsResetButtonEnable = true;
+            IsSetButtonEnable = true;
         }
     }
 }

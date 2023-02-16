@@ -10,7 +10,7 @@ namespace GraphsApp.Models.Graphs
 
         public Vertex End { get; set; } = null;
 
-        public double Weight { get; set; } = 0;
+        public double Weight { get; set; } = 1;
 
         public Color Color { get; set; } = Color.Black;
 

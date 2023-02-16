@@ -1,5 +1,4 @@
 ﻿using GraphsApp.Models.Graphs;
-using GraphsApp.Services.Factories;
 using GraphsApp.Views.Controls.Classes;
 
 namespace GraphsApp.Services.App
@@ -14,6 +13,9 @@ namespace GraphsApp.Services.App
         public MatrixControlSession IncidenceMatrixControlSession { get; set; } = new
             MatrixControlSession();
 
+        public ColorGraphControlSession ColorGraphControlSession { get; set; } = new 
+            ColorGraphControlSession();
+
         public Session()
         {
         }
@@ -23,6 +25,7 @@ namespace GraphsApp.Services.App
             Graph.AdjacencyMatrix = save.AdjacencyMatrix;
             AdjacencyMatrixControlSession = save.AdjacencyMatrixControlSession;
             IncidenceMatrixControlSession = save.IncidenceMatrixControlSession;
+            ColorGraphControlSession= save.ColorGraphControlSession;
         }
     }
 }

@@ -54,6 +54,7 @@
             this.PathPickerControl.Name = "PathPickerControl";
             this.PathPickerControl.Size = new System.Drawing.Size(683, 23);
             this.PathPickerControl.TabIndex = 1;
+            this.PathPickerControl.ButtonClicked += new System.EventHandler(this.PathPickerControl_ButtonClicked);
             // 
             // EdgeEditorGroupBox
             // 

@@ -1,4 +1,5 @@
 ﻿using GraphsApp.Models.Graphs;
+using GraphsApp.Views.Controls.Classes;
 using GraphsApp.Views.Controls.MatrixControls;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,13 @@ namespace GraphsApp.Views.Tabs
         {
             get => ColorGraphControl.Graph;
             set => ColorGraphControl.Graph = value;
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ColorGraphControlSession ColorGraphControlSession
+        {
+            get => ColorGraphControl.Session;
+            set => ColorGraphControl.Session = value;
         }
 
         public ColorGraphTab()

@@ -18,18 +18,6 @@ namespace GraphsApp.Views.Controls.MatrixControls
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Graph Graph
-        {
-            get
-            {
-                Graph result = new Graph();
-                result.AdjacencyMatrix = AdjacencyMatrix;
-                return result;
-            }
-            set => AdjacencyMatrix = value.AdjacencyMatrix;
-        }
-
         public AdjacencyMatrixGridControl()
         {
             InitializeComponent();

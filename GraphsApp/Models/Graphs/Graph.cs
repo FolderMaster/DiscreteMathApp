@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using GraphsApp.Services.Managers;
 using GraphsApp.Services.Validatories;
 
 namespace GraphsApp.Models.Graphs
@@ -86,31 +86,58 @@ namespace GraphsApp.Models.Graphs
                 Edges.Clear();
                 for (int x = 0; x < edgesCount; ++x)
                 {
-                    bool isY1Empty = true;
-                    int y1 = -1;
-                    int y2 = -1;
+                    bool isOriented = false;
+                    Vertex vertex1 = null;
+                    Vertex vertex2 = null;
                     for(int y = 0; y < verticesCount; ++y)
                     {
                         if (value[y, x] == 2)
                         {
-                            y1 = y2 = y;
+                            vertex1 = vertex1 = Vertices[y];
+                            isOriented = false;
                             break;
                         }
                         else if (value[y, x] == 1)
                         {
-                            if(isY1Empty)
+                            if(vertex1 == null)
                             {
-                                y1 = y;
-                                isY1Empty = false;
+                                vertex1 = Vertices[y];
                             }
                             else
                             {
-                                y2 = y;
+                                vertex2 = Vertices[y];
+                                isOriented = false;
+                                break;
+                            }
+                        }
+                        else if (value[y, x] == -1)
+                        {
+                            if (vertex1 == null)
+                            {
+                                vertex1 = Vertices[y];
+                            }
+                            else
+                            {
+                                vertex2 = vertex1;
+                                vertex1 = Vertices[y];
+                                isOriented = true;
                                 break;
                             }
                         }
                     }
-                    ConnectVertexToVertex(Vertices[y1], Vertices[y2], Convert.ToChar('a' + x).ToString());
+                    if(vertex1 != null && vertex2 != null)
+                    {
+                        if(isOriented)
+                        {
+                            ConnectVertexToVertex(vertex1, vertex2, 
+                                Convert.ToChar('a' + x).ToString());
+                        }
+                        else
+                        {
+                            ConnectVertices(vertex1, vertex2, 
+                                Convert.ToChar('a' + x).ToString());
+                        }
+                    }
                 }
             }
         }
