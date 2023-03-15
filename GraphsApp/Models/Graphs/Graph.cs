@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using GraphsApp.Services.Managers;
 using GraphsApp.Services.Validatories;
 
 namespace GraphsApp.Models.Graphs
@@ -16,14 +15,24 @@ namespace GraphsApp.Models.Graphs
         {
             get
             {
-                int count = Vertices.Count;
-                int[,] result = new int[count, count];
-                for(int y = 0; y < count; ++y)
+                int verticesCount = Vertices.Count;
+                int[,] result = new int[verticesCount, verticesCount];
+                for(int y = 0; y < verticesCount; ++y)
                 {
-                    for(int x = y; x < count; ++x)
+                    for(int x = y; x < verticesCount; ++x)
                     {
-                        result[y, x] = Vertices[y].Edges.Where((e) => e.End == Vertices[x]).
-                            Count();
+                        int count;
+                        if (x != y)
+                        {
+                            count = Vertices[y].Edges.Where((edge) => edge.End == Vertices[x] ||
+                            edge.Begin == Vertices[x]).Count();
+                        }
+                        else
+                        {
+                            count = Vertices[y].Edges.Where((edge) =>
+                            edge.End == edge.Begin).Count();
+                        }
+                        result[y, x] = count;
                         result[x, y] = result[y, x];
                     }
                 }
@@ -37,7 +46,7 @@ namespace GraphsApp.Models.Graphs
                 Vertices.Clear();
                 for (int n = 0; n < verticesCount; n++)
                 {
-                    Vertices.Add(new Vertex($"{n + 1}"));
+                    Vertices.Add(new Vertex(GetNameForVertex(n)));
                 }
 
                 Edges.Clear();
@@ -48,8 +57,7 @@ namespace GraphsApp.Models.Graphs
                     {
                         for (int k = 0; k < value[x, y]; ++k)
                         {
-                            ConnectVertexToVertex(Vertices[y], Vertices[x], Convert.ToChar('a' + 
-                                edgesCount).ToString());
+                            ConnectVertices(Vertices[y], Vertices[x], GetNameForEdge(edgesCount));
                             ++edgesCount;
                         }
                     }
@@ -79,7 +87,7 @@ namespace GraphsApp.Models.Graphs
                 Vertices.Clear();
                 for (int n = 0; n < verticesCount; n++)
                 {
-                    Vertices.Add(new Vertex($"{n + 1}"));
+                    Vertices.Add(new Vertex(GetNameForVertex(n)));
                 }
 
                 int edgesCount = value.GetLength(1);
@@ -93,7 +101,7 @@ namespace GraphsApp.Models.Graphs
                     {
                         if (value[y, x] == 2)
                         {
-                            vertex1 = vertex1 = Vertices[y];
+                            vertex1 = vertex2 = Vertices[y];
                             isOriented = false;
                             break;
                         }
@@ -129,13 +137,11 @@ namespace GraphsApp.Models.Graphs
                     {
                         if(isOriented)
                         {
-                            ConnectVertexToVertex(vertex1, vertex2, 
-                                Convert.ToChar('a' + x).ToString());
+                            ConnectVertexToVertex(vertex1, vertex2, GetNameForEdge(x));
                         }
                         else
                         {
-                            ConnectVertices(vertex1, vertex2, 
-                                Convert.ToChar('a' + x).ToString());
+                            ConnectVertices(vertex1, vertex2, GetNameForEdge(x));
                         }
                     }
                 }
@@ -157,39 +163,49 @@ namespace GraphsApp.Models.Graphs
             Edges = edges;
         }
 
-        public void ConnectVertices(Vertex vertex1, Vertex vertex2, string name)
+        private void ConnectVertices(Vertex vertex1, Vertex vertex2, string name)
         {
             Edge edge = new Edge(name, vertex1, vertex2);
             vertex1.Edges.Add(edge);
-            vertex2.Edges.Add(edge);
+            if(vertex1 != vertex2)
+            {
+                vertex2.Edges.Add(edge);
+            }
             Edges.Add(edge);
         }
 
-        public void ConnectVerticesByEdge(Vertex vertex1, Vertex vertex2, Edge edge)
+        private void ConnectVerticesByEdge(Vertex vertex1, Vertex vertex2, Edge edge)
         {
             edge.Begin = vertex1;
             edge.End = vertex2;
             vertex1.Edges.Add(edge);
-            vertex2.Edges.Add(edge);
+            if (vertex1 != vertex2)
+            {
+                vertex2.Edges.Add(edge);
+            }
             if(!Edges.Contains(edge))
             {
                 Edges.Add(edge);
             }
         }
 
-        public void ConnectVertexToVertex(Vertex vertex1, Vertex vertex2, string name)
+        private void ConnectVertexToVertex(Vertex vertex1, Vertex vertex2, string name)
         {
             Edge edge = new Edge(name, vertex1, vertex2);
             vertex1.Edges.Add(edge);
             Edges.Add(edge);
         }
 
-        public void ConnectVertexToVertexByEdge(Vertex vertex1, Vertex vertex2, Edge edge)
+        private void ConnectVertexToVertexByEdge(Vertex vertex1, Vertex vertex2, Edge edge)
         {
             edge.Begin = vertex1;
             edge.End = vertex2;
             vertex1.Edges.Add(edge);
             Edges.Add(edge);
         }
+
+        private string GetNameForEdge(int index) => Convert.ToChar('a' + index).ToString();
+
+        private string GetNameForVertex(int index) => $"{index + 1}";
     }
 }

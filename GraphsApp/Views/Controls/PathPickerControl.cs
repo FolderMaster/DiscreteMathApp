@@ -51,10 +51,11 @@ namespace GraphsApp.Views.Controls
 
         private void Button_Click(object sender, EventArgs e)
         {
-            double answer = GraphManager.GetLengthOfShortestPath(Graph, FromSelectedVertex,
-                ToSelectedVertex);
-            MessageBoxManager.ShowInformation($"Length of shortest path: {answer}");
+            (double, string) answer = GraphManager.GetLengthOfShortestPath(Graph,
+                FromSelectedVertex, ToSelectedVertex);
             ButtonClicked?.Invoke(this, EventArgs.Empty);
+            MessageBoxManager.ShowInformation($"Shortest path: {answer.Item2}\nLength of " +
+                $"shortest path: {answer.Item1}");
         }
     }
 }

@@ -22,6 +22,11 @@ namespace GraphsApp.Views.Controls.MatrixControls
             }
         }
 
+        public string ButtonText
+        {
+            set => Button.Text = value;
+        }
+
         public event EventHandler SelectedColorChanged;
 
         public ColorPickerControl()

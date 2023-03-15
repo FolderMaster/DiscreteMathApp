@@ -25,10 +25,7 @@ namespace GraphsApp.Views.Controls
             {
                 _session = value;
 
-                ColorPickerControl1.SelectedColor = Session.Color1;
-                ColorPickerControl2.SelectedColor = Session.Color2;
-                ColorPickerControl3.SelectedColor = Session.Color3;
-                ColorPickerControl4.SelectedColor = Session.Color4;
+                ColorListControl.Colors = Session.Colors;
             }
         }
 
@@ -36,44 +33,22 @@ namespace GraphsApp.Views.Controls
         {
             InitializeComponent();
 
-            ColorPickerControl1.SelectedColor = Session.Color1;
-            ColorPickerControl2.SelectedColor = Session.Color2;
-            ColorPickerControl3.SelectedColor = Session.Color3;
-            ColorPickerControl4.SelectedColor = Session.Color4;
+            ColorListControl.Colors = Session.Colors;
         }
 
         public event EventHandler ButtonClicked;
 
         private void Button_Click(object sender, EventArgs e)
         {
-            GraphManager.ColorGraph(Graph, new List<Color>()
+            try
             {
-                ColorPickerControl1.SelectedColor,
-                ColorPickerControl2.SelectedColor,
-                ColorPickerControl3.SelectedColor,
-                ColorPickerControl4.SelectedColor
-            });
-            ButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void ColorPickerControl1_SelectedColorChanged(object sender, EventArgs e)
-        {
-            Session.Color1 = ColorPickerControl1.SelectedColor;
-        }
-
-        private void ColorPickerControl2_SelectedColorChanged(object sender, EventArgs e)
-        {
-            Session.Color2 = ColorPickerControl2.SelectedColor;
-        }
-
-        private void ColorPickerControl3_SelectedColorChanged(object sender, EventArgs e)
-        {
-            Session.Color3 = ColorPickerControl3.SelectedColor;
-        }
-
-        private void ColorPickerControl4_SelectedColorChanged(object sender, EventArgs e)
-        {
-            Session.Color4 = ColorPickerControl4.SelectedColor;
+                GraphManager.ColorGraph(Graph, new List<Color>(ColorListControl.Colors));
+                ButtonClicked?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxManager.ShowError(ex.Message);
+            }
         }
     }
 }

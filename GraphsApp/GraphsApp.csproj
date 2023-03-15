@@ -66,7 +66,6 @@
     <Compile Include="Services\App\SaveFormat.cs" />
     <Compile Include="Services\App\Session.cs" />
     <Compile Include="Services\App\Settings.cs" />
-    <Compile Include="Services\Factories\GraphFactory.cs" />
     <Compile Include="Services\Factories\MatrixFactory.cs" />
     <Compile Include="Services\Factories\ScheduleFactory.cs" />
     <Compile Include="Services\Factories\ShapeFactory.cs" />
@@ -83,6 +82,12 @@
     </Compile>
     <Compile Include="Views\Controls\ColorGraphControl.Designer.cs">
       <DependentUpon>ColorGraphControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ColorListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\ColorListControl.Designer.cs">
+      <DependentUpon>ColorListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\EdgeEditorControl.cs">
       <SubType>UserControl</SubType>
@@ -197,6 +202,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Controls\ColorGraphControl.resx">
       <DependentUpon>ColorGraphControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Controls\ColorListControl.resx">
+      <DependentUpon>ColorListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\ColorPickerControl.resx">
       <DependentUpon>ColorPickerControl.cs</DependentUpon>

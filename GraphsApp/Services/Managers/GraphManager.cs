@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
@@ -68,14 +69,14 @@ namespace GraphsApp.Services.Managers
             return sortedVertexes;
         }
 
-        public static double GetLengthOfShortestPath(Graph graph, Vertex fromVertex, Vertex
-            toVertex)
+        public static (double, string) GetLengthOfShortestPath(Graph graph, Vertex fromVertex,
+            Vertex toVertex)
         {
-            double[,] matrix = FloydAlgorithm(WeightMatrix(graph));
+            (double, string)[,] matrix = FloydAlgorithm(WeightMatrix(graph));
             return matrix[graph.Vertices.IndexOf(fromVertex), graph.Vertices.IndexOf(toVertex)];
         }
 
-        public static double[,] FloydAlgorithm(double[,] weightMatrix)
+        public static (double, string)[,] FloydAlgorithm((double, string)[,] weightMatrix)
         {
             int vertexCount = weightMatrix.GetLength(0);
             for (int k = 0; k < vertexCount; ++k)
@@ -84,16 +85,13 @@ namespace GraphsApp.Services.Managers
                 {
                     for(int j = 0; j < vertexCount; ++j)
                     {
-                        if (weightMatrix[i, k] == weightMatrix[k, j] && i != j)
+                        if (weightMatrix[i, k].Item1 + weightMatrix[k, j].Item1 <
+                            weightMatrix[i, j].Item1)
                         {
-                            if (weightMatrix[i, k] + weightMatrix[k, j] < weightMatrix[i, j])
-                            {
-                                weightMatrix[i, j] = weightMatrix[i, k] + weightMatrix[k, j];
-                            }
-                            else if(weightMatrix[i, j] == double.PositiveInfinity)
-                            {
-                                weightMatrix[i, j] = weightMatrix[i, k];
-                            }
+                            weightMatrix[i, j].Item1 = weightMatrix[i, k].Item1 +
+                                weightMatrix[k, j].Item1;
+                            weightMatrix[i, j].Item2 = weightMatrix[i, k].Item2 +
+                                weightMatrix[k, j].Item2;
                         }
                     }
                 }
@@ -101,29 +99,34 @@ namespace GraphsApp.Services.Managers
             return weightMatrix;
         }
 
-        public static double[,] WeightMatrix(Graph graph)
+        public static (double, string)[,] WeightMatrix(Graph graph)
         {
             int vertexCount = graph.Vertices.Count;
-            double[,] result = new double[vertexCount, vertexCount];
+            (double, string)[,] result = new (double, string)[vertexCount, vertexCount];
             for(int y = 0; y < vertexCount; ++y)
             {
                 for (int x = 0; x < vertexCount; ++x)
                 {
-                    if(x == y)
+                    Vertex fromVertex = graph.Vertices[y];
+                    if (x == y)
                     {
-                        result[y, x] = 0;
+                        result[y, x] = (0, "");
                     }
                     else
                     {
-                        IEnumerable<Edge> edges = graph.Edges.Where((edge) => edge.Begin ==
-                            graph.Vertices[y] && edge.End == graph.Vertices[x]);
-                        if(edges.Count() > 0)
+                        Vertex toVertex = graph.Vertices[x];
+                        IEnumerable<Edge> edges = graph.Edges.Where((edge) => ((edge.Begin ==
+                            fromVertex && edge.End == toVertex) || (edge.Begin == toVertex &&
+                            edge.End == fromVertex)) && fromVertex.Edges.Contains(edge));
+                        if (edges.Count() > 0)
                         {
-                            result[y, x] = edges.Min((edge) => edge.Weight);
+                            double minWeight = edges.Min((edge) => edge.Weight);
+                            Edge minEdge = edges.First((edge) => edge.Weight == minWeight);
+                            result[y, x] = (minWeight, minEdge.Name);
                         }
                         else
                         {
-                            result[y, x] = double.PositiveInfinity;
+                            result[y, x] = (double.PositiveInfinity, "");
                         }
                     }
                 }

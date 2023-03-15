@@ -29,19 +29,5 @@ namespace GraphsApp.Services.Managers
             }
             return result;
         }
-
-        public static int GetRowIndexByCondition<T>(T[,] matrix, int rowIndex, Func<T, bool>
-            condition)
-        {
-            int columnCount = matrix.GetLength(1);
-            for (int x = 0; x < columnCount; ++x)
-            {
-                if (condition(matrix[rowIndex, x]))
-                {
-                    return x;
-                }
-            }
-            return -1;
-        }
     }
 }
