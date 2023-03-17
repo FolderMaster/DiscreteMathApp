@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 using GraphsApp.Models.Graphs;
 using GraphsApp.Services.Managers;
 
-namespace GraphsApp.Views.Controls
+namespace GraphsApp.Views.Controls.PathControls
 {
     public partial class PathPickerControl : UserControl
     {
@@ -51,11 +52,28 @@ namespace GraphsApp.Views.Controls
 
         private void Button_Click(object sender, EventArgs e)
         {
-            (double, string) answer = GraphManager.GetLengthOfShortestPath(Graph,
+            try
+            {
+                (double, List <Edge>) answer = GraphManager.GetLengthOfShortestPath(Graph,
                 FromSelectedVertex, ToSelectedVertex);
-            ButtonClicked?.Invoke(this, EventArgs.Empty);
-            MessageBoxManager.ShowInformation($"Shortest path: {answer.Item2}\nLength of " +
-                $"shortest path: {answer.Item1}");
+                ButtonClicked?.Invoke(this, EventArgs.Empty);
+                double pathLength = answer.Item1;
+                if(pathLength == double.PositiveInfinity)
+                {
+                    MessageBoxManager.ShowInformation("Path not found!");
+                }
+                else
+                {
+                    string path = "";
+                    answer.Item2.ForEach((edge) => path += edge.Name);
+                    MessageBoxManager.ShowInformation($"Shortest path: {path}\nLength of " +
+                        $"shortest path: {pathLength}");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBoxManager.ShowError(ex.Message);
+            }
         }
     }
 }

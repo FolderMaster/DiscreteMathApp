@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Views.Controls.MatrixControls
+﻿namespace GraphsApp.Views.Controls.ColorControls
 {
     partial class ColorPickerControl
     {

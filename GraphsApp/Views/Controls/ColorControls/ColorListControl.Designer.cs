@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.ColorControls
 {
     partial class ColorListControl
     {
@@ -31,7 +31,7 @@
             this.ListBox = new System.Windows.Forms.ListBox();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
-            this.EditColorPickerControl = new GraphsApp.Views.Controls.MatrixControls.ColorPickerControl();
+            this.EditColorPickerControl = new GraphsApp.Views.Controls.ColorControls.ColorPickerControl();
             this.SuspendLayout();
             // 
             // ListBox
@@ -75,6 +75,7 @@
             // 
             this.EditColorPickerControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditColorPickerControl.ButtonText = "Edit";
             this.EditColorPickerControl.Location = new System.Drawing.Point(81, 263);
             this.EditColorPickerControl.Name = "EditColorPickerControl";
             this.EditColorPickerControl.SelectedColor = System.Drawing.Color.Transparent;
@@ -101,6 +102,6 @@
         private System.Windows.Forms.ListBox ListBox;
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button AddButton;
-        private MatrixControls.ColorPickerControl EditColorPickerControl;
+        private ColorControls.ColorPickerControl EditColorPickerControl;
     }
 }

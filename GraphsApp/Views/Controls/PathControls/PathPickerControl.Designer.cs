@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.PathControls
 {
     partial class PathPickerControl
     {
@@ -31,8 +31,8 @@
             this.Button = new System.Windows.Forms.Button();
             this.ShortestPathFromLabel = new System.Windows.Forms.Label();
             this.ToLabel = new System.Windows.Forms.Label();
-            this.ToVertexSelectorControl = new GraphsApp.Views.Controls.VertexSelectorControl();
-            this.FromVertexSelectorControl = new GraphsApp.Views.Controls.VertexSelectorControl();
+            this.ToVertexSelectorControl = new GraphsApp.Views.Controls.PathControls.VertexSelectorControl();
+            this.FromVertexSelectorControl = new GraphsApp.Views.Controls.PathControls.VertexSelectorControl();
             this.SuspendLayout();
             // 
             // Button

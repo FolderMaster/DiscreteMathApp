@@ -3,8 +3,10 @@ using System.ComponentModel;
 using System.Windows.Forms;
 
 using GraphsApp.Models.Graphs;
+using GraphsApp.Services.Factories;
 using GraphsApp.Views.Controls;
 using GraphsApp.Views.Controls.Classes;
+using Newtonsoft.Json.Linq;
 
 namespace GraphsApp.Views.Tabs
 {
@@ -40,21 +42,23 @@ namespace GraphsApp.Views.Tabs
 
         private void AdjacencyMatrixControl_MatrixChanged(object sender, EventArgs e)
         {
-            Schedule2DControl.Graph = AdjacencyMatrixControl.Graph;
+            Schedule2DControl.Schedule =
+                ScheduleFactory.CreateScheduleByGraph(AdjacencyMatrixControl.Graph);
             IncidenceMatrixControl.RefreshData();
             MatrixChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void IncidenceMatrixControl_MatrixChanged(object sender, EventArgs e)
         {
-            Schedule2DControl.Graph = IncidenceMatrixControl.Graph;
+            Schedule2DControl.Schedule =
+                ScheduleFactory.CreateScheduleByGraph(IncidenceMatrixControl.Graph);
             AdjacencyMatrixControl.RefreshData();
             MatrixChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void AgainButton_Click(object sender, EventArgs e)
         {
-            Schedule2DControl.Graph = AdjacencyMatrixControl.Graph;
+            Schedule2DControl.Schedule = ScheduleFactory.CreateScheduleByGraph(Graph);
         }
     }
 }

@@ -77,28 +77,28 @@
     <Compile Include="Views\Controls\Classes\ColorGraphControlSession.cs" />
     <Compile Include="Views\Controls\Classes\MatrixControlSession.cs" />
     <Compile Include="Views\Controls\Classes\PathCountControlSession.cs" />
-    <Compile Include="Views\Controls\ColorGraphControl.cs">
+    <Compile Include="Views\Controls\ColorControls\ColorGraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\ColorGraphControl.Designer.cs">
+    <Compile Include="Views\Controls\ColorControls\ColorGraphControl.Designer.cs">
       <DependentUpon>ColorGraphControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ColorListControl.cs">
+    <Compile Include="Views\Controls\ColorControls\ColorListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\ColorListControl.Designer.cs">
+    <Compile Include="Views\Controls\ColorControls\ColorListControl.Designer.cs">
       <DependentUpon>ColorListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\EdgeEditorControl.cs">
+    <Compile Include="Views\Controls\PathControls\EdgeEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\EdgeEditorControl.Designer.cs">
+    <Compile Include="Views\Controls\PathControls\EdgeEditorControl.Designer.cs">
       <DependentUpon>EdgeEditorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\EdgeSelectorControl.cs">
+    <Compile Include="Views\Controls\PathControls\EdgeSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\EdgeSelectorControl.Designer.cs">
+    <Compile Include="Views\Controls\PathControls\EdgeSelectorControl.Designer.cs">
       <DependentUpon>EdgeSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\MatrixControls\AdjacencyMatrixControl.cs">
@@ -113,10 +113,10 @@
     <Compile Include="Views\Controls\MatrixControls\AdjacencyMatrixGridControl.Designer.cs">
       <DependentUpon>AdjacencyMatrixGridControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ColorPickerControl.cs">
+    <Compile Include="Views\Controls\ColorControls\ColorPickerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\ColorPickerControl.Designer.cs">
+    <Compile Include="Views\Controls\ColorControls\ColorPickerControl.Designer.cs">
       <DependentUpon>ColorPickerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\MatrixControls\IncidenceMatrixControl.cs">
@@ -149,10 +149,10 @@
     <Compile Include="Views\Controls\MatrixControls\PathCountMatrixControl.Designer.cs">
       <DependentUpon>PathCountMatrixControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\PathPickerControl.cs">
+    <Compile Include="Views\Controls\PathControls\PathPickerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\PathPickerControl.Designer.cs">
+    <Compile Include="Views\Controls\PathControls\PathPickerControl.Designer.cs">
       <DependentUpon>PathPickerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\Schedule2DControl.cs">
@@ -161,10 +161,10 @@
     <Compile Include="Views\Controls\Schedule2DControl.Designer.cs">
       <DependentUpon>Schedule2DControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\VertexSelectorControl.cs">
+    <Compile Include="Views\Controls\PathControls\VertexSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\VertexSelectorControl.Designer.cs">
+    <Compile Include="Views\Controls\PathControls\VertexSelectorControl.Designer.cs">
       <DependentUpon>VertexSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Forms\MainForm.cs">
@@ -200,19 +200,19 @@
     <Compile Include="Views\Tabs\ShortestPathTab.Designer.cs">
       <DependentUpon>ShortestPathTab.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\Controls\ColorGraphControl.resx">
+    <EmbeddedResource Include="Views\Controls\ColorControls\ColorGraphControl.resx">
       <DependentUpon>ColorGraphControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\ColorListControl.resx">
+    <EmbeddedResource Include="Views\Controls\ColorControls\ColorListControl.resx">
       <DependentUpon>ColorListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\ColorPickerControl.resx">
+    <EmbeddedResource Include="Views\Controls\ColorControls\ColorPickerControl.resx">
       <DependentUpon>ColorPickerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\EdgeEditorControl.resx">
+    <EmbeddedResource Include="Views\Controls\PathControls\EdgeEditorControl.resx">
       <DependentUpon>EdgeEditorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\EdgeSelectorControl.resx">
+    <EmbeddedResource Include="Views\Controls\PathControls\EdgeSelectorControl.resx">
       <DependentUpon>EdgeSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\MatrixControls\AdjacencyMatrixControl.resx">
@@ -236,13 +236,13 @@
     <EmbeddedResource Include="Views\Controls\MatrixControls\PathCountMatrixControl.resx">
       <DependentUpon>PathCountMatrixControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\PathPickerControl.resx">
+    <EmbeddedResource Include="Views\Controls\PathControls\PathPickerControl.resx">
       <DependentUpon>PathPickerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\Schedule2DControl.resx">
       <DependentUpon>Schedule2DControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\VertexSelectorControl.resx">
+    <EmbeddedResource Include="Views\Controls\PathControls\VertexSelectorControl.resx">
       <DependentUpon>VertexSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Forms\MainForm.resx">

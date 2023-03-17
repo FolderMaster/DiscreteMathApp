@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using GraphsApp.Models.Graphs;
+using GraphsApp.Services.Factories;
+using GraphsApp.Views.Controls;
 
 namespace GraphsApp.Views.Tabs
 {
@@ -29,11 +25,14 @@ namespace GraphsApp.Views.Tabs
         {
             PathPickerControl.RefreshData();
             EdgeEditorControl.RefreshData();
+            Schedule2DControl.Schedule =
+                ScheduleFactory.CreateScheduleByGraph(PathPickerControl.Graph);
         }
 
         private void PathPickerControl_ButtonClicked(object sender, EventArgs e)
         {
-            Schedule2DControl.Graph = PathPickerControl.Graph;
+            Schedule2DControl.Schedule =
+                ScheduleFactory.CreateScheduleByGraph(PathPickerControl.Graph, false, true);
         }
     }
 }

@@ -7,6 +7,14 @@ namespace GraphsApp.Models.Graphs
 {
     public class Graph
     {
+        private bool _isOriented = false;
+
+        public bool IsOriented
+        {
+            get => _isOriented;
+            private set => _isOriented = value;
+        }
+
         public List<Vertex> Vertices { get; set; } = new List<Vertex>();
 
         public List<Edge> Edges { get; set; } = new List<Edge>();
@@ -19,7 +27,7 @@ namespace GraphsApp.Models.Graphs
                 int[,] result = new int[verticesCount, verticesCount];
                 for(int y = 0; y < verticesCount; ++y)
                 {
-                    for(int x = y; x < verticesCount; ++x)
+                    for(int x = 0; x < verticesCount; ++x)
                     {
                         int count;
                         if (x != y)
@@ -33,7 +41,6 @@ namespace GraphsApp.Models.Graphs
                             edge.End == edge.Begin).Count();
                         }
                         result[y, x] = count;
-                        result[x, y] = result[y, x];
                     }
                 }
                 return result;
@@ -48,17 +55,38 @@ namespace GraphsApp.Models.Graphs
                 {
                     Vertices.Add(new Vertex(GetNameForVertex(n)));
                 }
-
                 Edges.Clear();
+                IsOriented = false;
                 int edgesCount = 0;
                 for (int y = 0; y < verticesCount; ++y)
                 {
                     for (int x = y; x < verticesCount; ++x)
                     {
-                        for (int k = 0; k < value[x, y]; ++k)
+
+                        if(value[x, y] == value[y, x])
                         {
-                            ConnectVertices(Vertices[y], Vertices[x], GetNameForEdge(edgesCount));
-                            ++edgesCount;
+                            for (int k = 0; k < value[y, x]; ++k)
+                            {
+                                ConnectVertices(Vertices[y], Vertices[x],
+                                    GetNameForEdge(edgesCount));
+                                ++edgesCount;
+                            }
+                        }
+                        else
+                        {
+                            IsOriented = true;
+                            for (int k = 0; k < value[y, x]; ++k)
+                            {
+                                ConnectVertexToVertex(Vertices[y], Vertices[x],
+                                    GetNameForEdge(edgesCount));
+                                ++edgesCount;
+                            }
+                            for (int k = 0; k < value[x, y]; ++k)
+                            {
+                                ConnectVertexToVertex(Vertices[x], Vertices[y],
+                                    GetNameForEdge(edgesCount));
+                                ++edgesCount;
+                            }
                         }
                     }
                 }
@@ -92,6 +120,7 @@ namespace GraphsApp.Models.Graphs
 
                 int edgesCount = value.GetLength(1);
                 Edges.Clear();
+                IsOriented = false;
                 for (int x = 0; x < edgesCount; ++x)
                 {
                     bool isOriented = false;
@@ -138,6 +167,7 @@ namespace GraphsApp.Models.Graphs
                         if(isOriented)
                         {
                             ConnectVertexToVertex(vertex1, vertex2, GetNameForEdge(x));
+                            IsOriented = true;
                         }
                         else
                         {

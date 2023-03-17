@@ -26,6 +26,14 @@ namespace GraphsApp.Models.Schedules
             End = end;
         }
 
+        public Curve(Color color, Point begin, Point middle, Point end)
+        {
+            Color = color;
+            Begin = begin;
+            Middle = middle;
+            End = end;
+        }
+
         public Curve(string name, Point begin, Point middle, Point end)
         {
             Name = name;

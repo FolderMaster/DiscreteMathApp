@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Drawing;
 using GraphsApp.Models.Graphs;
 using GraphsApp.Models.Schedules;
+
+using Point = GraphsApp.Models.Schedules.Point;
 
 namespace GraphsApp.Services.Factories
 {
     public static class ScheduleFactory
     {
-        public static Schedule2D CreateScheduleByGraph(Graph graph)
+        public static Schedule2D CreateScheduleByGraph(Graph graph, bool isColorVertices = false,
+            bool isOutlileEdges = false)
         {
             Random random = new Random();
             Schedule2D result = new Schedule2D();
@@ -19,8 +22,16 @@ namespace GraphsApp.Services.Factories
             List<Point> points = new List<Point>();
             foreach (Vertex vertex in graph.Vertices)
             {
-                points.Add(new Point(vertex.Name, vertex.Color, new List<double> { random.Next(100), 
-                    random.Next(100) }));
+                if(isColorVertices)
+                {
+                    points.Add(new Point(vertex.Name, vertex.Color, new List<double> { random.Next(100),
+                        random.Next(100) }));
+                }
+                else
+                {
+                    points.Add(new Point(vertex.Name, new List<double> { random.Next(100),
+                        random.Next(100) }));
+                }
             }
             List<Curve> curves = new List<Curve>();
             Dictionary<(Vertex, Vertex), int> vertexEdgePairs = new Dictionary<(Vertex, Vertex),
@@ -52,7 +63,14 @@ namespace GraphsApp.Services.Factories
                     }
 
                     Point middle = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, count);
-                    curves.Add(new Curve(edge.Name, begin, middle, end));
+                    if (isOutlileEdges && edge.isOutlined)
+                    {
+                        curves.Add(new Curve(edge.Name, Color.Red, begin, middle, end));
+                    }
+                    else
+                    {
+                        curves.Add(new Curve(edge.Name, begin, middle, end));
+                    }
                 }
                 else
                 {
@@ -76,8 +94,16 @@ namespace GraphsApp.Services.Factories
                     Point right = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, count);
                     Point left = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, -count);
 
-                    curves.Add(new Curve(edge.Name, begin, right, end));
-                    curves.Add(new Curve(begin, left, end));
+                    if(isOutlileEdges && edge.isOutlined)
+                    {
+                        curves.Add(new Curve(edge.Name, Color.Red, begin, right, end));
+                        curves.Add(new Curve(Color.Red, begin, left, end));
+                    }
+                    else
+                    {
+                        curves.Add(new Curve(edge.Name, begin, right, end));
+                        curves.Add(new Curve(begin, left, end));
+                    }
                 }
             }
             foreach(Point point in points)

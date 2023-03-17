@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             GraphsApp.Services.App.Settings settings1 = new GraphsApp.Services.App.Settings();
-            this.EdgeEditorControl = new GraphsApp.Views.Controls.EdgeEditorControl();
-            this.PathPickerControl = new GraphsApp.Views.Controls.PathPickerControl();
+            this.EdgeEditorControl = new GraphsApp.Views.Controls.PathControls.EdgeEditorControl();
+            this.PathPickerControl = new GraphsApp.Views.Controls.PathControls.PathPickerControl();
             this.EdgeEditorGroupBox = new System.Windows.Forms.GroupBox();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
             this.Schedule2DControl = new GraphsApp.Views.Controls.Schedule2DControl();
@@ -114,8 +114,8 @@
 
         #endregion
 
-        private Controls.EdgeEditorControl EdgeEditorControl;
-        private Controls.PathPickerControl PathPickerControl;
+        private Controls.PathControls.EdgeEditorControl EdgeEditorControl;
+        private Controls.PathControls.PathPickerControl PathPickerControl;
         private System.Windows.Forms.GroupBox EdgeEditorGroupBox;
         private System.Windows.Forms.GroupBox DisplayGroupBox;
         private Controls.Schedule2DControl Schedule2DControl;

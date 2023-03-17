@@ -8,7 +8,7 @@ using GraphsApp.Models.Graphs;
 using GraphsApp.Services.Managers;
 using GraphsApp.Views.Controls.Classes;
 
-namespace GraphsApp.Views.Controls
+namespace GraphsApp.Views.Controls.ColorControls
 {
     public partial class ColorGraphControl : UserControl
     {

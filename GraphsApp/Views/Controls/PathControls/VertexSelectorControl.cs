@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 using GraphsApp.Models.Graphs;
 
-namespace GraphsApp.Views.Controls
+namespace GraphsApp.Views.Controls.PathControls
 {
     public partial class VertexSelectorControl : UserControl
     {

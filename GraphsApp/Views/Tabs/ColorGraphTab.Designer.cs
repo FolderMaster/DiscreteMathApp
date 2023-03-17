@@ -31,7 +31,7 @@
             GraphsApp.Services.App.Settings settings1 = new GraphsApp.Services.App.Settings();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
             this.Schedule2DControl = new GraphsApp.Views.Controls.Schedule2DControl();
-            this.ColorGraphControl = new GraphsApp.Views.Controls.ColorGraphControl();
+            this.ColorGraphControl = new GraphsApp.Views.Controls.ColorControls.ColorGraphControl();
             this.DisplayGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +90,6 @@
         #endregion
         private System.Windows.Forms.GroupBox DisplayGroupBox;
         private Controls.Schedule2DControl Schedule2DControl;
-        private Controls.ColorGraphControl ColorGraphControl;
+        private Controls.ColorControls.ColorGraphControl ColorGraphControl;
     }
 }

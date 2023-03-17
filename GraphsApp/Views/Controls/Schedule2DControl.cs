@@ -20,15 +20,6 @@ namespace GraphsApp.Views.Controls
         private Settings _settings;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Graph Graph
-        {
-            set
-            {
-                Schedule = ScheduleFactory.CreateScheduleByGraph(value);
-            }
-        }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Schedule2D Schedule
         {
             get
@@ -108,7 +99,7 @@ namespace GraphsApp.Views.Controls
                     int xEnd = (int)curve.End[0];
                     int yEnd = (int)curve.End[1];
 
-                    graphics.DrawCurve(Settings.LinePen, new PointF[3]
+                    graphics.DrawCurve(new Pen(new SolidBrush(curve.Color)), new PointF[3]
                     {
                         new PointF(xBegin, Height - yBegin),
                         new PointF(xMiddle, Height - yMiddle),

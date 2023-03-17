@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.ColorControls
 {
     partial class ColorGraphControl
     {
@@ -30,7 +30,7 @@
         {
             this.Button = new System.Windows.Forms.Button();
             this.ColorsGroupBox = new System.Windows.Forms.GroupBox();
-            this.ColorListControl = new GraphsApp.Views.Controls.ColorListControl();
+            this.ColorListControl = new GraphsApp.Views.Controls.ColorControls.ColorListControl();
             this.ColorsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 

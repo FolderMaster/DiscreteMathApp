@@ -9,7 +9,7 @@ namespace GraphsApp.Models.Schedules
     {
         public string Name { get; set; } = "";
 
-        public Color Color { get; set; } = Color.Black;
+        public Color Color { get; set; } = Color.White;
 
         public List<double> Coordinates { get; set; } = new List<double>();
 
@@ -24,6 +24,12 @@ namespace GraphsApp.Models.Schedules
 
         public Point(IEnumerable<double> coordinates)
         {
+            Coordinates = coordinates.ToList();
+        }
+
+        public Point(string name, IEnumerable<double> coordinates)
+        {
+            Name = name;
             Coordinates = coordinates.ToList();
         }
 

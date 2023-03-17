@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.PathControls
 {
     partial class EdgeSelectorControl
     {

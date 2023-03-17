@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Views.Controls
+﻿namespace GraphsApp.Views.Controls.PathControls
 {
     partial class EdgeEditorControl
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.EdgeSelectorControl = new GraphsApp.Views.Controls.EdgeSelectorControl();
+            this.EdgeSelectorControl = new GraphsApp.Views.Controls.PathControls.EdgeSelectorControl();
             this.WeightLabel = new System.Windows.Forms.Label();
             this.WeightTextBox = new System.Windows.Forms.TextBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);

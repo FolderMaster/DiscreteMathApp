@@ -12,7 +12,7 @@ namespace GraphsApp.Models.Graphs
 
         public double Weight { get; set; } = 1;
 
-        public Color Color { get; set; } = Color.Black;
+        public bool isOutlined { get; set; } = false;
 
         public Edge()
         {

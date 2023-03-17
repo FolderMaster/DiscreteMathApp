@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GraphsApp.Views.Controls.MatrixControls
+namespace GraphsApp.Views.Controls.ColorControls
 {
     public partial class ColorPickerControl : UserControl
     {
@@ -24,6 +24,7 @@ namespace GraphsApp.Views.Controls.MatrixControls
 
         public string ButtonText
         {
+            get => Button.Text;
             set => Button.Text = value;
         }
 
