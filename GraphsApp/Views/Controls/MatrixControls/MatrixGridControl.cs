@@ -5,18 +5,18 @@ using System.Windows.Forms;
 
 namespace GraphsApp.Views.Controls.MatrixControls
 {
-    public partial class MatrixGridControl : UserControl
+    public abstract partial class MatrixGridControl<T> : UserControl
     {
         private int _columnCount = 0;
 
         private int _rowCount = 0;
 
-        private int[,] _matrix = new int[0, 0];
+        private T[,] _matrix = new T[0, 0];
 
         private DataTable _dataTable = new DataTable();
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int[,] Matrix
+        public T[,] Matrix
         {
             get => _matrix;
             set
@@ -77,7 +77,9 @@ namespace GraphsApp.Views.Controls.MatrixControls
             DataGridView.DataSource = _dataTable;
         }
 
-        protected virtual void Validate(int value) {}
+        protected abstract T Parse(string text);
+
+        protected virtual void Validate(T value, int columnIndex, int rowIndex, T[,] matrix) {}
 
         protected virtual string[] CreateRowStrings(int count)
         {
@@ -105,8 +107,8 @@ namespace GraphsApp.Views.Controls.MatrixControls
             int columnIndex = e.ColumnIndex;
             try
             {
-                int value = int.Parse((string)e.FormattedValue);
-                Validate(value);
+                T value = Parse((string)e.FormattedValue);
+                Validate(value, columnIndex, rowIndex, Matrix);
                 DataGridView[columnIndex, rowIndex].ErrorText = "";
                 DataGridView[columnIndex, rowIndex].Style.BackColor = ColorManager.CorrectColor;
             }
@@ -122,8 +124,8 @@ namespace GraphsApp.Views.Controls.MatrixControls
         {
             int rowIndex = e.RowIndex;
             int columnIndex = e.ColumnIndex;
-            int currentValue = int.Parse(DataGridView[columnIndex, rowIndex].Value.ToString());
-            if(Matrix[rowIndex, columnIndex - 1] != currentValue)
+            T currentValue = Parse(DataGridView[columnIndex, rowIndex].Value.ToString());
+            if(!Matrix[rowIndex, columnIndex - 1].Equals(currentValue))
             {
                 Matrix[rowIndex, columnIndex - 1] = currentValue;
                 MatrixChanged?.Invoke(this, EventArgs.Empty);

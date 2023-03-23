@@ -46,7 +46,8 @@ namespace GraphsApp.Views.Controls.MatrixControls
         protected override void GenerationButtonClick()
         {
             AdjacencyMatrix = MatrixFactory.CreateAdjacencyMatrix(Session.VerticesCount, 
-                Session.EdgesCount, Session.LoopsCount, Session.EdgeMultiplicity);
+                Session.EdgesCount, Session.LoopsCount, Session.EdgeMultiplicity,
+                Session.AreOrientedConnections);
         }
 
         protected override void SetButtonClick()

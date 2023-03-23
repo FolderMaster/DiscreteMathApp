@@ -1,6 +1,4 @@
-﻿using GraphsApp.Services.Factories;
-using GraphsApp.Services.Validatories;
-using System;
+﻿using GraphsApp.Services.Validatories;
 
 namespace GraphsApp.Services.Managers
 {

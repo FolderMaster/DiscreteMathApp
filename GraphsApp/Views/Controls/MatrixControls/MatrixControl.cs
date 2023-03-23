@@ -44,11 +44,11 @@ namespace GraphsApp.Views.Controls.MatrixControls
 
         protected virtual void FillButtonClick() {}
 
-        protected virtual void GenerationButtonClick() { }
+        protected virtual void GenerationButtonClick() {}
 
-        protected virtual void SetButtonClick() { }
+        protected virtual void SetButtonClick() {}
 
-        protected virtual void ResetButtonClick() { }
+        protected virtual void ResetButtonClick() {}
 
         private void VerticesCountNumericUpDown_ValueChanged(object sender, EventArgs e)
         {

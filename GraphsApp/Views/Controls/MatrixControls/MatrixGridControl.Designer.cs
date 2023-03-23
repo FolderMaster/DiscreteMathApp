@@ -1,6 +1,6 @@
 ﻿namespace GraphsApp.Views.Controls.MatrixControls
 {
-    partial class MatrixGridControl
+    partial class MatrixGridControl<T>
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

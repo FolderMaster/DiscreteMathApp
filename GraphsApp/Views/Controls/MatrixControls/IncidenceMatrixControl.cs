@@ -46,15 +46,23 @@ namespace GraphsApp.Views.Controls.MatrixControls
         protected override void GenerationButtonClick()
         {
             IncidenceMatrix = MatrixFactory.CreateIncidentMatrix(Session.VerticesCount,
-                Session.EdgesCount, Session.LoopsCount, Session.EdgeMultiplicity);
+                Session.EdgesCount, Session.LoopsCount, Session.EdgeMultiplicity,
+                Session.AreOrientedConnections);
         }
 
         protected override void SetButtonClick()
         {
-            Graph.IncidenceMatrix = IncidenceMatrix;
-            IsResetButtonEnable = false;
-            IsSetButtonEnable = false;
-            MatrixChanged?.Invoke(this, EventArgs.Empty);
+            try
+            {
+                Graph.IncidenceMatrix = IncidenceMatrix;
+                IsResetButtonEnable = false;
+                IsSetButtonEnable = false;
+                MatrixChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxManager.ShowError(ex.Message);
+            }
         }
 
         protected override void ResetButtonClick()

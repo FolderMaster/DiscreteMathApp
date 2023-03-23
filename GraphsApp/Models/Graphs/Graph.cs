@@ -57,6 +57,7 @@ namespace GraphsApp.Models.Graphs
                 }
                 Edges.Clear();
                 IsOriented = false;
+
                 int edgesCount = 0;
                 for (int y = 0; y < verticesCount; ++y)
                 {
@@ -104,23 +105,42 @@ namespace GraphsApp.Models.Graphs
                 {
                     int y1 = Vertices.IndexOf(Edges[x].Begin);
                     int y2 = Vertices.IndexOf(Edges[x].End);
-                    result[y1, x] += 1;
-                    result[y2, x] += 1;
+                    if (Vertices[y1].Edges.Contains(Edges[x]) &&
+                        Vertices[y2].Edges.Contains(Edges[x]))
+                    {
+                        result[y1, x] += 1;
+                        result[y2, x] += 1;
+                    }
+                    else
+                    {
+                        if(Vertices[y1].Edges.Contains(Edges[x]))
+                        {
+                            result[y1, x] = -1;
+                            result[y2, x] = 1;
+                        }
+                        else
+                        {
+                            result[y1, x] = 1;
+                            result[y2, x] = -1;
+                        }
+                    }
                 }
                 return result;
             }
             set
             {
+                ValueValidator.AssertMatrixIsIncidence(value, nameof(IncidenceMatrix));
+
                 int verticesCount = value.GetLength(0);
                 Vertices.Clear();
                 for (int n = 0; n < verticesCount; n++)
                 {
                     Vertices.Add(new Vertex(GetNameForVertex(n)));
                 }
-
                 int edgesCount = value.GetLength(1);
                 Edges.Clear();
                 IsOriented = false;
+
                 for (int x = 0; x < edgesCount; ++x)
                 {
                     bool isOriented = false;

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GraphsApp.Services.Factories
 {
     public static class MatrixFactory
     {
         public static int[,] CreateAdjacencyMatrix(int verticesCount, int edgesCount, 
-            int loopsCount = 0, int edgeMultiplicity = 0)
+            int loopsCount = 0, int edgeMultiplicity = 0, bool areOrientedConnections = false)
         {
             Random random = new Random();
             int[,] result = new int[verticesCount, verticesCount];
@@ -24,7 +25,15 @@ namespace GraphsApp.Services.Factories
                     else
                     {
                         generatedValue = random.Next(Math.Min(edgesCount, edgeMultiplicity) + 1);
-                        result[x, y] = result[y, x] = generatedValue;
+                        if (areOrientedConnections)
+                        {
+                            result[x, y] = random.Next(generatedValue + 1);
+                            result[y, x] = generatedValue - result[x, y];
+                        }
+                        else
+                        {
+                            result[x, y] = result[y, x] = generatedValue;
+                        }
                     }
                     edgesCount -= generatedValue;
                 }
@@ -33,15 +42,65 @@ namespace GraphsApp.Services.Factories
         }
 
         public static int[,] CreateIncidentMatrix(int verticesCount, int edgesCount,
-            int loopsCount = 0, int edgeMultiplicity = 0)
+            int loopsCount = 0, int edgeMultiplicity = 0, bool areOrientedConnections = false)
         {
             Random random = new Random();
             int[,] result = new int[verticesCount, edgesCount];
+            List<(int, int, int)> verticesConnectionsCount = new List<(int, int, int)>();
             for (int y = 0; y < verticesCount; ++y)
             {
-                for (int x = 0; x < edgesCount; ++x)
+                for (int x = 0; x < verticesCount; ++x)
                 {
-                    int generatedValue = random.Next(verticesCount > 0 ? loopsCount > 0 ? 3 : 2 : 1);
+                    if(x == y)
+                    {
+                        if(loopsCount > 0 && edgeMultiplicity > 0)
+                        {
+                            verticesConnectionsCount.Add((y, x, 0));
+                        }
+                    }
+                    else
+                    {
+                        if (edgeMultiplicity > 0)
+                        {
+                            verticesConnectionsCount.Add((y, x, 0));
+                        }
+                    }
+                }
+            }
+
+            for (int x = 0; x < edgesCount; ++x)
+            {
+                if(verticesConnectionsCount.Count == 0)
+                {
+                    break;
+                }
+                int connectionIndex = random.Next(verticesConnectionsCount.Count);
+                int fromVertexIndex = verticesConnectionsCount[connectionIndex].Item1;
+                int toVertexIndex = verticesConnectionsCount[connectionIndex].Item2;
+                verticesConnectionsCount[connectionIndex] = (fromVertexIndex, toVertexIndex,
+                    verticesConnectionsCount[connectionIndex].Item3 + 1);
+                if(fromVertexIndex == toVertexIndex && verticesConnectionsCount[connectionIndex].
+                    Item3 == Math.Min(edgeMultiplicity, loopsCount) || verticesConnectionsCount
+                    [connectionIndex].Item3 == edgeMultiplicity)
+                {
+                    verticesConnectionsCount.RemoveAt(connectionIndex);
+                }
+
+                if (toVertexIndex == fromVertexIndex)
+                {
+                    result[toVertexIndex, x] = 2;
+                }
+                else
+                {
+                    if (areOrientedConnections)
+                    {
+                        result[fromVertexIndex, x] = result[toVertexIndex, x] = 1;
+                    }
+                    else
+                    {
+                        result[fromVertexIndex, x] = -1;
+                        result[toVertexIndex, x] = 1;
+                    }
                 }
             }
             return result;

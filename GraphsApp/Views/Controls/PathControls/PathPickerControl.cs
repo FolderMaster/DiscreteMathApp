@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using GraphsApp.Models.Graphs;
@@ -55,12 +49,16 @@ namespace GraphsApp.Views.Controls.PathControls
             try
             {
                 (double, List <Edge>) answer = GraphManager.GetLengthOfShortestPath(Graph,
-                FromSelectedVertex, ToSelectedVertex);
+                    FromSelectedVertex, ToSelectedVertex);
                 ButtonClicked?.Invoke(this, EventArgs.Empty);
                 double pathLength = answer.Item1;
                 if(pathLength == double.PositiveInfinity)
                 {
                     MessageBoxManager.ShowInformation("Path not found!");
+                }
+                else if(pathLength == 0 && answer.Item2.Count == 0)
+                {
+                    MessageBoxManager.ShowInformation("No path required!");
                 }
                 else
                 {

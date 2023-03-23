@@ -14,46 +14,43 @@ namespace GraphsApp.Services.Managers
             List<Vertex> uncoloredVertexes = SortedByVertexDegree(graph);
             while (uncoloredVertexes.Count > 0)
             {
-                ColorVertecies(uncoloredVertexes, unusedColors);
-            }
-        }
-
-        public static void ColorVertecies(List<Vertex> uncoloredVertexes, List<Color> unusedColors)
-        {
-            Vertex currentVertex = uncoloredVertexes[0];
-            List<Vertex> unavaibleVertexes = new List<Vertex>();
-            for (int i = 0; i < currentVertex.Edges.Count; i++)
-            {
-                Vertex endVertex = currentVertex.Edges[i].End;
-                Vertex beginVertex = currentVertex.Edges[i].Begin;
-                if (!unavaibleVertexes.Contains(endVertex) && currentVertex != endVertex)
+                if (unusedColors.Count > 0)
                 {
-                    unavaibleVertexes.Add(endVertex);
-                }
-                if (!unavaibleVertexes.Contains(beginVertex) && currentVertex != beginVertex)
-                {
-                    unavaibleVertexes.Add(beginVertex);
-                }
-            }
-            List<Vertex> avaibleVertexes = new List<Vertex>();
-            foreach (Vertex vertex in uncoloredVertexes)
-            {
-                if (!unavaibleVertexes.Contains(vertex))
-                {
-                    avaibleVertexes.Add(vertex);
-                }
-            }
-            foreach (Vertex avaibleVertex in avaibleVertexes)
-            {
-                if(unusedColors.Count > 0)
-                {
-                    avaibleVertex.Color = unusedColors[0];
-                    uncoloredVertexes.Remove(avaibleVertex);
+                    ColorVertecies(uncoloredVertexes, unusedColors);
                 }
                 else
                 {
                     throw new ArgumentException("Need more colors than there are!");
                 }
+            }
+        }
+
+        public static void ColorVertecies(List<Vertex> uncoloredVertexes, List<Color> unusedColors)
+        {
+            List<Vertex> avaibleVertexes = new List<Vertex>();
+            foreach(Vertex vertex in uncoloredVertexes)
+            {
+                bool isAvaible = true;
+                foreach(Vertex avaibleVertex in avaibleVertexes)
+                {
+                    if(avaibleVertex.Edges.Where((e) => e.Begin == vertex || e.End == vertex).Any()
+                        || vertex.Edges.Where((e) => e.Begin == avaibleVertex ||
+                        e.End == avaibleVertex).Any())
+                    {
+                        isAvaible = false;
+                        break;
+                    }
+                }
+                if(isAvaible)
+                {
+                    avaibleVertexes.Add(vertex);
+                }
+            }
+
+            foreach (Vertex vertex in avaibleVertexes)
+            {
+                vertex.Color = unusedColors[0];
+                uncoloredVertexes.Remove(vertex);
             }
             unusedColors.RemoveAt(0);
         }
@@ -66,14 +63,9 @@ namespace GraphsApp.Services.Managers
                 Vertex currentVertex = graph.Vertices[i];
                 degreeAndVertexPair.Add((currentVertex.Edges.Count, currentVertex));
             }
-            List<(int, Vertex)> sortedTuples =
-                degreeAndVertexPair.OrderByDescending(x => x.Item1).ToList();
-            List<Vertex> sortedVertexes = new List<Vertex>();
-            foreach ((int, Vertex) tuple in sortedTuples)
-            {
-                sortedVertexes.Add(tuple.Item2);
-            }
-            return sortedVertexes;
+
+            return degreeAndVertexPair.OrderByDescending((v) => v.Item1).Select((v) => v.Item2).
+                ToList();
         }
 
         public static (double, List<Edge>) GetLengthOfShortestPath(Graph graph, Vertex fromVertex,
@@ -109,6 +101,8 @@ namespace GraphsApp.Services.Managers
                         {
                             weightMatrix[i, j].Item1 = weightMatrix[i, k].Item1 +
                                 weightMatrix[k, j].Item1;
+
+                            weightMatrix[i, j].Item2.Clear();
                             weightMatrix[i, j].Item2.AddRange(weightMatrix[i, k].Item2);
                             weightMatrix[i, j].Item2.AddRange(weightMatrix[k, j].Item2);
                         }
