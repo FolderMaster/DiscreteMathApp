@@ -1,4 +1,4 @@
-﻿namespace GraphsApp.Models.Schedules
+﻿namespace GraphsApp.Models.Plots
 {
     public class Axis
     {

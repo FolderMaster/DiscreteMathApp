@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using GraphsApp.Models.Schedules;
+using GraphsApp.Models.Plots;
 
 namespace GraphsApp.Services.Factories
 {

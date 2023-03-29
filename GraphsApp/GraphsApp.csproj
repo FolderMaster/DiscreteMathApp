@@ -52,22 +52,22 @@
     <Compile Include="Models\Graphs\Edge.cs" />
     <Compile Include="Models\Graphs\Graph.cs" />
     <Compile Include="Models\Graphs\Vertex.cs" />
-    <Compile Include="Models\Schedules\Axis.cs" />
-    <Compile Include="Models\Schedules\Camera2D.cs" />
-    <Compile Include="Models\Schedules\Curve.cs" />
-    <Compile Include="Models\Schedules\ICamera.cs" />
-    <Compile Include="Models\Schedules\IScale.cs" />
-    <Compile Include="Models\Schedules\ISchedule.cs" />
-    <Compile Include="Models\Schedules\IShape.cs" />
-    <Compile Include="Models\Schedules\LinearScale.cs" />
-    <Compile Include="Models\Schedules\LineSegment.cs" />
-    <Compile Include="Models\Schedules\Point.cs" />
-    <Compile Include="Models\Schedules\Schedule2D.cs" />
+    <Compile Include="Models\Plots\Axis.cs" />
+    <Compile Include="Models\Plots\Camera2D.cs" />
+    <Compile Include="Models\Plots\Curve.cs" />
+    <Compile Include="Models\Plots\ICamera.cs" />
+    <Compile Include="Models\Plots\IDrawable.cs" />
+    <Compile Include="Models\Plots\IScale.cs" />
+    <Compile Include="Models\Plots\IPlot.cs" />
+    <Compile Include="Models\Plots\IShape.cs" />
+    <Compile Include="Models\Plots\LinearScale.cs" />
+    <Compile Include="Models\Plots\Point.cs" />
+    <Compile Include="Models\Plots\Plot2D.cs" />
     <Compile Include="Services\App\SaveFormat.cs" />
     <Compile Include="Services\App\Session.cs" />
     <Compile Include="Services\App\Settings.cs" />
     <Compile Include="Services\Factories\MatrixFactory.cs" />
-    <Compile Include="Services\Factories\ScheduleFactory.cs" />
+    <Compile Include="Services\Factories\PlotFactory.cs" />
     <Compile Include="Services\Factories\ShapeFactory.cs" />
     <Compile Include="Services\IO\JsonManager.cs" />
     <Compile Include="Services\Managers\GraphManager.cs" />
@@ -155,11 +155,11 @@
     <Compile Include="Views\Controls\PathControls\PathPickerControl.Designer.cs">
       <DependentUpon>PathPickerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\Schedule2DControl.cs">
+    <Compile Include="Views\Controls\Plot2DControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Controls\Schedule2DControl.Designer.cs">
-      <DependentUpon>Schedule2DControl.cs</DependentUpon>
+    <Compile Include="Views\Controls\Plot2DControl.Designer.cs">
+      <DependentUpon>Plot2DControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\PathControls\VertexSelectorControl.cs">
       <SubType>UserControl</SubType>
@@ -239,8 +239,8 @@
     <EmbeddedResource Include="Views\Controls\PathControls\PathPickerControl.resx">
       <DependentUpon>PathPickerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Controls\Schedule2DControl.resx">
-      <DependentUpon>Schedule2DControl.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Controls\Plot2DControl.resx">
+      <DependentUpon>Plot2DControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Controls\PathControls\VertexSelectorControl.resx">
       <DependentUpon>VertexSelectorControl.cs</DependentUpon>

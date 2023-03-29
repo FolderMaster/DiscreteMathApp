@@ -12,14 +12,6 @@ namespace GraphsApp.Services.Validatories
             }
         }
 
-        public static void AssertValueIsEven(int value, string name)
-        {
-            if (value % 2 == 1)
-            {
-                throw new ArgumentException($"{name} must be even");
-            }
-        }
-
         public static void AssertValueIsPositive(int value, string name)
         {
             if (value < 0)

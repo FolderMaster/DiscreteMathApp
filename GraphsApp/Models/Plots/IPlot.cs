@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace GraphsApp.Models.Schedules
+namespace GraphsApp.Models.Plots
 {
-    public interface ISchedule
+    public interface IPlot
     {
         List<Axis> Axises { get; }
 

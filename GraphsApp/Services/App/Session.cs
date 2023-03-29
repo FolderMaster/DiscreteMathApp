@@ -22,7 +22,7 @@ namespace GraphsApp.Services.App
 
         public Session(SaveFormat save)
         {
-            Graph.AdjacencyMatrix = save.AdjacencyMatrix;
+            Graph = save.Graph;
             AdjacencyMatrixControlSession = save.AdjacencyMatrixControlSession;
             IncidenceMatrixControlSession = save.IncidenceMatrixControlSession;
             ColorGraphControlSession= save.ColorGraphControlSession;

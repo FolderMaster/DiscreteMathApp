@@ -1,6 +1,6 @@
 ﻿namespace GraphsApp.Views.Controls
 {
-    partial class Schedule2DControl
+    partial class Plot2DControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

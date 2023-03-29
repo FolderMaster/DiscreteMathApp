@@ -92,7 +92,7 @@ namespace GraphsApp.Services.Factories
                 }
                 else
                 {
-                    if (areOrientedConnections)
+                    if (!areOrientedConnections)
                     {
                         result[fromVertexIndex, x] = result[toVertexIndex, x] = 1;
                     }

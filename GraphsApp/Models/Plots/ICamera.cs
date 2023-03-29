@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace GraphsApp.Models.Schedules
+namespace GraphsApp.Models.Plots
 {
     public interface ICamera
     {

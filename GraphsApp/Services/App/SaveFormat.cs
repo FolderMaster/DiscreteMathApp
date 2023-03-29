@@ -1,10 +1,11 @@
-﻿using GraphsApp.Views.Controls.Classes;
+﻿using GraphsApp.Models.Graphs;
+using GraphsApp.Views.Controls.Classes;
 
 namespace GraphsApp.Services.App
 {
     public class SaveFormat
     {
-        public int[,] AdjacencyMatrix { get; set; } = new int[0, 0];
+        public Graph Graph { get; set; } = new Graph();
 
         public MatrixControlSession AdjacencyMatrixControlSession { get; set; } = new 
             MatrixControlSession();
@@ -21,7 +22,7 @@ namespace GraphsApp.Services.App
 
         public SaveFormat(Session session)
         {
-            AdjacencyMatrix = session.Graph.AdjacencyMatrix;
+            Graph = session.Graph;
             AdjacencyMatrixControlSession = session.AdjacencyMatrixControlSession;
             IncidenceMatrixControlSession = session.IncidenceMatrixControlSession;
             ColorGraphControlSession = session.ColorGraphControlSession;

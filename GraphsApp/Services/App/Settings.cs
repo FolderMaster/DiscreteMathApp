@@ -13,6 +13,10 @@ namespace GraphsApp.Services.App
         public Font ValueFont { get; set; } = new Font(FontFamily.GenericSansSerif, 10,
             FontStyle.Regular);
 
+        public int ArrowCapWidth { get; set; } = 5;
+
+        public int ArrowCapHeight { get; set; } = 5;
+
         public SolidBrush FontSolidBrush { get; set; } = new SolidBrush(Color.Red);
 
         public Pen AxisXPen { get; set; } = new Pen(Color.Black);
@@ -35,10 +39,7 @@ namespace GraphsApp.Services.App
 
         public Pen LinePen { get; set; } = new Pen(Color.Black);
 
-        public Settings()
-        {
-
-        }
+        public Settings() {}
 
         public Settings(string savePath)
         {

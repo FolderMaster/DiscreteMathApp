@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GraphsApp.Models.Schedules
+namespace GraphsApp.Models.Plots
 {
-    public class Schedule2D : ISchedule
+    public class Plot2D : IPlot
     {
         private const int count = 2;
 
@@ -48,11 +48,11 @@ namespace GraphsApp.Models.Schedules
 
         public double DefaultValue { get; set; } = 0;
 
-        public Schedule2D()
+        public Plot2D()
         {
         }
 
-        public Schedule2D(List<Axis> axises2D, double defaultValue = 0)
+        public Plot2D(List<Axis> axises2D, double defaultValue = 0)
         {
             Axises2D = axises2D;
             DefaultValue = defaultValue;

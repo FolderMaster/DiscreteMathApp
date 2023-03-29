@@ -31,7 +31,7 @@
             GraphsApp.Services.App.Settings settings1 = new GraphsApp.Services.App.Settings();
             this.AgainButton = new System.Windows.Forms.Button();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
-            this.Schedule2DControl = new GraphsApp.Views.Controls.Schedule2DControl();
+            this.Schedule2DControl = new GraphsApp.Views.Controls.Plot2DControl();
             this.AdjacencyMatrixControl = new GraphsApp.Views.Controls.MatrixControls.AdjacencyMatrixControl();
             this.MatrixTabControl = new System.Windows.Forms.TabControl();
             this.AdjacencyMatrixTabPage = new System.Windows.Forms.TabPage();
@@ -160,7 +160,7 @@
         private System.Windows.Forms.GroupBox DisplayGroupBox;
         private Controls.MatrixControls.AdjacencyMatrixControl AdjacencyMatrixControl;
         private System.Windows.Forms.Button AgainButton;
-        private Controls.Schedule2DControl Schedule2DControl;
+        private Controls.Plot2DControl Schedule2DControl;
         private System.Windows.Forms.TabControl MatrixTabControl;
         private System.Windows.Forms.TabPage AdjacencyMatrixTabPage;
         private System.Windows.Forms.TabPage IncidenceMatrixTabPage;

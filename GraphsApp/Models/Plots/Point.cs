@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace GraphsApp.Models.Schedules
+using GraphsApp.Services.App;
+
+namespace GraphsApp.Models.Plots
 {
-    public class Point : IShape, IComparable
+    public class Point : IShape, IComparable, IDrawable
     {
         public string Name { get; set; } = "";
 
@@ -46,7 +48,7 @@ namespace GraphsApp.Models.Schedules
             set => Coordinates[index] = value;
         }
 
-        public double GetDistance(Point point, ISchedule schedule)
+        public double GetDistance(Point point, IPlot schedule)
         {
             double result = 0;
             for (int n = 0; n < point.Coordinates.Count || n < Coordinates.Count; ++n)
@@ -61,7 +63,7 @@ namespace GraphsApp.Models.Schedules
             return Math.Sqrt(result);
         }
 
-        public IShape Display(ISchedule schedule)
+        public IShape Display(IPlot schedule)
         {
             List<double> coordinates = new List<double>();
             for (int n = 0; n < schedule.Axises.Count; ++n)
@@ -78,12 +80,12 @@ namespace GraphsApp.Models.Schedules
             return new Point(Name, Color, coordinates);
         }
 
-        public double GetMax(ISchedule schedule, int axisIndex)
+        public double GetMax(IPlot schedule, int axisIndex)
         {
             return axisIndex < Coordinates.Count ? Coordinates[axisIndex] : schedule.DefaultValue;
         }
 
-        public double GetMin(ISchedule schedule, int axisIndex)
+        public double GetMin(IPlot schedule, int axisIndex)
         {
             return axisIndex < Coordinates.Count ? Coordinates[axisIndex] : schedule.DefaultValue;
         }
@@ -126,6 +128,19 @@ namespace GraphsApp.Models.Schedules
             {
                 throw new ArgumentException();
             }
+        }
+
+        public void Draw(Graphics graphics, Settings settings, int height, int width)
+        {
+            int x = (int)this[0];
+            int y = (int)this[1];
+
+            graphics.DrawEllipse(settings.OuterPointPen, x - settings.PointSize / 2, height
+                - y - settings.PointSize / 2, settings.PointSize, settings.PointSize);
+            graphics.FillEllipse(new SolidBrush(Color), x - settings.PointSize / 2,
+                height - y - settings.PointSize / 2, settings.PointSize, settings.PointSize);
+            graphics.DrawString(Name, settings.ValueFont, settings.FontSolidBrush,
+                x, height - y);
         }
     }
 }

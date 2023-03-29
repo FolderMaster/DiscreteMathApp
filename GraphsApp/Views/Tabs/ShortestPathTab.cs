@@ -26,13 +26,13 @@ namespace GraphsApp.Views.Tabs
             PathPickerControl.RefreshData();
             EdgeEditorControl.RefreshData();
             Schedule2DControl.Schedule =
-                ScheduleFactory.CreateScheduleByGraph(PathPickerControl.Graph);
+                PlotFactory.CreateScheduleByGraph(PathPickerControl.Graph);
         }
 
         private void PathPickerControl_ButtonClicked(object sender, EventArgs e)
         {
             Schedule2DControl.Schedule =
-                ScheduleFactory.CreateScheduleByGraph(PathPickerControl.Graph, false, true);
+                PlotFactory.CreateScheduleByGraph(PathPickerControl.Graph, false, true);
         }
     }
 }

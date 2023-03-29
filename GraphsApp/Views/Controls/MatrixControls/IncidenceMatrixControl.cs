@@ -39,7 +39,7 @@ namespace GraphsApp.Views.Controls.MatrixControls
 
         protected override void FillButtonClick()
         {
-            IncidenceMatrix = MatrixFactory.CreateIncidentMatrix(Session.VerticesCount, 
+            IncidenceMatrix = MatrixFactory.CreateIncidentMatrix(Session.VerticesCount,
                 Session.EdgesCount);
         }
 

@@ -43,7 +43,7 @@ namespace GraphsApp.Views.Tabs
         private void AdjacencyMatrixControl_MatrixChanged(object sender, EventArgs e)
         {
             Schedule2DControl.Schedule =
-                ScheduleFactory.CreateScheduleByGraph(AdjacencyMatrixControl.Graph);
+                PlotFactory.CreateScheduleByGraph(AdjacencyMatrixControl.Graph);
             IncidenceMatrixControl.RefreshData();
             MatrixChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -51,14 +51,14 @@ namespace GraphsApp.Views.Tabs
         private void IncidenceMatrixControl_MatrixChanged(object sender, EventArgs e)
         {
             Schedule2DControl.Schedule =
-                ScheduleFactory.CreateScheduleByGraph(IncidenceMatrixControl.Graph);
+                PlotFactory.CreateScheduleByGraph(IncidenceMatrixControl.Graph);
             AdjacencyMatrixControl.RefreshData();
             MatrixChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void AgainButton_Click(object sender, EventArgs e)
         {
-            Schedule2DControl.Schedule = ScheduleFactory.CreateScheduleByGraph(Graph);
+            Schedule2DControl.Schedule = PlotFactory.CreateScheduleByGraph(Graph);
         }
     }
 }

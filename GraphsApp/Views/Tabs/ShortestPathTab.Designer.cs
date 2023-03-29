@@ -33,7 +33,7 @@
             this.PathPickerControl = new GraphsApp.Views.Controls.PathControls.PathPickerControl();
             this.EdgeEditorGroupBox = new System.Windows.Forms.GroupBox();
             this.DisplayGroupBox = new System.Windows.Forms.GroupBox();
-            this.Schedule2DControl = new GraphsApp.Views.Controls.Schedule2DControl();
+            this.Schedule2DControl = new GraphsApp.Views.Controls.Plot2DControl();
             this.EdgeEditorGroupBox.SuspendLayout();
             this.DisplayGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +118,6 @@
         private Controls.PathControls.PathPickerControl PathPickerControl;
         private System.Windows.Forms.GroupBox EdgeEditorGroupBox;
         private System.Windows.Forms.GroupBox DisplayGroupBox;
-        private Controls.Schedule2DControl Schedule2DControl;
+        private Controls.Plot2DControl Schedule2DControl;
     }
 }

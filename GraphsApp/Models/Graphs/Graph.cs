@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
+
 using GraphsApp.Services.Validatories;
 
 namespace GraphsApp.Models.Graphs
@@ -19,6 +21,7 @@ namespace GraphsApp.Models.Graphs
 
         public List<Edge> Edges { get; set; } = new List<Edge>();
 
+        [JsonIgnore]
         public int[,] AdjacencyMatrix
         {
             get
@@ -94,6 +97,7 @@ namespace GraphsApp.Models.Graphs
             }
         }
 
+        [JsonIgnore]
         public int[,] IncidenceMatrix
         {
             get

@@ -9,6 +9,16 @@ namespace GraphsApp.Services.IO
     public static class JsonManager
     {
         /// <summary>
+        /// Настроки Json-сериализатора.
+        /// </summary>
+        private static readonly JsonSerializerSettings _jsonSerializerSettings =
+            new JsonSerializerSettings()
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects
+            };
+
+        /// <summary>
         /// Загружает данные из Json-файла.
         /// </summary>
         /// <typeparam name="T">Тип данных.</typeparam>
@@ -22,7 +32,7 @@ namespace GraphsApp.Services.IO
                 fileReader.Read(arrayBytes, 0, arrayBytes.Length);
                 string text = System.Text.Encoding.Default.GetString(arrayBytes);
 
-                return JsonConvert.DeserializeObject<T>(text);
+                return JsonConvert.DeserializeObject<T>(text, _jsonSerializerSettings);
             }
         }
 
@@ -36,7 +46,7 @@ namespace GraphsApp.Services.IO
         {
             using (FileStream fileWriter = new FileStream(filePath, FileMode.Create, FileAccess.Write))
             {
-                string text = JsonConvert.SerializeObject(data);
+                string text = JsonConvert.SerializeObject(data, _jsonSerializerSettings);
 
                 byte[] arrayBytes = System.Text.Encoding.Default.GetBytes(text);
                 fileWriter.Write(arrayBytes, 0, arrayBytes.Length);
