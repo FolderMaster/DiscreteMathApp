@@ -9,33 +9,48 @@ using GraphsApp.Services.App;
 
 namespace GraphsApp.Views.Controls
 {
+    /// <summary>
+    /// Элемент управления для отображения графика.
+    /// </summary>
     public partial class Plot2DControl : UserControl
     {
-        private Plot2D _schedule;
+        /// <summary>
+        /// График.
+        /// </summary>
+        private Plot2D _plot;
 
+        /// <summary>
+        /// Настройки.
+        /// </summary>
         private Settings _settings;
 
+        /// <summary>
+        /// Возвращает и задаёт график.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Plot2D Schedule
+        public Plot2D Plot
         {
             get
             {
-                return _schedule;
+                return _plot;
             }
             set
             {
                 if (value != null)
                 {
-                    _schedule = value;
-                    _schedule.Axises2D[0].Length = Width;
-                    _schedule.Axises2D[1].Length = Height;
-                    _schedule.DefaultDisplay();
+                    _plot = value;
+                    _plot.Axes2D[0].Length = Width;
+                    _plot.Axes2D[1].Length = Height;
+                    _plot.DefaultDisplay();
 
                     Invalidate();
                 }
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт настройки.
+        /// </summary>
         public Settings Settings
         {
             get
@@ -50,19 +65,22 @@ namespace GraphsApp.Views.Controls
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Plot2DControl"/> по умолчанию.
+        /// </summary>
         public Plot2DControl()
         {
             InitializeComponent();
 
-            Schedule = new Plot2D(new List<Axis>() {
+            Plot = new Plot2D(new List<Axis>() {
                 new Axis(new LinearScale()), new Axis(new LinearScale()) });
             Settings = new Settings();
         }
 
         private void Schedule2DControl_Resize(object sender, EventArgs e)
         {
-            Schedule.Axises2D[0].Length = Width;
-            Schedule.Axises2D[1].Length = Height;
+            Plot.Axes2D[0].Length = Width;
+            Plot.Axes2D[1].Length = Height;
 
             Invalidate();
         }
@@ -71,7 +89,7 @@ namespace GraphsApp.Views.Controls
         {
             Graphics graphics = CreateGraphics();
 
-            List<IShape> display = Schedule.Displays;
+            List<IShape> display = Plot.Displays;
             for (int n = 0; n < display.Count; ++n)
             {
                 if (display[n] is IDrawable drawable)

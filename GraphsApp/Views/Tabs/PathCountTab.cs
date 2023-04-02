@@ -5,8 +5,14 @@ using GraphsApp.Models.Graphs;
 
 namespace GraphsApp.Views.Tabs
 {
+    /// <summary>
+    /// Элемент управления для работы с матрицей путей.
+    /// </summary>
     public partial class PathCountTab : UserControl
     {
+        /// <summary>
+        /// Возвращает и задаёт граф.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -18,11 +24,17 @@ namespace GraphsApp.Views.Tabs
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="PathCountTab"/> по умолчанию.
+        /// </summary>
         public PathCountTab()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обновляет информацию.
+        /// </summary>
         public void RefreshData()
         {
             AdjacencyMatrixGridControl.AdjacencyMatrix =

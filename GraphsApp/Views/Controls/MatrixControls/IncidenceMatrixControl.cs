@@ -6,16 +6,28 @@ using GraphsApp.Services.Factories;
 
 namespace GraphsApp.Views.Controls.MatrixControls
 {
+    /// <summary>
+    /// Элемент управления для работы с матрицей инцидентности.
+    /// </summary>
     public partial class IncidenceMatrixControl : MatrixControl
     {
+        /// <summary>
+        /// Граф.
+        /// </summary>
         private Graph _graph = new Graph();
 
+        /// <summary>
+        /// Возвращает и задаёт матрицу инцидентности.
+        /// </summary>
         private int[,] IncidenceMatrix
         {
             get => IncidenceMatrixGridControl.IncidenceMatrix;
             set => IncidenceMatrixGridControl.IncidenceMatrix = value;
         }
 
+        /// <summary>
+        /// Возвращает и задаёт граф.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -30,8 +42,14 @@ namespace GraphsApp.Views.Controls.MatrixControls
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения матрицы.
+        /// </summary>
         public event EventHandler MatrixChanged;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="IncidenceMatrixControl"/> по умолчанию.
+        /// </summary>
         public IncidenceMatrixControl()
         {
             InitializeComponent();

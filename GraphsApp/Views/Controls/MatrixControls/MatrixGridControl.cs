@@ -5,16 +5,35 @@ using System.Windows.Forms;
 
 namespace GraphsApp.Views.Controls.MatrixControls
 {
+    /// <summary>
+    /// Элемент управления для редактирования значений матрицы.
+    /// </summary>
+    /// <typeparam name="T">Тип данных матрицы.</typeparam>
     public abstract partial class MatrixGridControl<T> : UserControl
     {
+        /// <summary>
+        /// Количество строк.
+        /// </summary>
         private int _columnCount = 0;
 
+        /// <summary>
+        /// Количество столбцов.
+        /// </summary>
         private int _rowCount = 0;
 
+        /// <summary>
+        /// Матрица.
+        /// </summary>
         private T[,] _matrix = new T[0, 0];
 
+        /// <summary>
+        /// Таблица.
+        /// </summary>
         private DataTable _dataTable = new DataTable();
 
+        /// <summary>
+        /// Возвращает и задаёт матрица.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public T[,] Matrix
         {
@@ -33,14 +52,26 @@ namespace GraphsApp.Views.Controls.MatrixControls
             }
         }
 
+        /// <summary>
+        /// обработчик события изменения матрицы.
+        /// </summary>
         public event EventHandler MatrixChanged;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="MatrixGridControl{T}"/> по умолчанию.
+        /// </summary>
         public MatrixGridControl()
         {
             InitializeComponent();
             DataGridView.DataSource = _dataTable;
         }
 
+        /// <summary>
+        /// Создаёт таблицу.
+        /// </summary>
+        /// <param name="columnCount">Количество строк.</param>
+        /// <param name="rowCount">Количество столбцов.</param>
+        /// <returns>Таблица.</returns>
         private DataTable CreateDataTable(int columnCount, int rowCount)
         {
             DataTable dataTable = new DataTable();
@@ -65,6 +96,9 @@ namespace GraphsApp.Views.Controls.MatrixControls
             return dataTable;
         }
 
+        /// <summary>
+        /// Обновляет таблицу.
+        /// </summary>
         private void UpdateDataTable()
         {
             for (int y = 0; y < _rowCount; ++y)
@@ -77,10 +111,27 @@ namespace GraphsApp.Views.Controls.MatrixControls
             DataGridView.DataSource = _dataTable;
         }
 
+        /// <summary>
+        /// Преобразовывает текст в значение типа данных.
+        /// </summary>
+        /// <param name="text">Текст.</param>
+        /// <returns>Значение типа данных.</returns>
         protected abstract T Parse(string text);
 
+        /// <summary>
+        /// Валидирует значение типа данных.
+        /// </summary>
+        /// <param name="value">Значение.</param>
+        /// <param name="columnIndex">Индекс строки.</param>
+        /// <param name="rowIndex">Индекс столбца.</param>
+        /// <param name="matrix">Матрица.</param>
         protected virtual void Validate(T value, int columnIndex, int rowIndex, T[,] matrix) {}
 
+        /// <summary>
+        /// Создаёт названия для столбцов.
+        /// </summary>
+        /// <param name="count">Количество</param>
+        /// <returns>Названия для столбцов.</returns>
         protected virtual string[] CreateRowStrings(int count)
         {
             string[] result = new string[count];
@@ -91,6 +142,11 @@ namespace GraphsApp.Views.Controls.MatrixControls
             return result;
         }
 
+        /// <summary>
+        /// Создаёт названия для строк.
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns>Названия для строк.</returns>
         protected virtual string[] CreateColumnStrings(int count)
         {
             string[] result = new string[count];

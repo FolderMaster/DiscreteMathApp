@@ -1,11 +1,17 @@
 ﻿using System.ComponentModel;
 
-using GraphsApp.Services.Validatories;
+using GraphsApp.Services.Validators;
 
 namespace GraphsApp.Views.Controls.MatrixControls
 {
+    /// <summary>
+    /// Элемент управления для редактирования значений матрица инцидентности.
+    /// </summary>
     public partial class IncidenceMatrixGridControl : MatrixGridControl<int>
     {
+        /// <summary>
+        /// Возвращает и задаёт матрицу инцидентности.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int[,] IncidenceMatrix
         {
@@ -13,6 +19,9 @@ namespace GraphsApp.Views.Controls.MatrixControls
             set => Matrix = value;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="IncidenceMatrixGridControl"/> по умолчанию.
+        /// </summary>
         public IncidenceMatrixGridControl()
         {
             InitializeComponent();

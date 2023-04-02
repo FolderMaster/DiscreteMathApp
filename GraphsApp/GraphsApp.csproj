@@ -53,9 +53,7 @@
     <Compile Include="Models\Graphs\Graph.cs" />
     <Compile Include="Models\Graphs\Vertex.cs" />
     <Compile Include="Models\Plots\Axis.cs" />
-    <Compile Include="Models\Plots\Camera2D.cs" />
     <Compile Include="Models\Plots\Curve.cs" />
-    <Compile Include="Models\Plots\ICamera.cs" />
     <Compile Include="Models\Plots\IDrawable.cs" />
     <Compile Include="Models\Plots\IScale.cs" />
     <Compile Include="Models\Plots\IPlot.cs" />
@@ -72,11 +70,10 @@
     <Compile Include="Services\IO\JsonManager.cs" />
     <Compile Include="Services\Managers\GraphManager.cs" />
     <Compile Include="Services\Managers\MatrixManager.cs" />
-    <Compile Include="Services\Validatories\ValueValidator.cs" />
+    <Compile Include="Services\Validators\ValueValidator.cs" />
     <Compile Include="Views\ColorManager.cs" />
     <Compile Include="Views\Controls\Classes\ColorGraphControlSession.cs" />
     <Compile Include="Views\Controls\Classes\MatrixControlSession.cs" />
-    <Compile Include="Views\Controls\Classes\PathCountControlSession.cs" />
     <Compile Include="Views\Controls\ColorControls\ColorGraphControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

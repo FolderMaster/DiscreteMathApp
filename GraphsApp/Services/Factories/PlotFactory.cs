@@ -9,17 +9,29 @@ using Point = GraphsApp.Models.Plots.Point;
 
 namespace GraphsApp.Services.Factories
 {
+    /// <summary>
+    /// Класс фабрики графиков с методами создания графиков.
+    /// </summary>
     public static class PlotFactory
     {
+        /// <summary>
+        /// Создаёт двухмерный график графа.
+        /// </summary>
+        /// <param name="graph">Граф.</param>
+        /// <param name="isColorVertices">Логическое значение, указывающее, что раскрашивать ли
+        /// вершины.</param>
+        /// <param name="isOutlinedEdges">Логическое значение, указывающее, что выделять ли
+        /// ребра.</param>
+        /// <returns>Двухмерный график графа.</returns>
         public static Plot2D CreateScheduleByGraph(Graph graph, bool isColorVertices = false,
-            bool isOutlileEdges = false)
+            bool isOutlinedEdges = false)
         {
             Random random = new Random();
             Plot2D result = new Plot2D();
-            List<Axis> axises = new List<Axis> { new Axis(new LinearScale(), (min) => min - 10, 
+            List<Axis> axes = new List<Axis> { new Axis(new LinearScale(), (min) => min - 10, 
                 (max) => max + 10), new Axis(new LinearScale(), (min) => min - 10, (max) => 
                 max + 10)};
-            result.Axises2D = axises;
+            result.Axes2D = axes;
             List<Point> points = new List<Point>();
             foreach (Vertex vertex in graph.Vertices)
             {
@@ -66,7 +78,7 @@ namespace GraphsApp.Services.Factories
                     Point middle = ShapeFactory.CreateCurveMiddlePoint2D(begin, end, count);
 
                     Curve curve = new Curve(edge.Name, new List<Point>() { begin, middle, end });
-                    if (isOutlileEdges && edge.isOutlined)
+                    if (isOutlinedEdges && edge.IsOutlined)
                     {
                         curve.Color = Color.Red;
                     }

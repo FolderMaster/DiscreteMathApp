@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using GraphsApp.Views.Forms;
 
 namespace GraphsApp
 {
+    /// <summary>
+    /// Класс приложения с методом запуска.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
-        /// Главная точка входа для приложения.
+        /// Запускает приложение.
         /// </summary>
         [STAThread]
         static void Main()

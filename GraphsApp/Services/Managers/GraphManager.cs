@@ -7,16 +7,25 @@ using GraphsApp.Models.Graphs;
 
 namespace GraphsApp.Services.Managers
 {
+    /// <summary>
+    /// Класс поддержки графов с методами взаимодействия с ним.
+    /// </summary>
     public static class GraphManager
     {
-        public static void ColorGraph(Graph graph, List<Color> unusedColors)
+        /// <summary>
+        /// Раскрашивает граф.
+        /// </summary>
+        /// <param name="graph">Граф.</param>
+        /// <param name="colors">Цвета.</param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void ColorGraph(Graph graph, List<Color> colors)
         {
             List<Vertex> uncoloredVertexes = SortedByVertexDegree(graph);
             while (uncoloredVertexes.Count > 0)
             {
-                if (unusedColors.Count > 0)
+                if (colors.Count > 0)
                 {
-                    ColorVertecies(uncoloredVertexes, unusedColors);
+                    ColorVertices(uncoloredVertexes, colors);
                 }
                 else
                 {
@@ -25,29 +34,34 @@ namespace GraphsApp.Services.Managers
             }
         }
 
-        public static void ColorVertecies(List<Vertex> uncoloredVertexes, List<Color> unusedColors)
+        /// <summary>
+        /// Раскрашивает вершины.
+        /// </summary>
+        /// <param name="uncoloredVertexes">Нераскрашенные вершины.</param>
+        /// <param name="unusedColors">Неиспользованные цвета.</param>
+        public static void ColorVertices(List<Vertex> uncoloredVertexes, List<Color> unusedColors)
         {
-            List<Vertex> avaibleVertexes = new List<Vertex>();
+            List<Vertex> availedVertexes = new List<Vertex>();
             foreach(Vertex vertex in uncoloredVertexes)
             {
-                bool isAvaible = true;
-                foreach(Vertex avaibleVertex in avaibleVertexes)
+                bool isAvailed = true;
+                foreach(Vertex availedVertex in availedVertexes)
                 {
-                    if(avaibleVertex.Edges.Where((e) => e.Begin == vertex || e.End == vertex).Any()
-                        || vertex.Edges.Where((e) => e.Begin == avaibleVertex ||
-                        e.End == avaibleVertex).Any())
+                    if(availedVertex.Edges.Where((e) => e.Begin == vertex || e.End == vertex).Any()
+                        || vertex.Edges.Where((e) => e.Begin == availedVertex ||
+                        e.End == availedVertex).Any())
                     {
-                        isAvaible = false;
+                        isAvailed = false;
                         break;
                     }
                 }
-                if(isAvaible)
+                if(isAvailed)
                 {
-                    avaibleVertexes.Add(vertex);
+                    availedVertexes.Add(vertex);
                 }
             }
 
-            foreach (Vertex vertex in avaibleVertexes)
+            foreach (Vertex vertex in availedVertexes)
             {
                 vertex.Color = unusedColors[0];
                 uncoloredVertexes.Remove(vertex);
@@ -55,6 +69,11 @@ namespace GraphsApp.Services.Managers
             unusedColors.RemoveAt(0);
         }
 
+        /// <summary>
+        /// Сортирует вершины по степени.
+        /// </summary>
+        /// <param name="graph">Граф.</param>
+        /// <returns>Список вершин, отсортированных по степени.</returns>
         public static List<Vertex> SortedByVertexDegree(Graph graph)
         {
             List<(int, Vertex)> degreeAndVertexPair = new List<(int, Vertex)>();
@@ -68,16 +87,24 @@ namespace GraphsApp.Services.Managers
                 ToList();
         }
 
-        public static (double, List<Edge>) GetLengthOfShortestPath(Graph graph, Vertex fromVertex,
+        /// <summary>
+        /// Находит самый короткий путь.
+        /// </summary>
+        /// <param name="graph">Граф.</param>
+        /// <param name="fromVertex">Вершина, из которой начинается путь.</param>
+        /// <param name="toVertex">Вершина, в которой заканчивается путь.</param>
+        /// <returns>Кортеж с самым коротким путём и его длиной.</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static (double, List<Edge>) GetShortestPath(Graph graph, Vertex fromVertex,
             Vertex toVertex)
         {
-            (double, List<Edge>)[,] matrix = FloydAlgorithm(WeightMatrix(graph));
+            (double, List<Edge>)[,] matrix = GetShortestPathByFloydAlgorithm(GetWeightMatrix(graph));
             if(fromVertex != null && toVertex != null)
             {
                 (double, List<Edge>) result = matrix[graph.Vertices.IndexOf(fromVertex),
                     graph.Vertices.IndexOf(toVertex)];
-                graph.Edges.ForEach((edge) => edge.isOutlined = false);
-                result.Item2.ForEach((edge) => edge.isOutlined = true);
+                graph.Edges.ForEach((edge) => edge.IsOutlined = false);
+                result.Item2.ForEach((edge) => edge.IsOutlined = true);
                 return result;
             }
             else
@@ -87,7 +114,13 @@ namespace GraphsApp.Services.Managers
             }
         }
 
-        public static (double, List<Edge>)[,] FloydAlgorithm((double, List<Edge>)[,] weightMatrix)
+        /// <summary>
+        /// Находит самый короткий путь алгоритмом Флойда.
+        /// </summary>
+        /// <param name="weightMatrix">Матрица весов с путями.</param>
+        /// <returns>Кортеж с самым коротким путём и его длиной.</returns>
+        public static (double, List<Edge>)[,] GetShortestPathByFloydAlgorithm((double,
+            List<Edge>)[,] weightMatrix)
         {
             int vertexCount = weightMatrix.GetLength(0);
             for (int k = 0; k < vertexCount; ++k)
@@ -112,7 +145,12 @@ namespace GraphsApp.Services.Managers
             return weightMatrix;
         }
 
-        public static (double, List<Edge>)[,] WeightMatrix(Graph graph)
+        /// <summary>
+        /// Рассчитывает матрицу весов с путями.
+        /// </summary>
+        /// <param name="graph">Граф.</param>
+        /// <returns>Матрица весов с путями.</returns>
+        public static (double, List<Edge>)[,] GetWeightMatrix(Graph graph)
         {
             int vertexCount = graph.Vertices.Count;
             (double, List<Edge>)[,] result = new (double, List<Edge>)[vertexCount, vertexCount];

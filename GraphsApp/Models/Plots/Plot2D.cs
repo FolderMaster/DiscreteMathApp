@@ -4,29 +4,41 @@ using System.Linq;
 
 namespace GraphsApp.Models.Plots
 {
+    /// <summary>
+    /// Класс двухмерного графика с двумя осями, значением по умолчанию.
+    /// </summary>
     public class Plot2D : IPlot
     {
-        private const int count = 2;
+        /// <summary>
+        /// Количество осей.
+        /// </summary>
+        private const int _axesCount = 2;
 
-        private Axis[] _axises = new Axis[count];
+        /// <summary>
+        /// Оси.
+        /// </summary>
+        private Axis[] _axes = new Axis[_axesCount];
 
-        public List<Axis> Axises
+        public List<Axis> Axes
         {
-            get => _axises.ToList();
+            get => _axes.ToList();
         }
 
-        public List<Axis> Axises2D
+        /// <summary>
+        /// Возвращает и задаёт две оси.
+        /// </summary>
+        public List<Axis> Axes2D
         {
-            get => _axises.ToList();
+            get => _axes.ToList();
             set
             {
-                if (value.Count != count)
+                if (value.Count != _axesCount)
                 {
                     throw new ArgumentException();
                 }
                 else
                 {
-                    _axises = value.ToArray();
+                    _axes = value.ToArray();
                 }
             }
         }
@@ -48,19 +60,25 @@ namespace GraphsApp.Models.Plots
 
         public double DefaultValue { get; set; } = 0;
 
-        public Plot2D()
-        {
-        }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Plot2D"/> по умолчанию.
+        /// </summary>
+        public Plot2D() {}
 
-        public Plot2D(List<Axis> axises2D, double defaultValue = 0)
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Plot2D"/>.
+        /// </summary>
+        /// <param name="axes2D">Две оси.</param>
+        /// <param name="defaultValue">Значение по умолчанию.</param>
+        public Plot2D(List<Axis> axes2D, double defaultValue = 0)
         {
-            Axises2D = axises2D;
+            Axes2D = axes2D;
             DefaultValue = defaultValue;
         }
 
-        public double GetMin(int axisesIndex)
+        public double GetMin(int axesIndex)
         {
-            if (axisesIndex >= Axises2D.Count)
+            if (axesIndex >= Axes2D.Count)
             {
                 throw new ArgumentException();
             }
@@ -75,16 +93,16 @@ namespace GraphsApp.Models.Plots
                     List<double> coordinates = new List<double>();
                     foreach (IShape shape in Shapes)
                     {
-                        coordinates.Add(shape.GetMin(this, axisesIndex));
+                        coordinates.Add(shape.GetMin(this, axesIndex));
                     }
                     return coordinates.Min();
                 }
             }
         }
 
-        public double GetMax(int axisesIndex)
+        public double GetMax(int axesIndex)
         {
-            if (axisesIndex >= Axises2D.Count)
+            if (axesIndex >= Axes2D.Count)
             {
                 throw new ArgumentException();
             }
@@ -99,7 +117,7 @@ namespace GraphsApp.Models.Plots
                     List<double> coordinates = new List<double>();
                     foreach (IShape shape in Shapes)
                     {
-                        coordinates.Add(shape.GetMax(this, axisesIndex));
+                        coordinates.Add(shape.GetMax(this, axesIndex));
                     }
                     return coordinates.Max();
                 }
@@ -108,9 +126,9 @@ namespace GraphsApp.Models.Plots
 
         public void DefaultDisplay()
         {
-            for (int n = 0; n < Axises2D.Count; ++n)
+            for (int n = 0; n < Axes2D.Count; ++n)
             {
-                Axis axis = Axises2D[n];
+                Axis axis = Axes2D[n];
 
                 axis.Max = GetMax(n);
                 axis.Max = axis.MaxFunction(axis.Max);

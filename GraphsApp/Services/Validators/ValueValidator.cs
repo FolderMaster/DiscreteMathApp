@@ -1,9 +1,19 @@
 ﻿using System;
 
-namespace GraphsApp.Services.Validatories
+namespace GraphsApp.Services.Validators
 {
+    /// <summary>
+    /// Класс валидатора значений с методами валидации значений.
+    /// </summary>
     public static class ValueValidator
     {
+        /// <summary>
+        /// Проверяет, что значение не нулевое.
+        /// </summary>
+        /// <typeparam name="T">Тип данных.</typeparam>
+        /// <param name="value">Значение.</param>
+        /// <param name="name">Название.</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void AssertIsNotNull<T>(T value, string name)
         {
             if (value == null)
@@ -12,6 +22,12 @@ namespace GraphsApp.Services.Validatories
             }
         }
 
+        /// <summary>
+        /// Проверяет, что значение позитивное.
+        /// </summary>
+        /// <param name="value">Значение.</param>
+        /// <param name="name">Название.</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void AssertValueIsPositive(int value, string name)
         {
             if (value < 0)
@@ -20,6 +36,18 @@ namespace GraphsApp.Services.Validatories
             }
         }
 
+        /// <summary>
+        /// Проверяет, что значение в диапазоне.
+        /// </summary>
+        /// <param name="value">Значение.</param>
+        /// <param name="min">Минимум.</param>
+        /// <param name="isMinInclude">Логическое значение, указывающее, что минимум включен в
+        /// диапазон.</param>
+        /// <param name="max">Максимум.</param>
+        /// <param name="isMaxInclude">Логическое значение, указывающее, что максимум включен в
+        /// диапазон.</param>
+        /// <param name="name">Название.</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void AssertValueIsInRange(int value, int min, bool isMinInclude, int max,
             bool isMaxInclude, string name)
         {
@@ -33,18 +61,30 @@ namespace GraphsApp.Services.Validatories
             }
         }
 
-        public static void AssertMatrixOnLengthesAreEqual<T>(T[,] matrix, string name)
+        /// <summary>
+        /// Проверяет матрицу, что длина и высота равны.
+        /// </summary>
+        /// <typeparam name="T">Тип данных.</typeparam>
+        /// <param name="matrix">Матрица.</param>
+        /// <param name="name">Название.</param>
+        /// <exception cref="ArgumentException"></exception>
+        public static void AssertMatrixOnLengthsAreEqual<T>(T[,] matrix, string name)
         {
             if (matrix.GetLength(0) != matrix.GetLength(1))
             {
-                throw new ArgumentException($"Lengthes of {name} must be equal");
+                throw new ArgumentException($"Lengths of {name} must be equal");
             }
         }
 
+        /// <summary>
+        /// Проверяет, что матрица смежная.
+        /// </summary>
+        /// <param name="matrix">Матрица.</param>
+        /// <param name="name">Название.</param>
         public static void AssertMatrixIsAdjacency(int[,] matrix, string name)
         {
             AssertIsNotNull(matrix, name);
-            AssertMatrixOnLengthesAreEqual(matrix, name);
+            AssertMatrixOnLengthsAreEqual(matrix, name);
             int verticesCount = matrix.GetLength(0);
             for(int y = 0; y < verticesCount; ++y)
             {
@@ -55,6 +95,12 @@ namespace GraphsApp.Services.Validatories
             }
         }
 
+        /// <summary>
+        /// Проверяет, что матрица инцидентная.
+        /// </summary>
+        /// <param name="matrix">Матрица.</param>
+        /// <param name="name">Название.</param>
+        /// <exception cref="ArgumentException"></exception>
         public static void AssertMatrixIsIncidence(int[,] matrix, string name)
         {
             AssertIsNotNull(matrix, name);

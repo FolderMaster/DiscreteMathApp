@@ -3,24 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-using GraphsApp.Services.Validatories;
+using GraphsApp.Services.Validators;
 
 namespace GraphsApp.Models.Graphs
 {
+    /// <summary>
+    /// Класс графа со списками вершин и рёбер, матрицами смежности и инцидентности, логическим
+    /// значением, указывающим на ориентированность.
+    /// </summary>
     public class Graph
     {
+        /// <summary>
+        /// Логическое значение, указывающее на ориентированность.
+        /// </summary>
         private bool _isOriented = false;
 
+        /// <summary>
+        /// Возвращает и задаёт логическое значение, указывающее на ориентированность.
+        /// </summary>
         public bool IsOriented
         {
             get => _isOriented;
             private set => _isOriented = value;
         }
 
+        /// <summary>
+        /// Возвращает и задаёт список вершин.
+        /// </summary>
         public List<Vertex> Vertices { get; set; } = new List<Vertex>();
 
+        /// <summary>
+        /// Возвращает и задаёт список рёбер.
+        /// </summary>
         public List<Edge> Edges { get; set; } = new List<Edge>();
 
+        /// <summary>
+        /// Возвращает и задаёт матрицу смежности. Должна удовлетворять условиям сложности.
+        /// </summary>
         [JsonIgnore]
         public int[,] AdjacencyMatrix
         {
@@ -97,6 +116,9 @@ namespace GraphsApp.Models.Graphs
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт матрицу инцидентности. Должна удовлетворять условиям инцидентности.
+        /// </summary>
         [JsonIgnore]
         public int[,] IncidenceMatrix
         {
@@ -202,21 +224,28 @@ namespace GraphsApp.Models.Graphs
             }
         }
 
-        public Graph()
-        {
-        }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Graph"/> по умолчанию.
+        /// </summary>
+        public Graph() {}
 
-        public Graph(List<Vertex> vertices)
-        {
-            Vertices = vertices;
-        }
-
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Graph"/>.
+        /// </summary>
+        /// <param name="vertices">Список вершин.</param>
+        /// <param name="edges">Список рёбер.</param>
         public Graph(List<Vertex> vertices, List<Edge> edges)
         {
             Vertices = vertices;
             Edges = edges;
         }
 
+        /// <summary>
+        /// Соединяет вершины.
+        /// </summary>
+        /// <param name="vertex1">Вершина 1.</param>
+        /// <param name="vertex2">Вершина 2.</param>
+        /// <param name="name">Название для ребра.</param>
         private void ConnectVertices(Vertex vertex1, Vertex vertex2, string name)
         {
             Edge edge = new Edge(name, vertex1, vertex2);
@@ -228,21 +257,12 @@ namespace GraphsApp.Models.Graphs
             Edges.Add(edge);
         }
 
-        private void ConnectVerticesByEdge(Vertex vertex1, Vertex vertex2, Edge edge)
-        {
-            edge.Begin = vertex1;
-            edge.End = vertex2;
-            vertex1.Edges.Add(edge);
-            if (vertex1 != vertex2)
-            {
-                vertex2.Edges.Add(edge);
-            }
-            if(!Edges.Contains(edge))
-            {
-                Edges.Add(edge);
-            }
-        }
-
+        /// <summary>
+        /// Соединяет вершину к вершине.
+        /// </summary>
+        /// <param name="vertex1">Вершина 1.</param>
+        /// <param name="vertex2">Вершина 2.</param>
+        /// <param name="name">Название для ребра.</param>
         private void ConnectVertexToVertex(Vertex vertex1, Vertex vertex2, string name)
         {
             Edge edge = new Edge(name, vertex1, vertex2);
@@ -250,16 +270,18 @@ namespace GraphsApp.Models.Graphs
             Edges.Add(edge);
         }
 
-        private void ConnectVertexToVertexByEdge(Vertex vertex1, Vertex vertex2, Edge edge)
-        {
-            edge.Begin = vertex1;
-            edge.End = vertex2;
-            vertex1.Edges.Add(edge);
-            Edges.Add(edge);
-        }
-
+        /// <summary>
+        /// Возвращает название для ребра.
+        /// </summary>
+        /// <param name="index">Индекс.</param>
+        /// <returns>Название для ребра.</returns>
         private string GetNameForEdge(int index) => Convert.ToChar('a' + index).ToString();
 
+        /// <summary>
+        /// Возвращает название для вершины.
+        /// </summary>
+        /// <param name="index">Индекс.</param>
+        /// <returns>Название для вершины.</returns>
         private string GetNameForVertex(int index) => $"{index + 1}";
     }
 }

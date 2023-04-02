@@ -6,14 +6,29 @@ using System.Windows.Forms;
 
 namespace GraphsApp.Views.Controls.ColorControls
 {
+    /// <summary>
+    /// Элемент управления для работы со списком цветов.
+    /// </summary>
     public partial class ColorListControl : UserControl
     {
+        /// <summary>
+        /// Источник данных для <see cref="ListBox"/>.
+        /// </summary>
         private BindingSource _bindingSource = new BindingSource();
 
+        /// <summary>
+        /// Цвета.
+        /// </summary>
         private List<Color> _colors = new List<Color>();
 
+        /// <summary>
+        /// Выбранный индекс.
+        /// </summary>
         private int _selectedIndex = -1;
 
+        /// <summary>
+        /// Возвращает и задаёт цвета.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Color> Colors
         {
@@ -26,6 +41,9 @@ namespace GraphsApp.Views.Controls.ColorControls
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт выбранный индекс.
+        /// </summary>
         public int SelectedIndex
         {
             get => _selectedIndex;
@@ -46,6 +64,9 @@ namespace GraphsApp.Views.Controls.ColorControls
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт выбранный цвет.
+        /// </summary>
         public Color SelectedColor
         {
             get => _colors[SelectedIndex];
@@ -64,6 +85,9 @@ namespace GraphsApp.Views.Controls.ColorControls
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="ColorListControl"/> по умолчанию.
+        /// </summary>
         public ColorListControl()
         {
             InitializeComponent();
@@ -71,6 +95,9 @@ namespace GraphsApp.Views.Controls.ColorControls
             ListBox.DataSource = _bindingSource;
         }
 
+        /// <summary>
+        /// Обновляет список.
+        /// </summary>
         private void UpdateList()
         {
             _bindingSource.ResetBindings(false);

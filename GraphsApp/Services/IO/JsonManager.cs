@@ -9,7 +9,7 @@ namespace GraphsApp.Services.IO
     public static class JsonManager
     {
         /// <summary>
-        /// Настроки Json-сериализатора.
+        /// Настройки Json-сериализатора.
         /// </summary>
         private static readonly JsonSerializerSettings _jsonSerializerSettings =
             new JsonSerializerSettings()

@@ -8,46 +8,77 @@ using GraphsApp.Services.Factories;
 
 namespace GraphsApp.Models.Plots
 {
+    /// <summary>
+    /// Класс кривой с точками.
+    /// </summary>
     public class Curve : IShape, IDrawable
     {
         public string Name { get; set; } = "";
 
         public Color Color { get; set; } = Color.Black;
 
+        /// <summary>
+        /// Возвращает и задаёт точки.
+        /// </summary>
         public List<Point> Points { get; set; } = new List<Point>();
 
-        public Point Begin { get; set; } = new Point();
-
-        public Point Middle { get; set; } = new Point();
-
-        public Point End { get; set; } = new Point();
-
+        /// <summary>
+        /// Возвращает и задаёт логическое значение, указывающее, что направлен.
+        /// </summary>
         public bool IsDirected { get; set; } = false;
 
-        public Curve()
-        {
-        }
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Curve"/> по умолчанию.
+        /// </summary>
+        public Curve() {}
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Curve"/>.
+        /// </summary>
+        /// <param name="points">Точки.</param>
         public Curve(List<Point> points)
         {
             Points = points;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Curve"/>.
+        /// </summary>
+        /// <param name="color">Цвет.</param>
+        /// <param name="points">Точки.</param>
         public Curve(Color color, List<Point> points) : this(points)
         {
             Color = color;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Curve"/>.
+        /// </summary>
+        /// <param name="name">Название.</param>
+        /// <param name="points">Точки.</param>
         public Curve(string name, List<Point> points) : this(points)
         {
             Name = name;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Curve"/>.
+        /// </summary>
+        /// <param name="name">Название.</param>
+        /// <param name="color">Цвет.</param>
+        /// <param name="points">Точки.</param>
         public Curve(string name, Color color, List<Point> points) : this(name, points)
         {
             Color = color;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Curve"/>.
+        /// </summary>
+        /// <param name="name">Название.</param>
+        /// <param name="color">Цвет.</param>
+        /// <param name="points">Точки.</param>
+        /// <param name="isDirected">Логическое значение, указывающее, что направлен.</param>
         public Curve(string name, Color color, List<Point> points, bool isDirected) : this(name,
             color, points)
         {
@@ -61,12 +92,12 @@ namespace GraphsApp.Models.Plots
             for(int n = 0; n < Points.Count; ++n)
             {
                 points.Add(new Point());
-                for (int a = 0; a < schedule.Axises.Count; ++a)
+                for (int a = 0; a < schedule.Axes.Count; ++a)
                 {
                     if(a < Points[n].AxisCount)
                     {
                         points[n].Coordinates.Add(
-                            schedule.Axises[a].Display(Points[n].Coordinates[a]));
+                            schedule.Axes[a].Display(Points[n].Coordinates[a]));
                     }
                     else
                     {
@@ -97,6 +128,10 @@ namespace GraphsApp.Models.Plots
             return values.Min();
         }
 
+        /// <summary>
+        /// Возвращает строку представления объекта.
+        /// </summary>
+        /// <returns>Строка представления объекта.</returns>
         public override string ToString()
         {
             return string.Join(":", Points);
@@ -104,7 +139,10 @@ namespace GraphsApp.Models.Plots
 
         public virtual void Draw(Graphics graphics, Settings settings, int height, int width)
         {
-            Point middlePoint = ShapeFactory.CreateMiddlePointByPoints(Points);
+            int middleIndex = (Points.Count - 1) / 2;
+            Point middlePoint = Points.Count % 2 == 0 ? ShapeFactory.
+                CreateMiddlePointByPoints(new List<Point>() { Points[middleIndex - 1],
+                    Points[middleIndex + 1] }) :Points[middleIndex];
             List<PointF> pointFs = new List<PointF>();
             foreach(Point point in Points)
             {

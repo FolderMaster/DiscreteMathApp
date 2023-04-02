@@ -7,14 +7,29 @@ using GraphsApp.Models.Graphs;
 
 namespace GraphsApp.Views.Controls.PathControls
 {
+    /// <summary>
+    /// Элемент управления для выбора ребра.
+    /// </summary>
     public partial class EdgeSelectorControl : UserControl
     {
+        /// <summary>
+        /// Источник данных для <see cref="ComboBox"/>.
+        /// </summary>
         private BindingSource _bindingSource = new BindingSource();
 
+        /// <summary>
+        /// Рёбра.
+        /// </summary>
         private List<Edge> _edges = new List<Edge>();
 
+        /// <summary>
+        /// Выбранное ребро.
+        /// </summary>
         private Edge _selectedEdge = null;
 
+        /// <summary>
+        /// Возвращает и задаёт граф.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -30,6 +45,9 @@ namespace GraphsApp.Views.Controls.PathControls
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт выбранное ребро.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Edge SelectedEdge
         {
@@ -44,8 +62,14 @@ namespace GraphsApp.Views.Controls.PathControls
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения выбранного ребра.
+        /// </summary>
         public event EventHandler SelectedEdgeChanged;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="EdgeSelectorControl"/> по умолчанию.
+        /// </summary>
         public EdgeSelectorControl()
         {
             InitializeComponent();
@@ -53,6 +77,9 @@ namespace GraphsApp.Views.Controls.PathControls
             ComboBox.DataSource = _bindingSource;
         }
 
+        /// <summary>
+        /// Обновляет информацию.
+        /// </summary>
         public void RefreshData()
         {
             _bindingSource.ResetBindings(false);

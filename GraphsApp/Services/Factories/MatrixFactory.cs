@@ -3,8 +3,21 @@ using System.Collections.Generic;
 
 namespace GraphsApp.Services.Factories
 {
+    /// <summary>
+    /// Класс фабрики матриц с методами создания матриц.
+    /// </summary>
     public static class MatrixFactory
     {
+        /// <summary>
+        /// Создаёт матрицу смежности.
+        /// </summary>
+        /// <param name="verticesCount">Количество вершин.</param>
+        /// <param name="edgesCount">Количество рёбер.</param>
+        /// <param name="loopsCount">Количество петлей.</param>
+        /// <param name="edgeMultiplicity">Максимальное количество рёбер у вершины.</param>
+        /// <param name="areOrientedConnections">Логическое значение, указывающее, что матрица
+        /// ориентирована.</param>
+        /// <returns>Матрица смежности.</returns>
         public static int[,] CreateAdjacencyMatrix(int verticesCount, int edgesCount, 
             int loopsCount = 0, int edgeMultiplicity = 0, bool areOrientedConnections = false)
         {
@@ -41,6 +54,16 @@ namespace GraphsApp.Services.Factories
             return result;
         }
 
+        /// <summary>
+        /// Создаёт матрицу инцидентности.
+        /// </summary>
+        /// <param name="verticesCount">Количество вершин.</param>
+        /// <param name="edgesCount">Количество рёбер.</param>
+        /// <param name="loopsCount">Количество петлей.</param>
+        /// <param name="edgeMultiplicity">Максимальное количество рёбер у вершины.</param>
+        /// <param name="areOrientedConnections">Логическое значение, указывающее, что матрица
+        /// ориентирована.</param>
+        /// <returns>Матрица инцидентности.</returns>
         public static int[,] CreateIncidentMatrix(int verticesCount, int edgesCount,
             int loopsCount = 0, int edgeMultiplicity = 0, bool areOrientedConnections = false)
         {

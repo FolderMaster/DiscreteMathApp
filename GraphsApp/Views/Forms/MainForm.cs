@@ -6,12 +6,24 @@ using GraphsApp.Services.IO;
 
 namespace GraphsApp.Views.Forms
 {
+    /// <summary>
+    /// Основное окно приложения.
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Настройки.
+        /// </summary>
         private Settings _settings = new Settings();
 
+        /// <summary>
+        /// сессия.
+        /// </summary>
         private Session _session = new Session();
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="MainForm"/> по умолчанию.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();

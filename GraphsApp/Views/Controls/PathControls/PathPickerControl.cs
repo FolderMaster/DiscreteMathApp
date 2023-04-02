@@ -8,22 +8,37 @@ using GraphsApp.Services.Managers;
 
 namespace GraphsApp.Views.Controls.PathControls
 {
+    /// <summary>
+    /// элемент управления для выбора пути.
+    /// </summary>
     public partial class PathPickerControl : UserControl
     {
+        /// <summary>
+        /// Граф.
+        /// </summary>
         private Graph _graph = new Graph();
 
+        /// <summary>
+        /// Возвращает выбранную вершину, из которой начинается путь.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private Vertex FromSelectedVertex
         {
             get => FromVertexSelectorControl.SelectedVertex;
         }
 
+        /// <summary>
+        /// Возвращает выбранную вершину, в которой заканчивается путь..
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         private Vertex ToSelectedVertex
         {
             get => ToVertexSelectorControl.SelectedVertex;
         }
 
+        /// <summary>
+        /// Возвращает и задаёт граф.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -31,13 +46,22 @@ namespace GraphsApp.Views.Controls.PathControls
             set => _graph = FromVertexSelectorControl.Graph = ToVertexSelectorControl.Graph = value;
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку.
+        /// </summary>
         public event EventHandler ButtonClicked;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="PathPickerControl"/> по умолчанию.
+        /// </summary>
         public PathPickerControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обновляет информацию.
+        /// </summary>
         public void RefreshData()
         {
             FromVertexSelectorControl.RefreshData();
@@ -48,7 +72,7 @@ namespace GraphsApp.Views.Controls.PathControls
         {
             try
             {
-                (double, List <Edge>) answer = GraphManager.GetLengthOfShortestPath(Graph,
+                (double, List <Edge>) answer = GraphManager.GetShortestPath(Graph,
                     FromSelectedVertex, ToSelectedVertex);
                 ButtonClicked?.Invoke(this, EventArgs.Empty);
                 double pathLength = answer.Item1;

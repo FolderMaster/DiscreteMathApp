@@ -72,10 +72,6 @@
             this.Schedule2DControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Schedule2DControl.Location = new System.Drawing.Point(3, 16);
             this.Schedule2DControl.Name = "Schedule2DControl";
-            settings1.CorrectColor = System.Drawing.Color.White;
-            settings1.ErrorColor = System.Drawing.Color.LightPink;
-            settings1.LineXSize = 20;
-            settings1.LineYSize = 20;
             settings1.PointSize = 10;
             settings1.SavePath = "Save.txt";
             settings1.ValueFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);

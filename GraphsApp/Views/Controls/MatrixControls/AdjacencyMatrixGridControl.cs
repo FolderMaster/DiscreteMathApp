@@ -1,11 +1,17 @@
 ﻿using System.ComponentModel;
 
-using GraphsApp.Services.Validatories;
+using GraphsApp.Services.Validators;
 
 namespace GraphsApp.Views.Controls.MatrixControls
 {
+    /// <summary>
+    /// Элемент управления для работы с матрицей смежности.
+    /// </summary>
     public partial class AdjacencyMatrixGridControl : MatrixGridControl<int>
     {
+        /// <summary>
+        /// Возвращает и задаёт матрицу смежности.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int[,] AdjacencyMatrix
         {
@@ -13,6 +19,9 @@ namespace GraphsApp.Views.Controls.MatrixControls
             set => Matrix = value;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="AdjacencyMatrixGridControl"/> по умолчанию.
+        /// </summary>
         public AdjacencyMatrixGridControl()
         {
             InitializeComponent();

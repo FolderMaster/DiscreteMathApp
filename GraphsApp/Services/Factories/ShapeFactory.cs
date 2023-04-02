@@ -5,8 +5,16 @@ using GraphsApp.Models.Plots;
 
 namespace GraphsApp.Services.Factories
 {
+    /// <summary>
+    /// Класс фабрики фигур с методами создания фигур.
+    /// </summary>
     public static class ShapeFactory
     {
+        /// <summary>
+        /// Создаёт точку середины точек.
+        /// </summary>
+        /// <param name="points">Точки.</param>
+        /// <returns>Точка середины точек.</returns>
         public static Point CreateMiddlePointByPoints(List<Point> points)
         {
             List<double> coordinates = new List<double>();
@@ -28,7 +36,14 @@ namespace GraphsApp.Services.Factories
             return new Point(coordinates);
         }
 
-        public static Point CreateCurveMiddlePoint2D(Point begin, Point end, int factor)
+        /// <summary>
+        /// Создаёт двухмерную точку по середине кривой.
+        /// </summary>
+        /// <param name="begin">Точка начала кривой.</param>
+        /// <param name="end">Точка конца кривой.</param>
+        /// <param name="deviation">Коэффициент отклонения.</param>
+        /// <returns>Двухмерная точка по середине кривой.</returns>
+        public static Point CreateCurveMiddlePoint2D(Point begin, Point end, int deviation)
         {
             List<double> coordinates = new List<double>();
             List<double> differences = new List<double>();
@@ -44,11 +59,11 @@ namespace GraphsApp.Services.Factories
 
             if (differences[0] < differences[1])
             {
-                coordinates[1] += factor;
+                coordinates[1] += deviation;
             }
             else
             {
-                coordinates[0] += factor;
+                coordinates[0] += deviation;
             }
 
             return new Point(coordinates);

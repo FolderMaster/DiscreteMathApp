@@ -10,13 +10,25 @@ using GraphsApp.Views.Controls.Classes;
 
 namespace GraphsApp.Views.Controls.ColorControls
 {
+    /// <summary>
+    /// Элемент управления для раскраски графа.
+    /// </summary>
     public partial class ColorGraphControl : UserControl
     {
+        /// <summary>
+        /// Сессия элемента управления раскраски графа с цветами.
+        /// </summary>
         private ColorGraphControlSession _session = new ColorGraphControlSession();
 
+        /// <summary>
+        /// Возвращает и задаёт граф.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph { get; set; } = new Graph();
 
+        /// <summary>
+        /// Возвращает и задаёт сессию элемента управления раскраски графа с цветами.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ColorGraphControlSession Session
         {
@@ -29,14 +41,20 @@ namespace GraphsApp.Views.Controls.ColorControls
             }
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку.
+        /// </summary>
+        public event EventHandler ButtonClicked;
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="ColorGraphControl"/> по умолчанию.
+        /// </summary>
         public ColorGraphControl()
         {
             InitializeComponent();
 
             ColorListControl.Colors = Session.Colors;
         }
-
-        public event EventHandler ButtonClicked;
 
         private void Button_Click(object sender, EventArgs e)
         {

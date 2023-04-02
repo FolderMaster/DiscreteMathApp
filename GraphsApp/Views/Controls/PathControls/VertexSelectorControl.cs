@@ -7,14 +7,29 @@ using GraphsApp.Models.Graphs;
 
 namespace GraphsApp.Views.Controls.PathControls
 {
+    /// <summary>
+    /// Элемент управления для выбора вершины.
+    /// </summary>
     public partial class VertexSelectorControl : UserControl
     {
+        /// <summary>
+        /// Источник данных для <see cref="ComboBox"/>.
+        /// </summary>
         private BindingSource _bindingSource = new BindingSource();
 
+        /// <summary>
+        /// Вершины.
+        /// </summary>
         private List<Vertex> _vertices = new List<Vertex>();
 
+        /// <summary>
+        /// Выбранная вершина.
+        /// </summary>
         private Vertex _selectedVertex = null;
 
+        /// <summary>
+        /// Возвращает и задаёт граф.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Graph Graph
         {
@@ -30,6 +45,9 @@ namespace GraphsApp.Views.Controls.PathControls
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт выбранную вершину.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Vertex SelectedVertex
         {
@@ -44,8 +62,14 @@ namespace GraphsApp.Views.Controls.PathControls
             }
         }
 
+        /// <summary>
+        /// Обработчик события изменения выбранной вершины.
+        /// </summary>
         public event EventHandler SelectedVertexChanged;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="VertexSelectorControl"/> по умолчанию.
+        /// </summary>
         public VertexSelectorControl()
         {
             InitializeComponent();
@@ -53,6 +77,9 @@ namespace GraphsApp.Views.Controls.PathControls
             ComboBox.DataSource = _bindingSource;
         }
 
+        /// <summary>
+        /// Обновляет информацию.
+        /// </summary>
         public void RefreshData()
         {
             _bindingSource.ResetBindings(false);
